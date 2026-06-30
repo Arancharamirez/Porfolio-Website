@@ -1,0 +1,353 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Reveal from '../components/Reveal.astro';
+import { projects, otherProjects, getAllTags } from '../data/projects';
+
+const allTags = getAllTags();
+const total = projects.length + otherProjects.length;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base
+  title="Portfolio — Arancha Ramírez"
+  description="Thirteen projects across design engineering, sustainable systems, and strategic analysis."
+>
+  <!-- ─── Header ─────────────────────────────────────────── -->
+  <section class="port-header page-px max-w-page">
+    <Reveal>
+      <p class="serif-italic caption port-eyebrow">Portfolio</p>
+      <h1 class="display-l">Selected work, 2021–2026</h1>
+      <p class="body-l port-desc">
+        Thirteen projects across design engineering, sustainable systems, and strategic analysis.
+      </p>
+    </Reveal>
+  </section>
+
+  <!-- ─── Tag filter ─────────────────────────────────────── -->
+  <div class="filter-sticky page-px" id="filter-bar">
+    <div class="filter-inner max-w-page">
+      <div class="tag-scroll" role="toolbar" aria-label="Filter projects by tag">
+        <button class="filter-tag active" data-tag="All">All</button>
+        {allTags.map((tag) => (
+          <button class="filter-tag" data-tag={tag}>{tag}</button>
+        ))}
+        <button class="filter-clear" id="filter-clear" aria-label="Clear all filters" hidden>
+          Clear
+        </button>
+      </div>
+      <p class="filter-meta micro" id="filter-meta" aria-live="polite">
+        Showing {total} of {total} projects
+      </p>
+    </div>
+  </div>
+
+  <!-- ─── Unified grid ────────────────────────────────────── -->
+  <section class="port-grid page-px max-w-page" aria-label="Project grid" id="project-grid">
+
+    <!-- Case study projects (image cards) -->
+    {projects.map((p, i) => (
+      <div
+        class="grid-item"
+        data-slug={p.slug}
+        data-tags={p.tags.join(',')}
+      >
+        <Reveal delay={i * 40}>
+          <ProjectCard project={p} />
+        </Reveal>
+      </div>
+    ))}
+
+    <!-- Other projects (text cards, open PDF) -->
+    {otherProjects.map((p, i) => (
+      <div
+        class="grid-item"
+        data-slug={p.slug}
+        data-tags={p.tags.join(',')}
+      >
+        <Reveal delay={(projects.length + i) * 40}>
+          <a
+            href={p.pdf_url ?? '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-card"
+            aria-label={`${p.title} — open report`}
+          >
+            <div class="text-card-inner">
+              <span class="text-card-index micro">{p.index}</span>
+              <h2 class="text-card-title title">{p.title}</h2>
+              <p class="text-card-course caption">{p.course}</p>
+              <p class="text-card-desc caption">{p.one_line}</p>
+            </div>
+            <div class="text-card-footer">
+              <div class="text-card-tags">
+                {p.tags.map((t) => (
+                  <span class="text-card-tag micro">{t}</span>
+                ))}
+              </div>
+              <span class="text-card-cta micro">
+                {p.pdf_url ? 'View report →' : 'Coming soon'}
+              </span>
+            </div>
+          </a>
+        </Reveal>
+      </div>
+    ))}
+
+  </section>
+</Base>
+
+<style>
+  .port-header {
+    padding-top: calc(5rem + 4rem);
+    padding-bottom: 2rem;
+  }
+  .port-eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--ink-muted);
+  }
+  .port-header h1 {
+    margin: 0 0 1rem;
+  }
+  .port-desc {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+
+  /* ─── Sticky filter bar ───────────────────────────────── */
+  .filter-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: rgba(244, 241, 234, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .filter-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .tag-scroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2px;
+    align-items: center;
+  }
+  .tag-scroll::-webkit-scrollbar { display: none; }
+
+  .filter-tag {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3em 0.85em;
+    border-radius: 9999px;
+    font-size: var(--micro);
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-soft);
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .filter-tag:hover { background: var(--paper-soft); }
+  .filter-tag.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: transparent;
+  }
+
+  .filter-clear {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: var(--caption);
+    font-family: var(--font-sans);
+    color: var(--ink-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 150ms ease;
+  }
+  .filter-clear:hover { color: var(--ink); }
+
+  .filter-meta {
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  /* ─── Grid ─────────────────────────────────────────────── */
+  .port-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+  .grid-item {
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+  .grid-item.hidden {
+    opacity: 0;
+    transform: scale(0.97);
+    pointer-events: none;
+    display: none;
+  }
+
+  @media (max-width: 1100px) { .port-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  { .port-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 440px)  { .port-grid { grid-template-columns: 1fr; } }
+
+  /* ─── Text card (for other projects) ────────────────────── */
+  .text-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 220px;
+    border-radius: var(--radius-card);
+    background: var(--paper-soft);
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 220ms ease-out, box-shadow 220ms ease-out, background 220ms ease-out;
+    box-sizing: border-box;
+  }
+  .text-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26, 26, 26, 0.08);
+    background: var(--card);
+  }
+
+  .text-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+  }
+  .text-card-index {
+    color: var(--ink-muted);
+    margin-bottom: 0.25rem;
+  }
+  .text-card-title {
+    margin: 0;
+    font-size: var(--title);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .text-card-course {
+    margin: 0;
+    color: var(--ink-muted);
+  }
+  .text-card-desc {
+    margin: 0.5rem 0 0;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .text-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .text-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .text-card-tag {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .text-card-tag + .text-card-tag::before {
+    content: '·';
+    margin-right: 0.3rem;
+  }
+  .text-card-cta {
+    color: var(--ink-muted);
+    white-space: nowrap;
+    transition: color 200ms ease;
+  }
+  .text-card:hover .text-card-cta {
+    color: var(--accent);
+  }
+</style>
+
+<script>
+  (() => {
+    const grid = document.getElementById('project-grid')!;
+    const items = Array.from(grid.querySelectorAll<HTMLElement>('.grid-item'));
+    const filterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-tag'));
+    const clearBtn = document.getElementById('filter-clear') as HTMLButtonElement;
+    const meta = document.getElementById('filter-meta')!;
+    const total = items.length;
+
+    let selected: Set<string> = new Set();
+
+    const params = new URLSearchParams(window.location.search);
+    params.getAll('tag').forEach((t) => selected.add(t));
+
+    function updateURL() {
+      const p = new URLSearchParams();
+      selected.forEach((t) => p.append('tag', t));
+      const qs = p.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    }
+
+    function applyFilter() {
+      let visible = 0;
+      items.forEach((item) => {
+        const tags = (item.dataset.tags ?? '').split(',');
+        const show = selected.size === 0 || tags.some((t) => selected.has(t));
+        item.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      meta.textContent = `Showing ${visible} of ${total} projects`;
+      if (clearBtn) clearBtn.hidden = selected.size === 0;
+      filterBtns.forEach((btn) => {
+        const tag = btn.dataset.tag ?? '';
+        btn.classList.toggle('active', tag === 'All' ? selected.size === 0 : selected.has(tag));
+      });
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag ?? '';
+        if (tag === 'All') {
+          selected.clear();
+        } else {
+          selected.has(tag) ? selected.delete(tag) : selected.add(tag);
+        }
+        updateURL();
+        applyFilter();
+      });
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      selected.clear();
+      updateURL();
+      applyFilter();
+    });
+
+    applyFilter();
+  })();
+</script>

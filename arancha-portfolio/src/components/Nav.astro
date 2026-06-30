@@ -1,0 +1,119 @@
+---
+const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === base || href === `${base}/`) {
+    return pathname === base || pathname === `${base}/`;
+  }
+  return pathname.startsWith(href);
+}
+---
+
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href={base} class="nav-logo" aria-label="Home — Arancha Ramírez">
+      ARANCHA RAMÍREZ
+    </a>
+    <ul class="nav-links" role="list">
+      <li>
+        <a href={`${base}/portfolio`} class:list={['nav-link', { active: isActive(`${base}/portfolio`) }]}>
+          Portfolio
+        </a>
+      </li>
+      <li>
+        <a href={`${base}/cv`} class:list={['nav-link', { active: isActive(`${base}/cv`) }]}>
+          CV
+        </a>
+      </li>
+      <li>
+        <a href={`${base}/about`} class:list={['nav-link', { active: isActive(`${base}/about`) }]}>
+          About
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  #site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition:
+      background-color 300ms ease,
+      backdrop-filter 300ms ease,
+      transform 300ms var(--ease-out-expo);
+  }
+  #site-nav.scrolled {
+    background-color: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem var(--px);
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-logo {
+    font-family: var(--font-sans);
+    font-size: var(--micro);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: var(--body);
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 200ms ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: width 300ms var(--ease-out-expo);
+  }
+  .nav-link.active {
+    color: var(--ink);
+  }
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    .nav-links {
+      gap: 1.25rem;
+    }
+    .nav-link {
+      font-size: var(--caption);
+    }
+  }
+</style>

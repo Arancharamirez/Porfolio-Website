@@ -1,0 +1,76 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  accentColor?: string;
+}
+
+const {
+  title = 'Arancha Ramírez — Design Engineering Portfolio',
+  description = 'Portfolio of Arancha Ramírez, MEng Design Engineering student at Imperial College London. Designing for human experience and environmental impact.',
+  ogImage = '/images/og.jpg',
+  accentColor,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://example.com');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+    <!-- Google Fonts: Instrument Sans, Instrument Serif, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Astro View Transitions -->
+    <meta name="view-transition" content="same-origin" />
+
+    {accentColor && (
+      <style set:html={`body { --project-accent: ${accentColor}; }`} />
+    )}
+  </head>
+  <body>
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Blur nav background on scroll -->
+    <script>
+      (() => {
+        const nav = document.getElementById('site-nav');
+        if (!nav) return;
+        window.addEventListener('scroll', () => {
+          nav.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

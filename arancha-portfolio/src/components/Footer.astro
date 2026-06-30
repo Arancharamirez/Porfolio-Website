@@ -1,0 +1,58 @@
+---
+---
+<footer class="site-footer page-px">
+  <div class="footer-inner max-w-page">
+    <hr class="rule" />
+    <div class="footer-row">
+      <a href="mailto:arancha.ramirez21@imperial.ac.uk" class="footer-link">
+        arancha.ramirez21@imperial.ac.uk
+      </a>
+      <a
+        href="https://linkedin.com/in/arancha-ramirez"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link"
+      >
+        LinkedIn
+      </a>
+      <span class="footer-copy">© Arancha Ramírez 2026</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--section-gap);
+    padding-bottom: 2rem;
+  }
+  .footer-inner {
+    padding-top: 1.5rem;
+  }
+  .footer-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-link {
+    font-size: var(--caption);
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .footer-link:hover {
+    color: var(--ink);
+  }
+  .footer-copy {
+    font-size: var(--caption);
+    color: var(--ink-muted);
+    margin-left: auto;
+  }
+
+  @media (max-width: 600px) {
+    .footer-copy {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>

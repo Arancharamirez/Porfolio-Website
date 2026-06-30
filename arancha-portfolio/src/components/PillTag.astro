@@ -1,0 +1,8 @@
+---
+export interface Props {
+  label: string;
+  variant?: 'outline' | 'filled' | 'ink';
+}
+const { label, variant = 'filled' } = Astro.props;
+---
+<span class:list={['pill', `pill-${variant}`]}>{label}</span>

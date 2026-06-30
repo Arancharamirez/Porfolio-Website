@@ -1,0 +1,396 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+import { projects } from '../data/projects';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Base
+  title="CV — Arancha Ramírez"
+  description="CV of Arancha Ramírez — MEng Design Engineering, Imperial College London."
+>
+  <div class="cv-page page-px max-w-page">
+    <div class="cv-layout">
+
+      <!-- ─── Sidebar ──────────────────────────────────────── -->
+      <aside class="cv-sidebar">
+        <div class="sidebar-inner">
+          <h1 class="sidebar-name">Arancha<br />Ramírez</h1>
+          <p class="sidebar-role caption">MEng Design Engineering</p>
+
+          <hr class="rule" style="margin: 1.5rem 0" />
+
+          <ul class="sidebar-meta" role="list">
+            <li>
+              <span class="meta-label micro">Location</span>
+              <span class="meta-value caption">Madrid / London</span>
+            </li>
+            <li>
+              <span class="meta-label micro">Email</span>
+              <a href="mailto:arancha.ramirez21@imperial.ac.uk" class="meta-link caption">
+                arancha.ramirez21<br />@imperial.ac.uk
+              </a>
+            </li>
+            <li>
+              <span class="meta-label micro">LinkedIn</span>
+              <a
+                href="https://linkedin.com/in/arancha-ramirez"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="meta-link caption"
+              >
+                linkedin.com/in/<br />arancha-ramirez
+              </a>
+            </li>
+          </ul>
+
+          <a href="/cv-arancha-ramirez.pdf" download class="download-btn">
+            Download CV PDF
+          </a>
+        </div>
+      </aside>
+
+      <!-- ─── Content ──────────────────────────────────────── -->
+      <div class="cv-content">
+
+        <!-- Education -->
+        <Reveal>
+          <section class="cv-section">
+            <h2 class="serif-italic cv-section-title">Education</h2>
+            <div class="cv-entry">
+              <div class="entry-header">
+                <div>
+                  <p class="entry-org">Imperial College London</p>
+                  <p class="entry-role">MEng Design Engineering</p>
+                </div>
+                <span class="entry-date micro">2021–2026</span>
+              </div>
+            </div>
+            <div class="cv-entry">
+              <div class="entry-header">
+                <div>
+                  <p class="entry-org">British Council Madrid</p>
+                  <p class="entry-role">Spanish Baccalaureate, IGCSEs</p>
+                </div>
+                <span class="entry-date micro">2012–2021</span>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <!-- Work experience -->
+        <Reveal>
+          <section class="cv-section">
+            <h2 class="serif-italic cv-section-title">Work experience</h2>
+
+            <div class="cv-entry">
+              <div class="entry-header">
+                <div>
+                  <p class="entry-org">Strategic Engineering Consulting Ltd</p>
+                  <p class="entry-role">Strategic Engineering Analyst Intern</p>
+                  <p class="entry-location caption">London</p>
+                </div>
+                <span class="entry-date micro">Apr 2025–Jun 2026</span>
+              </div>
+              <ul class="entry-bullets">
+                <li>Led SEO optimisation, web design, and UI/UX improvements — took website health from 2 to 99 and doubled performance</li>
+                <li>Developed AI agents and automated workflows in n8n, streamlining content generation pipeline</li>
+                <li>Standardised all operational processes and documentation</li>
+              </ul>
+            </div>
+
+            <div class="cv-entry">
+              <div class="entry-header">
+                <div>
+                  <p class="entry-org">GeneracionCode</p>
+                  <p class="entry-role">Program Development Coordinator</p>
+                  <p class="entry-location caption">Madrid</p>
+                </div>
+                <span class="entry-date micro">Aug 2024</span>
+              </div>
+              <ul class="entry-bullets">
+                <li>Developed and presented proposals to companies including ITP Aero for sponsorships of children's programming courses</li>
+                <li>Designed programming education initiatives aligned with corporate social responsibility goals</li>
+              </ul>
+            </div>
+
+            <div class="cv-entry">
+              <div class="entry-header">
+                <div>
+                  <p class="entry-org">Faculty of Design Engineering, Maths Department</p>
+                  <p class="entry-role">Student, Digital Platform Development</p>
+                  <p class="entry-location caption">London</p>
+                </div>
+                <span class="entry-date micro">Apr–Jun 2022 &amp; 2023</span>
+              </div>
+              <ul class="entry-bullets">
+                <li>Helped develop LambdaFeedback, a digital feedback platform for a core mathematics module</li>
+              </ul>
+            </div>
+          </section>
+        </Reveal>
+
+        <!-- Skills -->
+        <Reveal>
+          <section class="cv-section">
+            <h2 class="serif-italic cv-section-title">Skills</h2>
+            <div class="skills-grid">
+              <div class="skills-col">
+                <p class="skills-col-label micro">Tools</p>
+                <p class="skills-list caption">
+                  AutoCAD · Fusion 360 · Blender · InDesign · Solidworks · Keyshot · Figma · Ansys FEA · Excel · Systems Modelling · Ahrefs · Google Console · n8n
+                </p>
+              </div>
+              <div class="skills-col">
+                <p class="skills-col-label micro">Languages</p>
+                <p class="skills-list caption">
+                  Python · JavaScript · Matlab · R<br />
+                  English · Spanish · French (proficient) · Chinese (IGCSE)
+                </p>
+              </div>
+              <div class="skills-col">
+                <p class="skills-col-label micro">Soft</p>
+                <p class="skills-list caption">
+                  Problem solving · Storytelling · Collaboration · Adaptability · Creativity · User-centric thinking · Leadership
+                </p>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <!-- Selected project work -->
+        <Reveal>
+          <section class="cv-section">
+            <h2 class="serif-italic cv-section-title">Selected project work</h2>
+            <ul class="project-list" role="list">
+              {projects.map((p) => (
+                <li class="project-list-item">
+                  <a href={`${base}/work/${p.slug}`} class="project-list-link">
+                    <span class="project-list-name">{p.title}</span>
+                    <span class="project-list-year micro">{p.year}</span>
+                  </a>
+                  <p class="project-list-desc caption">{p.one_line}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </Reveal>
+
+      </div><!-- /cv-content -->
+    </div><!-- /cv-layout -->
+  </div>
+</Base>
+
+<style>
+  .cv-page {
+    padding-top: calc(4rem + 3rem);
+    padding-bottom: 4rem;
+  }
+
+  /* ─── Layout ────────────────────────────────────────── */
+  .cv-layout {
+    display: grid;
+    grid-template-columns: 30fr 70fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  /* ─── Sidebar ───────────────────────────────────────── */
+  .cv-sidebar {
+    position: sticky;
+    top: 5rem;
+  }
+  .sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sidebar-name {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0 0 0.25rem;
+    padding-top: 0.5rem;
+  }
+  .sidebar-role {
+    color: var(--ink-muted);
+    margin: 0;
+  }
+  .sidebar-meta {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sidebar-meta li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .meta-label {
+    color: var(--ink-muted);
+  }
+  .meta-value, .meta-link {
+    color: var(--ink-soft);
+  }
+  .meta-link {
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .meta-link:hover { color: var(--accent); }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 0.7em 1.4em;
+    border-radius: 9999px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: var(--caption);
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,26,26,0.2);
+  }
+
+  /* ─── CV sections ───────────────────────────────────── */
+  .cv-section {
+    margin-bottom: 3.5rem;
+  }
+  .cv-section-title {
+    font-size: var(--display-m);
+    margin: 0 0 1.75rem;
+    color: var(--ink);
+  }
+
+  .cv-entry {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cv-entry:last-child {
+    border-bottom: none;
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .entry-org {
+    font-weight: 600;
+    font-size: var(--body);
+    margin: 0 0 0.2rem;
+  }
+  .entry-role {
+    font-size: var(--body);
+    color: var(--ink-soft);
+    margin: 0 0 0.15rem;
+  }
+  .entry-location {
+    color: var(--ink-muted);
+    margin: 0;
+  }
+  .entry-date {
+    color: var(--ink-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+  .entry-bullets {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .entry-bullets li {
+    font-size: var(--body);
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ─── Skills ────────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .skills-col-label {
+    margin: 0 0 0.4rem;
+    color: var(--ink-muted);
+  }
+  .skills-list {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  /* ─── Project list ──────────────────────────────────── */
+  .project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .project-list-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .project-list-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    gap: 1rem;
+  }
+  .project-list-link:hover .project-list-name {
+    color: var(--accent);
+  }
+  .project-list-name {
+    font-weight: 600;
+    font-size: var(--body);
+    transition: color 150ms ease;
+  }
+  .project-list-year {
+    color: var(--ink-muted);
+    flex-shrink: 0;
+  }
+  .project-list-desc {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  /* ─── Responsive ─────────────────────────────────────── */
+  @media (max-width: 800px) {
+    .cv-layout {
+      grid-template-columns: 1fr;
+    }
+    .cv-sidebar {
+      position: static;
+    }
+    .skills-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 500px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

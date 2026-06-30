@@ -1,0 +1,151 @@
+---
+import type { Project } from '../data/projects';
+import PillTag from './PillTag.astro';
+
+export interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const heroImg = `/images/projects/${project.slug}/hero.jpg`;
+const heroVideo = `/images/projects/${project.slug}/video.mp4`;
+const isDark = project.accent_color === '#1C2230'; // HIVE-FU
+---
+
+<section
+  class:list={['project-hero', isDark && 'dark-hero']}
+  style={`background-color: ${project.accent_color};`}
+>
+  <div class="hero-inner page-px max-w-page">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-index micro">{project.index}</p>
+        <h1 class="hero-title display-l">{project.title}</h1>
+        <p class="hero-tagline serif-italic display-m">{project.tagline}</p>
+        <div class="hero-tags">
+          {project.features.map((f) => (
+            <PillTag label={f} variant={isDark ? 'outline' : 'filled'} />
+          ))}
+        </div>
+      </div>
+      <div class="hero-media">
+        {project.has_video ? (
+          <video
+            src={heroVideo}
+            autoplay
+            muted
+            loop
+            playsinline
+            class="hero-visual"
+            aria-label={`${project.title} demo video`}
+          />
+        ) : (
+          <img
+            src={heroImg}
+            alt={`${project.title} hero image`}
+            class="hero-visual"
+            loading="eager"
+            decoding="async"
+          />
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+  .dark-hero {
+    color: #e8edf2;
+  }
+  .dark-hero .hero-index,
+  .dark-hero .hero-tagline {
+    opacity: 0.7;
+  }
+
+  .hero-inner {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-index {
+    color: currentColor;
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    margin: 0;
+    color: var(--ink);
+    .dark-hero & { color: #e8edf2; }
+  }
+  .dark-hero .hero-title {
+    color: #e8edf2;
+  }
+
+  .hero-tagline {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .dark-hero .hero-tagline {
+    color: rgba(232, 237, 242, 0.7);
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-hero);
+    display: block;
+    object-fit: cover;
+    animation: heroScale 1.2s var(--ease-out-expo) both;
+  }
+
+  @keyframes heroScale {
+    from { transform: scale(1.05); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+    }
+    .hero-media {
+      order: -1;
+    }
+    .project-hero {
+      min-height: auto;
+      padding-top: 5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-visual {
+      animation: none;
+    }
+  }
+</style>

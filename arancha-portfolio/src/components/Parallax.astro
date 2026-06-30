@@ -1,0 +1,28 @@
+---
+export interface Props {
+  speed?: number;
+  class?: string;
+}
+const { speed = 0.85, class: className } = Astro.props;
+---
+<div
+  class:list={['parallax-wrap', className]}
+  data-parallax-speed={speed}
+>
+  <slot />
+</div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    const els = document.querySelectorAll<HTMLElement>('[data-parallax-speed]');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      els.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallaxSpeed ?? '0.85');
+        const offset = y * (1 - speed);
+        el.style.transform = `translateY(${offset}px)`;
+      });
+    }, { passive: true });
+  }
+</script>

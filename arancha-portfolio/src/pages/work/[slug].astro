@@ -1,0 +1,496 @@
+---
+import Project from '../../layouts/Project.astro';
+import ProjectHero from '../../components/ProjectHero.astro';
+import MediaCarousel from '../../components/MediaCarousel.astro';
+import PillTag from '../../components/PillTag.astro';
+import Reveal from '../../components/Reveal.astro';
+import { projects, getProjectBySlug, getNextProject } from '../../data/projects';
+import type { Slide } from '../../components/MediaCarousel.astro';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug!)!;
+const next = getNextProject(slug!);
+const base = import.meta.env.BASE_URL;
+
+// Build carousel slides from known image filenames
+const carouselSlides: Slide[] = [
+  { type: 'image', src: `/images/projects/${slug}/01.jpg`, alt: `${project.title} — image 1` },
+  { type: 'image', src: `/images/projects/${slug}/02.jpg`, alt: `${project.title} — image 2` },
+  { type: 'image', src: `/images/projects/${slug}/03.jpg`, alt: `${project.title} — image 3` },
+  { type: 'grid', srcs: [
+    `/images/projects/${slug}/04.jpg`,
+    `/images/projects/${slug}/05.jpg`,
+  ]},
+];
+if (project.has_video) {
+  carouselSlides.unshift({ type: 'video', src: `/images/projects/${slug}/video.mp4` });
+}
+
+// Parse feature_bold: wrap **text** in <mark>
+function parseBold(str: string): string {
+  return str.replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
+}
+
+const isDark = project.accent_color === '#1C2230';
+---
+
+<Project project={project}>
+
+  <!-- 1. Hero -->
+  <ProjectHero project={project} />
+
+  <!-- 2. Meta strip -->
+  <div class="meta-strip page-px">
+    <div class="meta-inner max-w-page">
+      <span class="meta-item micro">
+        <span class="meta-label">Type</span>
+        {project.type}
+      </span>
+      <span class="meta-divider" aria-hidden="true" />
+      <span class="meta-item micro">
+        <span class="meta-label">Course</span>
+        {project.course}
+      </span>
+      <span class="meta-divider" aria-hidden="true" />
+      <span class="meta-item micro">
+        <span class="meta-label">Year</span>
+        {project.year}
+      </span>
+      <span class="meta-divider" aria-hidden="true" />
+      <span class="meta-item micro">
+        <span class="meta-label">Role</span>
+        {project.role}
+      </span>
+      {project.team_size && (
+        <>
+          <span class="meta-divider" aria-hidden="true" />
+          <span class="meta-item micro">
+            <span class="meta-label">Team</span>
+            {project.team_size}
+          </span>
+        </>
+      )}
+    </div>
+  </div>
+
+  <!-- 3. Info / Problem / Solution -->
+  <section class="ips-section page-px max-w-page section-gap">
+    <div class="ips-grid">
+      <Reveal>
+        <div class="ips-col">
+          <h2 class="serif-italic ips-label">Context</h2>
+          <p class="body-l ips-text">{project.info}</p>
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div class="ips-col">
+          <h2 class="serif-italic ips-label">Problem</h2>
+          <p class="body-l ips-text">{project.problem}</p>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <div class="ips-col">
+          <h2 class="serif-italic ips-label">Solution</h2>
+          <p class="body-l ips-text">{project.solution}</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- 4. Media carousel -->
+  <section class="carousel-section page-px max-w-page section-gap">
+    <Reveal>
+      <MediaCarousel slides={carouselSlides} label={`${project.title} project media`} />
+    </Reveal>
+  </section>
+
+  <!-- 5. Features -->
+  <section class="features-section page-px max-w-page section-gap">
+    <div class="features-grid">
+      <Reveal>
+        <div class="features-img-wrap">
+          <img
+            src={`/images/projects/${slug}/feature.jpg`}
+            alt={`${project.title} feature`}
+            class="features-img"
+            loading="lazy"
+            decoding="async"
+            onerror="this.parentElement.classList.add('features-img-placeholder')"
+          />
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div class="features-copy">
+          <p class="serif-italic features-eyebrow">Key features</p>
+          <p
+            class="features-bold"
+            set:html={parseBold(project.feature_bold)}
+          />
+          <div class="features-tags">
+            {project.feature_tags.map((f) => <PillTag label={f} variant="filled" />)}
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- 6. My Role -->
+  <section class="role-section page-px max-w-page section-gap">
+    <Reveal>
+      <h2 class="serif-italic display-m role-heading">My role</h2>
+    </Reveal>
+    <div class="role-areas">
+      {project.role_sections.map((area, i) => (
+        <div class:list={['role-area', i % 2 === 1 && 'role-area--flip']}>
+          <Reveal>
+            <div class="role-area-img-wrap">
+              <img
+                src={area.image}
+                alt={area.title}
+                loading="lazy"
+                decoding="async"
+                class="role-area-img"
+                onerror="this.parentElement.classList.add('role-img-placeholder')"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div class="role-area-text">
+              <h3 class="role-area-title title">{area.title}</h3>
+              <p class="body role-area-body">{area.body}</p>
+            </div>
+          </Reveal>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 7. Skills developed -->
+  <section class="skills-section page-px max-w-page section-gap">
+    <Reveal>
+      <div class="skills-wrap">
+        <div class="skills-row">
+          <span class="skills-label micro">Soft skills</span>
+          <div class="skills-pills">
+            {project.soft_skills.map((s) => <PillTag label={s} variant="outline" />)}
+          </div>
+        </div>
+        <div class="skills-row">
+          <span class="skills-label micro">Hard skills</span>
+          <div class="skills-pills">
+            {project.hard_skills.map((s) => <PillTag label={s} variant="filled" />)}
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- 8. Footer of project -->
+  <section class="project-footer page-px max-w-page section-gap">
+    <hr class="rule" />
+    <div class="project-footer-inner">
+      {project.pdf_url && (
+        <Reveal>
+          <a
+            href={project.pdf_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-outline-sm"
+          >
+            Read full design process documentation ↗
+          </a>
+        </Reveal>
+      )}
+      <Reveal delay={80}>
+        <div class="next-project">
+          <p class="caption next-label">Next project</p>
+          <a href={`${base}/work/${next.slug}`} class="next-link">
+            <span class="next-title display-m">{next.title}</span>
+            <span class="next-arrow" aria-hidden="true">→</span>
+          </a>
+          <p class="caption next-desc">{next.one_line}</p>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <a href={`${base}/portfolio`} class="back-link caption">← Back to all work</a>
+      </Reveal>
+    </div>
+  </section>
+
+</Project>
+
+<style>
+  /* ─── Meta strip ─────────────────────────────────────── */
+  .meta-strip {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .meta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 0;
+  }
+  .meta-item {
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0 1.25rem;
+  }
+  .meta-item:first-child {
+    padding-left: 0;
+  }
+  .meta-label {
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+  }
+  .meta-divider {
+    width: 1px;
+    height: 2rem;
+    background: var(--rule);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .meta-divider { display: none; }
+    .meta-inner { gap: 0.75rem; }
+    .meta-item { padding: 0; }
+  }
+
+  /* ─── IPS (Info / Problem / Solution) ────────────────── */
+  .ips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .ips-label {
+    font-size: var(--caption);
+    color: var(--ink-muted);
+    margin: 0 0 0.75rem;
+  }
+  .ips-text {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 800px) {
+    .ips-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* ─── Features ───────────────────────────────────────── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .features-img-wrap {
+    border-radius: var(--radius-hero);
+    overflow: hidden;
+    background: var(--paper-soft);
+  }
+  .features-img-placeholder {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-soft);
+    border-radius: var(--radius-hero);
+  }
+  .features-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .features-eyebrow {
+    font-size: var(--caption);
+    color: var(--ink-muted);
+    margin: 0 0 1rem;
+    display: block;
+  }
+  .features-bold {
+    font-family: var(--font-sans);
+    font-size: var(--title);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .features-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 700px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ─── Role ───────────────────────────────────────────── */
+  .role-heading {
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+  .role-areas {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+  .role-area {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .role-area--flip {
+    direction: rtl;
+  }
+  .role-area--flip > * {
+    direction: ltr;
+  }
+  .role-area-img-wrap {
+    border-radius: var(--radius-hero);
+    overflow: hidden;
+    background: var(--paper-soft);
+  }
+  .role-img-placeholder {
+    aspect-ratio: 4 / 3;
+    background: var(--paper-soft);
+    border-radius: var(--radius-hero);
+  }
+  .role-area-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+  .role-area-title {
+    margin: 0 0 0.875rem;
+    color: var(--ink);
+  }
+  .role-area-body {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 700px) {
+    .role-area,
+    .role-area--flip {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+  }
+
+  /* ─── Skills ─────────────────────────────────────────── */
+  .skills-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: var(--paper-soft);
+    border-radius: var(--radius-card);
+  }
+  .skills-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .skills-label {
+    width: 6rem;
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    padding-top: 0.25em;
+  }
+  .skills-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    flex: 1;
+  }
+
+  /* ─── Project footer ─────────────────────────────────── */
+  .project-footer {
+    padding-bottom: 2rem;
+  }
+  .project-footer .rule {
+    margin-bottom: 2.5rem;
+  }
+  .project-footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .btn-outline-sm {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65em 1.4em;
+    border-radius: 9999px;
+    border: 1.5px solid var(--ink);
+    font-size: var(--caption);
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .btn-outline-sm:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
+  .next-project {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .next-label {
+    color: var(--ink-muted);
+    margin: 0;
+  }
+  .next-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    margin: 0.25rem 0;
+  }
+  .next-link:hover .next-title {
+    color: var(--accent);
+  }
+  .next-title {
+    transition: color 200ms ease;
+  }
+  .next-arrow {
+    font-size: var(--title);
+    transition: transform 200ms ease;
+  }
+  .next-link:hover .next-arrow {
+    transform: translateX(6px);
+  }
+  .next-desc {
+    margin: 0;
+    color: var(--ink-muted);
+  }
+  .back-link {
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .back-link:hover { color: var(--ink); }
+</style>

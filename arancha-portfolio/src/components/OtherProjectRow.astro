@@ -1,0 +1,98 @@
+---
+import type { OtherProject } from '../data/projects';
+
+export interface Props {
+  project: OtherProject;
+}
+
+const { project } = Astro.props;
+---
+
+<a
+  href={project.pdf_url ?? '#'}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="other-row"
+  aria-label={`${project.title} — open report`}
+>
+  <div class="row-main">
+    <span class="row-index micro">{project.index}</span>
+    <span class="row-title">{project.title}</span>
+    <span class="row-course caption">{project.course}</span>
+    <span class="row-year micro">{project.year}</span>
+    <span class="row-cta caption">View →</span>
+  </div>
+  <p class="row-desc caption">{project.one_line}</p>
+</a>
+
+<style>
+  .other-row {
+    display: block;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background-color 200ms ease;
+    border-radius: 4px;
+  }
+  .other-row:hover {
+    background-color: var(--paper-soft);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+  .other-row:hover .row-cta {
+    color: var(--accent);
+  }
+
+  .row-main {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr auto auto 4rem;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .row-index {
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .row-title {
+    font-size: var(--body);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .row-course {
+    color: var(--ink-soft);
+  }
+  .row-year {
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .row-cta {
+    text-align: right;
+    color: var(--ink-muted);
+    transition: color 200ms ease;
+    white-space: nowrap;
+  }
+  .row-desc {
+    margin: 0;
+    padding-left: calc(4.5rem + 1rem);
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 700px) {
+    .row-main {
+      grid-template-columns: 3.5rem 1fr auto;
+      gap: 0.5rem;
+    }
+    .row-course,
+    .row-year {
+      display: none;
+    }
+    .row-desc {
+      padding-left: calc(3.5rem + 0.5rem);
+    }
+  }
+</style>

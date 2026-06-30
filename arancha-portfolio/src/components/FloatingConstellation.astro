@@ -1,0 +1,142 @@
+---
+import type { Project } from '../data/projects';
+
+export interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<!-- Pure background decoration — tiles are not interactive -->
+<div class="constellation-wrap" aria-hidden="true">
+  {projects.map((p, i) => (
+    <div class="constellation-tile" data-index={i}>
+      <img
+        src={`/images/projects/${p.slug}/hero.jpg`}
+        alt=""
+        loading="eager"
+        decoding="async"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="tile-fallback">
+        <span>{String(i + 1).padStart(2, '0')}</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .constellation-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .constellation-tile {
+    position: absolute;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(26, 26, 26, 0.10);
+  }
+
+  .constellation-tile img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tile-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: var(--paper-soft);
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 767px) {
+    .constellation-wrap { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .constellation-tile { animation: none !important; }
+  }
+</style>
+
+<script define:vars={{ count: projects.length }}>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    const wrap = document.querySelector('.constellation-wrap');
+    if (!wrap) return;
+
+    const tiles = Array.from(wrap.querySelectorAll('.constellation-tile'));
+    const W = wrap.clientWidth;
+    const H = wrap.clientHeight;
+
+    // Alternating portrait / landscape / square aspect ratios per tile
+    const aspectRatios = [1.3, 0.78, 1.0, 1.25, 0.82, 1.1, 1.35, 0.75, 1.0, 1.2, 0.85, 1.3, 1.0, 0.78];
+    // Varied widths — large so they feel impactful
+    const widths = [230, 270, 195, 310, 240, 205, 285, 250, 185, 260, 215, 295, 225, 200];
+
+    // Safe zone: the centre block where the text sits
+    const cx = W / 2;
+    const cy = H / 2;
+    const safeW = 720;
+    const safeH = 400;
+
+    tiles.forEach((tile, i) => {
+      const el = tile;
+      const tw = widths[i % widths.length];
+      const th = Math.round(tw * aspectRatios[i % aspectRatios.length]);
+      el.style.width  = tw + 'px';
+      el.style.height = th + 'px';
+
+      // Random scatter across the full viewport; reject if tile overlaps the safe zone
+      let x, y, attempts = 0;
+      do {
+        x = 16 + Math.random() * (W - tw - 32);
+        y = 56 + Math.random() * (H - th - 72);
+        attempts++;
+      } while (
+        attempts < 120 &&
+        x + tw > cx - safeW / 2 - 16 &&
+        x      < cx + safeW / 2 + 16 &&
+        y + th > cy - safeH / 2 - 16 &&
+        y      < cy + safeH / 2 + 16
+      );
+
+      const rot = (Math.random() - 0.5) * 14; // ±7 deg
+      el.style.left      = x + 'px';
+      el.style.top       = y + 'px';
+      el.style.transform = `rotate(${rot}deg)`;
+
+      // Each tile drifts on its own random loop — never in sync
+      const dur = 8000 + Math.random() * 10000;
+      const dx  = (Math.random() - 0.5) * 44;
+      const dy  = (Math.random() - 0.5) * 32;
+      const dr  = (Math.random() - 0.5) * 4;
+
+      el.animate(
+        [
+          { transform: `translate(0px, 0px) rotate(${rot}deg)` },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${rot + dr}deg)` },
+        ],
+        {
+          duration: dur,
+          iterations: Infinity,
+          direction: 'alternate',
+          easing: 'ease-in-out',
+          delay: -Math.random() * dur,
+          fill: 'both',
+        }
+      );
+    });
+  }
+</script>

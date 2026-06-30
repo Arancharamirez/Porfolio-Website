@@ -1,0 +1,275 @@
+---
+import Base from '../layouts/Base.astro';
+import FloatingConstellation from '../components/FloatingConstellation.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Reveal from '../components/Reveal.astro';
+import { projects, featuredSlugs } from '../data/projects';
+
+const base = import.meta.env.BASE_URL;
+const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).filter(Boolean);
+---
+
+<Base>
+  <!-- ─── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero page-px" aria-label="Introduction">
+    <!-- Floating constellation sits behind the text -->
+    <FloatingConstellation projects={projects} />
+
+    <div class="hero-text">
+      <h1 class="display-xl hero-name" data-reveal-hero>ARANCHA RAMÍREZ</h1>
+      <p class="serif-italic display-m hero-sub" data-reveal-hero style="transition-delay:80ms">
+        Design Engineering · Imperial College London
+      </p>
+      <p class="body-l hero-bio" data-reveal-hero style="transition-delay:160ms">
+        Designing for human experience and environmental impact.<br />
+        Bridging analytical depth with stakeholder communication.
+      </p>
+      <div class="hero-ctas" data-reveal-hero style="transition-delay:240ms">
+        <a href={`${base}/portfolio`} class="btn-primary">View work</a>
+        <a href={`${base}/about`} class="btn-outline">About me</a>
+      </div>
+    </div>
+
+    <!-- Mobile grid fallback (hidden on desktop, shown on mobile via CSS) -->
+    <div class="hero-mobile-grid" aria-label="Project thumbnails">
+      {projects.slice(0, 8).map((p) => (
+        <a href={`${base}/work/${p.slug}`} class="mobile-tile">
+          <img
+            src={`/images/projects/${p.slug}/hero.jpg`}
+            alt={p.title}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="mobile-tile-title caption">{p.title}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── About note ────────────────────────────────────────────── -->
+  <section class="about-note page-px max-w-page section-gap">
+    <Reveal>
+      <p class="serif-italic caption about-eyebrow">A note on practice</p>
+      <p class="body-l about-body">
+        I'm interested in the gap between analytical rigour and the people who must act on its outputs
+        — making complex systems legible to the humans inside them. My work spans wearables, sustainable
+        systems, infrastructure economics, and educational play. Whichever scale, the question is the
+        same: how do we make this easier to live with?
+      </p>
+    </Reveal>
+  </section>
+
+  <!-- ─── Selected work ─────────────────────────────────────────── -->
+  <section class="selected-work page-px max-w-page section-gap">
+    <Reveal>
+      <a href={`${base}/portfolio`} class="selected-eyebrow-link">
+        <span class="serif-italic display-m selected-eyebrow">My projects →</span>
+      </a>
+    </Reveal>
+
+    <div class="featured-row">
+      {featured.map((p, i) => (
+        <Reveal delay={i * 80}>
+          <ProjectCard project={p} />
+        </Reveal>
+      ))}
+    </div>
+
+    <Reveal>
+      <div class="all-cta">
+        <a href={`${base}/portfolio`} class="btn-outline">See all projects →</a>
+      </div>
+    </Reveal>
+  </section>
+</Base>
+
+<style>
+  /* ─── Hero ──────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    /* Slight frosted backdrop so text stays readable over images */
+    background: radial-gradient(ellipse 680px 420px at 50% 50%, rgba(244,241,234,0.72) 40%, transparent 100%);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+  }
+
+  .hero-name {
+    margin: 0;
+    color: var(--ink);
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroReveal 700ms var(--ease-out-expo) 100ms both;
+  }
+  .hero-sub {
+    margin: 0;
+    color: var(--ink-soft);
+    opacity: 0;
+    animation: heroReveal 700ms var(--ease-out-expo) 180ms both;
+  }
+  .hero-bio {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    text-align: center;
+    opacity: 0;
+    animation: heroReveal 700ms var(--ease-out-expo) 260ms both;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: heroReveal 700ms var(--ease-out-expo) 340ms both;
+  }
+
+  @keyframes heroReveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile thumbnail grid */
+  .hero-mobile-grid {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    width: 100%;
+  }
+  .mobile-tile {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .mobile-tile img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+  .mobile-tile-title {
+    display: block;
+    padding: 0.35rem 0.5rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      flex-direction: column;
+      padding-top: 5rem;
+      align-items: flex-start;
+      min-height: auto;
+    }
+    .hero-text {
+      text-align: left;
+      align-items: flex-start;
+    }
+    .hero-bio { text-align: left; }
+    .hero-ctas { justify-content: flex-start; }
+    .hero-mobile-grid { display: grid; }
+  }
+
+  /* ─── Buttons ────────────────────────────────────────────── */
+  .btn-primary,
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75em 1.75em;
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: var(--body);
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: 0 2px 8px rgba(26, 26, 26, 0.15);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
+  }
+  .btn-outline {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+  }
+
+  /* ─── About note ────────────────────────────────────────── */
+  .about-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--ink-muted);
+  }
+  .about-body {
+    margin: 0;
+    max-width: var(--text-max);
+    color: var(--ink-soft);
+  }
+
+  /* ─── Selected work ─────────────────────────────────────── */
+  .selected-eyebrow-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+  }
+  .selected-eyebrow {
+    color: var(--ink);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--ink);
+    transition: border-bottom-width 200ms ease;
+  }
+  .selected-eyebrow-link:hover .selected-eyebrow {
+    border-bottom-width: 2px;
+  }
+
+  .featured-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .featured-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .featured-row { grid-template-columns: 1fr; }
+  }
+
+  .all-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-name, .hero-sub, .hero-bio, .hero-ctas {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

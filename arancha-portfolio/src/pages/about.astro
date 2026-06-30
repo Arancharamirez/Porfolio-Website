@@ -1,0 +1,293 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+import Parallax from '../components/Parallax.astro';
+import PillTag from '../components/PillTag.astro';
+---
+
+<Base
+  title="About — Arancha Ramírez"
+  description="About Arancha Ramírez — MEng Design Engineering student at Imperial College London, from Madrid."
+>
+
+  <!-- ─── Section 1: Bio ─────────────────────────────────────────── -->
+  <section class="bio-section page-px max-w-page">
+    <div class="bio-grid">
+      <div class="bio-portrait">
+        <Parallax speed={0.92}>
+          <img
+            src="/images/about/portrait.jpg"
+            alt="Arancha Ramírez portrait"
+            class="portrait-img"
+            loading="eager"
+            decoding="async"
+            onerror="this.parentElement.classList.add('portrait-placeholder')"
+          />
+        </Parallax>
+      </div>
+      <div class="bio-text">
+        <Reveal>
+          <p class="serif-italic caption bio-eyebrow">About me</p>
+          <h1 class="display-l bio-title">Hi, I'm Arancha.</h1>
+        </Reveal>
+        <Reveal delay={80}>
+          <p class="body-l bio-body">
+            I'm from Madrid, currently finishing an MEng in Design Engineering at Imperial College
+            London. I'm passionate about helping people and the environment, and I'm fascinated by
+            human experiences and the patterns that shape them.
+          </p>
+        </Reveal>
+        <Reveal delay={160}>
+          <p class="body-l bio-body">
+            My work tries to bridge daily challenges and lasting solutions — making sustainable
+            choices easier, technical analysis more accessible, and complex systems more legible to
+            the people inside them.
+          </p>
+        </Reveal>
+        <Reveal delay={240}>
+          <div class="bio-tags">
+            <PillTag label="British Council School" variant="outline" />
+            <PillTag label="Imperial College London" variant="outline" />
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Section 2: Skills ─────────────────────────────────────── -->
+  <section class="skills-section page-px max-w-page section-gap">
+    <Reveal>
+      <h2 class="serif-italic display-m skills-heading">Skills</h2>
+    </Reveal>
+    <div class="skills-panels">
+      <Reveal delay={0}>
+        <div class="skill-panel">
+          <h3 class="panel-title caption micro">Digital</h3>
+          <div class="panel-tags">
+            {['InDesign', 'Figma', 'Solidworks', 'Keyshot', 'Fusion 360', 'Ansys', 'Blender', 'Excel'].map((s) => (
+              <PillTag label={s} variant="outline" />
+            ))}
+          </div>
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div class="skill-panel">
+          <h3 class="panel-title caption micro">Analogue</h3>
+          <div class="panel-tags">
+            {['Desk research', 'Concept building', 'Sketching', 'Mockups', '3D modelling', 'Renderings', 'UI/UX design'].map((s) => (
+              <PillTag label={s} variant="outline" />
+            ))}
+          </div>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <div class="skill-panel">
+          <h3 class="panel-title caption micro">Languages</h3>
+          <div class="panel-tags">
+            {['Spanish (native)', 'English (bilingual)', 'French (bilingual)', 'Chinese (beginner)'].map((s) => (
+              <PillTag label={s} variant="outline" />
+            ))}
+          </div>
+        </div>
+      </Reveal>
+      <Reveal delay={240}>
+        <div class="skill-panel">
+          <h3 class="panel-title caption micro">Other</h3>
+          <div class="panel-tags">
+            {['Systems thinking', 'Cross-cultural awareness', 'Iterative mindset', 'Psychological & behavioural insight'].map((s) => (
+              <PillTag label={s} variant="outline" />
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ─── Section 3: Outside academics ─────────────────────────── -->
+  <section class="outside-section page-px max-w-page section-gap">
+    <Reveal>
+      <h2 class="serif-italic display-m outside-heading">Outside the studio</h2>
+    </Reveal>
+
+    <div class="outside-grid">
+      <!-- Text column -->
+      <div class="outside-text">
+        <Reveal>
+          <p class="body-l">
+            While my work is a strong motivator, I have a variety of non-academic interests. I'm a
+            passionate volleyball player — not just for the sport itself, but for the team feeling
+            and the trust between teammates.
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <p class="body-l">
+            Beyond volleyball, I'm an active person who enjoys the outdoors: skiing in winter,
+            water sports in summer. I also love travelling and reading — both as ways of exploring
+            different perspectives and stepping into new worlds.
+          </p>
+        </Reveal>
+        <Reveal delay={160}>
+          <p class="body-l">
+            Staying active, both physically and mentally, is a big part of who I am.
+          </p>
+        </Reveal>
+      </div>
+
+      <!-- Photo collage -->
+      <div class="outside-collage">
+        {[
+          { src: '/images/about/volleyball.jpg', alt: 'Volleyball', tall: true },
+          { src: '/images/about/skiing.jpg', alt: 'Skiing', tall: false },
+          { src: '/images/about/kayaking.jpg', alt: 'Kayaking', tall: false },
+          { src: '/images/about/madrid.jpg', alt: 'Madrid', tall: true },
+          { src: '/images/about/travel-1.jpg', alt: 'Travel', tall: false },
+          { src: '/images/about/portugal.jpg', alt: 'Portugal', tall: false },
+          { src: '/images/about/reading.jpg', alt: 'Reading', tall: false },
+          { src: '/images/about/travel-2.jpg', alt: 'Travel', tall: false },
+        ].map((photo, i) => (
+          <Reveal delay={i * 60}>
+            <Parallax speed={0.9 + (i % 3) * 0.03} class:list={['collage-item', photo.tall && 'tall']}>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+                onerror="this.parentElement.parentElement.classList.add('img-placeholder')"
+              />
+            </Parallax>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ─── Bio section ────────────────────────────────────── */
+  .bio-section {
+    padding-top: calc(4rem + 3rem);
+    padding-bottom: 2rem;
+  }
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 38fr 62fr;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .portrait-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-hero);
+    display: block;
+    background: var(--paper-soft);
+  }
+  .portrait-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--paper-soft);
+    border-radius: var(--radius-hero);
+  }
+
+  .bio-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--ink-muted);
+  }
+  .bio-title {
+    margin: 0 0 1.75rem;
+  }
+  .bio-body {
+    margin: 0 0 1.25rem;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+  .bio-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  /* ─── Skills ─────────────────────────────────────────── */
+  .skills-heading {
+    margin: 0 0 2rem;
+    color: var(--ink);
+  }
+  .skills-panels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .skill-panel {
+    background: var(--paper-soft);
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+  }
+  .panel-title {
+    color: var(--ink-muted);
+    margin: 0 0 1rem;
+  }
+  .panel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  /* ─── Outside ────────────────────────────────────────── */
+  .outside-heading {
+    margin: 0 0 2.5rem;
+    color: var(--ink);
+  }
+  .outside-grid {
+    display: grid;
+    grid-template-columns: 40fr 60fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .outside-text p {
+    margin: 0 0 1.25rem;
+    color: var(--ink-soft);
+  }
+
+  .outside-collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 0.75rem;
+  }
+  .collage-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--paper-soft);
+  }
+  .collage-item.tall {
+    grid-row: span 2;
+  }
+  .collage-item img {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  .img-placeholder {
+    min-height: 120px;
+    background: var(--paper-soft);
+  }
+
+  /* ─── Responsive ─────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .bio-grid,
+    .outside-grid {
+      grid-template-columns: 1fr;
+    }
+    .bio-portrait { max-width: 300px; }
+    .skills-panels { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .skills-panels { grid-template-columns: 1fr; }
+    .outside-collage { grid-template-columns: repeat(2, 1fr); }
+    .collage-item.tall { grid-row: span 1; }
+  }
+</style>
