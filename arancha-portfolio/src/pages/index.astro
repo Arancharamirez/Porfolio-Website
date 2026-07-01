@@ -35,7 +35,7 @@ const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).f
       {projects.slice(0, 8).map((p) => (
         <a href={`${base}/work/${p.slug}`} class="mobile-tile">
           <img
-            src={`/images/projects/${p.slug}/hero.jpg`}
+            src={p.hero_image || `/images/projects/${p.slug}/hero.jpg`}
             alt={p.title}
             loading="lazy"
             decoding="async"

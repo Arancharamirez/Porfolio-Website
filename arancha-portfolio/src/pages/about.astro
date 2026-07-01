@@ -136,14 +136,14 @@ import PillTag from '../components/PillTag.astro';
       <!-- Photo collage -->
       <div class="outside-collage">
         {[
-          { src: '/images/about/volleyball.jpg', alt: 'Volleyball', tall: true },
-          { src: '/images/about/skiing.jpg', alt: 'Skiing', tall: false },
-          { src: '/images/about/kayaking.jpg', alt: 'Kayaking', tall: false },
-          { src: '/images/about/madrid.jpg', alt: 'Madrid', tall: true },
-          { src: '/images/about/travel-1.jpg', alt: 'Travel', tall: false },
-          { src: '/images/about/portugal.jpg', alt: 'Portugal', tall: false },
-          { src: '/images/about/reading.jpg', alt: 'Reading', tall: false },
-          { src: '/images/about/travel-2.jpg', alt: 'Travel', tall: false },
+          { src: '/images/about/volleyball.png', alt: 'Volleyball', tall: true },
+          { src: '/images/about/ski.png', alt: 'Skiing', tall: false },
+          { src: '/images/about/canoe.png', alt: 'Canoeing', tall: false },
+          { src: '/images/about/lisbon.png', alt: 'Lisbon', tall: true },
+          { src: '/images/about/london.png', alt: 'London', tall: false },
+          { src: '/images/about/lisbon 2.png', alt: 'Lisbon', tall: false },
+          { src: '/images/about/reading.png', alt: 'Reading', tall: false },
+          { src: '/images/about/art.png', alt: 'Art', tall: false },
         ].map((photo, i) => (
           <Reveal delay={i * 60}>
             <Parallax speed={0.9 + (i % 3) * 0.03} class:list={['collage-item', photo.tall && 'tall']}>

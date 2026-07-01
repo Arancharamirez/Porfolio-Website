@@ -16,19 +16,15 @@ const project = getProjectBySlug(slug!)!;
 const next = getNextProject(slug!);
 const base = import.meta.env.BASE_URL;
 
-// Build carousel slides from known image filenames
-const carouselSlides: Slide[] = [
-  { type: 'image', src: `/images/projects/${slug}/01.jpg`, alt: `${project.title} — image 1` },
-  { type: 'image', src: `/images/projects/${slug}/02.jpg`, alt: `${project.title} — image 2` },
-  { type: 'image', src: `/images/projects/${slug}/03.jpg`, alt: `${project.title} — image 3` },
-  { type: 'grid', srcs: [
-    `/images/projects/${slug}/04.jpg`,
-    `/images/projects/${slug}/05.jpg`,
-  ]},
-];
-if (project.has_video) {
-  carouselSlides.unshift({ type: 'video', src: `/images/projects/${slug}/video.mp4` });
-}
+// Build carousel slides from project.images[]
+const imageSlides: Slide[] = project.images.map((src, i) => ({
+  type: 'image' as const,
+  src,
+  alt: `${project.title} — image ${i + 1}`,
+}));
+const carouselSlides: Slide[] = project.has_video
+  ? [{ type: 'video' as const, src: `/images/projects/${slug}/video.mp4` }, ...imageSlides]
+  : imageSlides;
 
 // Parse feature_bold: wrap **text** in <mark>
 function parseBold(str: string): string {

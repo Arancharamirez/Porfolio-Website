@@ -13,7 +13,7 @@ const { projects } = Astro.props;
   {projects.map((p, i) => (
     <div class="constellation-tile" data-index={i}>
       <img
-        src={`/images/projects/${p.slug}/hero.jpg`}
+        src={p.hero_image || `/images/projects/${p.slug}/hero.jpg`}
         alt=""
         loading="eager"
         decoding="async"
