@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
 import Parallax from '../components/Parallax.astro';
 import PillTag from '../components/PillTag.astro';
+import { assetUrl } from '../utils/url';
 ---
 
 <Base
@@ -16,7 +17,7 @@ import PillTag from '../components/PillTag.astro';
       <div class="bio-portrait">
         <Parallax speed={0.92}>
           <img
-            src="/images/about/portrait.jpg"
+            src={assetUrl('/images/about/portrait.jpg')}
             alt="Arancha Ramírez portrait"
             class="portrait-img"
             loading="eager"
@@ -148,7 +149,7 @@ import PillTag from '../components/PillTag.astro';
           <Reveal delay={i * 60}>
             <Parallax speed={0.9 + (i % 3) * 0.03} class:list={['collage-item', photo.tall && 'tall']}>
               <img
-                src={photo.src}
+                src={assetUrl(photo.src)}
                 alt={photo.alt}
                 loading="lazy"
                 decoding="async"

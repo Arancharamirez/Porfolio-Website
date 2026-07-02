@@ -1,14 +1,15 @@
 ---
 import type { Project } from '../data/projects';
 import PillTag from './PillTag.astro';
+import { assetUrl } from '../utils/url';
 
 export interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
-const heroImg = project.hero_image || `/images/projects/${project.slug}/hero.jpg`;
-const heroVideo = `/images/projects/${project.slug}/video.mp4`;
+const heroImg = assetUrl(project.hero_image || `/images/projects/${project.slug}/hero.jpg`);
+const heroVideo = assetUrl(`/images/projects/${project.slug}/video.mp4`);
 const isDark = project.accent_color === '#1C2230'; // HIVE-FU
 ---
 
