@@ -106,14 +106,12 @@ import { assetUrl } from '../utils/url';
 
   <!-- ─── Section 3: Outside academics ─────────────────────────── -->
   <section class="outside-section page-px max-w-page section-gap">
-    <Reveal>
-      <h2 class="serif-italic display-m outside-heading">Outside the studio</h2>
-    </Reveal>
 
-    <div class="outside-grid">
-      <!-- Text column -->
+    <!-- Top: heading + text left, 2-col images right — all start at same height -->
+    <div class="outside-top">
       <div class="outside-text">
         <Reveal>
+          <h2 class="serif-italic display-m outside-heading">Outside the studio</h2>
           <p class="body-l">
             While my work is a strong motivator, I have a variety of non-academic interests. I'm a
             passionate volleyball player — not just for the sport itself, but for the team feeling
@@ -134,31 +132,45 @@ import { assetUrl } from '../utils/url';
         </Reveal>
       </div>
 
-      <!-- Photo collage -->
-      <div class="outside-collage">
+      <div class="outside-images-top">
         {[
-          { src: '/images/about/volleyball.png', alt: 'Volleyball', tall: true },
-          { src: '/images/about/ski.png', alt: 'Skiing', tall: false },
-          { src: '/images/about/canoe.png', alt: 'Canoeing', tall: false },
-          { src: '/images/about/lisbon.png', alt: 'Lisbon', tall: true },
-          { src: '/images/about/london.png', alt: 'London', tall: false },
-          { src: '/images/about/reading.png', alt: 'Reading', tall: false },
-          { src: '/images/about/art.png', alt: 'Art', tall: false },
+          { src: '/images/about/volleyball 2.jpeg', alt: 'Volleyball' },
+          { src: '/images/about/ski.png',           alt: 'Skiing' },
+          { src: '/images/about/canoe.png',         alt: 'Canoeing' },
+          { src: '/images/about/lisbon.png',        alt: 'Lisbon' },
         ].map((photo, i) => (
           <Reveal delay={i * 60}>
-            <Parallax speed={0.9 + (i % 3) * 0.03} class:list={['collage-item', photo.tall && 'tall']}>
-              <img
-                src={assetUrl(photo.src)}
-                alt={photo.alt}
-                loading="lazy"
-                decoding="async"
-                onerror="this.parentElement.parentElement.classList.add('img-placeholder')"
-              />
-            </Parallax>
+            <img
+              src={assetUrl(photo.src)}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              class="collage-img"
+            />
           </Reveal>
         ))}
       </div>
     </div>
+
+    <!-- Bottom row: 3 images spanning full width -->
+    <div class="outside-images-bottom">
+      {[
+        { src: '/images/about/art.png',     alt: 'Art' },
+        { src: '/images/about/reading.png', alt: 'Reading' },
+        { src: '/images/about/london.png',  alt: 'London' },
+      ].map((photo, i) => (
+        <Reveal delay={i * 60}>
+          <img
+            src={assetUrl(photo.src)}
+            alt={photo.alt}
+            loading="lazy"
+            decoding="async"
+            class="collage-img"
+          />
+        </Reveal>
+      ))}
+    </div>
+
   </section>
 
 </Base>
@@ -235,59 +247,51 @@ import { assetUrl } from '../utils/url';
   }
 
   /* ─── Outside ────────────────────────────────────────── */
-  .outside-heading {
-    margin: 0 0 2.5rem;
-    color: var(--ink);
-  }
-  .outside-grid {
+  .outside-top {
     display: grid;
-    grid-template-columns: 40fr 60fr;
+    grid-template-columns: 42fr 58fr;
     gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
+  }
+  .outside-heading {
+    margin: 0 0 1.5rem;
+    color: var(--ink);
   }
   .outside-text p {
     margin: 0 0 1.25rem;
     color: var(--ink-soft);
   }
-
-  .outside-collage {
+  .outside-images-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+  .outside-images-bottom {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 0.75rem;
+    gap: 0.875rem;
+    margin-top: 0.875rem;
   }
-  .collage-item {
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--paper-soft);
-  }
-  .collage-item.tall {
-    grid-row: span 2;
-  }
-  .collage-item img {
+  .collage-img {
     width: 100%;
-    height: 100%;
-    min-height: 120px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+    border-radius: 12px;
     display: block;
-  }
-  .img-placeholder {
-    min-height: 120px;
     background: var(--paper-soft);
   }
 
   /* ─── Responsive ─────────────────────────────────────── */
   @media (max-width: 900px) {
-    .bio-grid,
-    .outside-grid {
-      grid-template-columns: 1fr;
-    }
+    .bio-grid    { grid-template-columns: 1fr; }
+    .outside-top { grid-template-columns: 1fr; }
     .bio-portrait { max-width: 300px; }
     .skills-panels { grid-template-columns: 1fr 1fr; }
+    .outside-images-bottom { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .skills-panels { grid-template-columns: 1fr; }
-    .outside-collage { grid-template-columns: repeat(2, 1fr); }
-    .collage-item.tall { grid-row: span 1; }
+    .outside-images-top    { grid-template-columns: 1fr; }
+    .outside-images-bottom { grid-template-columns: 1fr; }
   }
 </style>
