@@ -32,6 +32,13 @@ function parseBold(str: string): string {
   return str.replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>');
 }
 
+// Normalise role section images — prefer explicit images[] array, fall back to single image field
+function roleImages(area: { image?: string; images?: { src: string; caption: string }[] }) {
+  if (area.images && area.images.length > 0) return area.images;
+  if (area.image) return [{ src: area.image, caption: '' }];
+  return [];
+}
+
 const isDark = project.accent_color === '#1C2230';
 ---
 
@@ -144,21 +151,42 @@ const isDark = project.accent_color === '#1C2230';
       {project.role_sections.map((area, i) => (
         <div class:list={['role-area', i % 2 === 1 && 'role-area--flip']}>
           <Reveal>
-            <div class="role-area-img-wrap">
-              <img
-                src={assetUrl(area.image)}
-                alt={area.title}
-                loading="lazy"
-                decoding="async"
-                class="role-area-img"
-                onerror="this.parentElement.classList.add('role-img-placeholder')"
-              />
+            <div class="role-img-wrap">
+              <div class="role-img-scroll">
+                {roleImages(area).map((img) => (
+                  <figure class="role-img-item">
+                    <img
+                      src={assetUrl(img.src)}
+                      alt={img.caption || area.title}
+                      loading="lazy"
+                      decoding="async"
+                      onerror="this.parentElement.classList.add('role-img-error')"
+                    />
+                    {img.caption && (
+                      <figcaption class="role-img-caption">{img.caption}</figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+              {roleImages(area).length > 1 && (
+                <div class="role-img-dots" aria-hidden="true">
+                  {roleImages(area).map((_, di) => (
+                    <button
+                      class:list={['role-dot', di === 0 && 'active']}
+                      data-index={di}
+                      aria-label={`Image ${di + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </Reveal>
           <Reveal delay={80}>
             <div class="role-area-text">
               <h3 class="role-area-title title">{area.title}</h3>
-              <p class="body role-area-body">{area.body}</p>
+              {area.body.split('\n\n').map((para) => (
+                <p class="body role-area-body">{para}</p>
+              ))}
             </div>
           </Reveal>
         </div>
@@ -359,30 +387,75 @@ const isDark = project.accent_color === '#1C2230';
   .role-area--flip > * {
     direction: ltr;
   }
-  .role-area-img-wrap {
+  /* Scrollable image strip */
+  .role-img-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     border-radius: var(--radius-hero);
-    overflow: hidden;
-    background: var(--paper-soft);
   }
-  .role-img-placeholder {
-    aspect-ratio: 4 / 3;
-    background: var(--paper-soft);
-    border-radius: var(--radius-hero);
+  .role-img-scroll::-webkit-scrollbar { display: none; }
+  .role-img-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin: 0;
+    padding: 0;
   }
-  .role-area-img {
+  .role-img-item img {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
+    border-radius: var(--radius-hero);
+    background: var(--paper-soft);
+  }
+  .role-img-error img {
+    visibility: hidden;
+  }
+  .role-img-caption {
+    font-family: var(--font-mono);
+    font-size: var(--micro);
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0.5rem 0 0;
+    text-align: center;
+  }
+  .role-img-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.625rem;
+  }
+  .role-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.25);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .role-dot.active {
+    background: var(--ink);
+    transform: scale(1.3);
   }
   .role-area-title {
     margin: 0 0 0.875rem;
     color: var(--ink);
   }
   .role-area-body {
-    margin: 0;
+    margin: 0 0 1rem;
     color: var(--ink-soft);
     line-height: 1.75;
+  }
+  .role-area-body:last-child {
+    margin-bottom: 0;
   }
 
   @media (max-width: 700px) {
@@ -491,3 +564,62 @@ const isDark = project.accent_color === '#1C2230';
   }
   .back-link:hover { color: var(--ink); }
 </style>
+
+<script>
+  (() => {
+    document.querySelectorAll('.role-img-wrap').forEach((wrap) => {
+      const scroll = wrap.querySelector('.role-img-scroll') as HTMLElement | null;
+      const dots = [...wrap.querySelectorAll('.role-dot')] as HTMLElement[];
+      if (!scroll || dots.length < 2) return;
+
+      const realItems = [...scroll.querySelectorAll('.role-img-item')];
+      const total = realItems.length;
+
+      // Prepend clone of last item, append clone of first — for seamless looping
+      const headClone = realItems[total - 1].cloneNode(true) as HTMLElement;
+      const tailClone = realItems[0].cloneNode(true) as HTMLElement;
+      headClone.setAttribute('aria-hidden', 'true');
+      tailClone.setAttribute('aria-hidden', 'true');
+      scroll.prepend(headClone);
+      scroll.append(tailClone);
+
+      // rawIdx layout: 0=head clone, 1..total=real items, total+1=tail clone
+      function jumpTo(rawIdx: number, smooth = false) {
+        scroll!.scrollTo({ left: rawIdx * scroll!.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+      }
+
+      // Start at real first item (skip head clone)
+      requestAnimationFrame(() => jumpTo(1));
+
+      function rawToReal(raw: number) {
+        if (raw <= 0) return total - 1;
+        if (raw > total) return 0;
+        return raw - 1;
+      }
+
+      function updateDots(realI: number) {
+        dots.forEach((d, i) => d.classList.toggle('active', i === realI));
+      }
+
+      let loopTimer: ReturnType<typeof setTimeout> | null = null;
+
+      scroll.addEventListener('scroll', () => {
+        const raw = Math.round(scroll!.scrollLeft / scroll!.clientWidth);
+        updateDots(rawToReal(raw));
+        clearTimeout(loopTimer!);
+        loopTimer = setTimeout(() => {
+          const r = Math.round(scroll!.scrollLeft / scroll!.clientWidth);
+          if (r === 0) jumpTo(total);       // at head clone → silently jump to real last
+          else if (r > total) jumpTo(1);    // at tail clone → silently jump to real first
+        }, 80);
+      }, { passive: true });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          jumpTo(i + 1, true); // +1 to skip head clone
+          updateDots(i);
+        });
+      });
+    });
+  })();
+</script>

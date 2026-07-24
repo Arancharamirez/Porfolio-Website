@@ -168,18 +168,44 @@ const { slides, label = 'Project media' } = Astro.props;
       const track = carousel.querySelector<HTMLElement>('.carousel-track')!;
       const prevBtn = carousel.querySelector<HTMLButtonElement>('.prev')!;
       const nextBtn = carousel.querySelector<HTMLButtonElement>('.next')!;
-      const dots = carousel.querySelectorAll<HTMLButtonElement>('.dot');
-      let current = 0;
+      const dots = [...carousel.querySelectorAll<HTMLButtonElement>('.dot')];
       const total = dots.length;
+      if (total < 1) return;
 
-      function goTo(i: number) {
-        current = (i + total) % total;
-        const slideWidth = track.clientWidth;
-        track.scrollTo({ left: current * slideWidth, behavior: 'smooth' });
-        dots.forEach((d, idx) => {
-          d.classList.toggle('active', idx === current);
-          d.setAttribute('aria-selected', String(idx === current));
+      // Clone last slide to prepend, first slide to append — seamless loop
+      const slides = [...track.querySelectorAll<HTMLElement>('.carousel-slide')];
+      const headClone = slides[total - 1].cloneNode(true) as HTMLElement;
+      const tailClone = slides[0].cloneNode(true) as HTMLElement;
+      headClone.setAttribute('aria-hidden', 'true');
+      tailClone.setAttribute('aria-hidden', 'true');
+      track.prepend(headClone);
+      track.append(tailClone);
+
+      let current = 0;
+
+      function jumpTo(rawIdx: number, smooth = false) {
+        track.scrollTo({ left: rawIdx * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+      }
+
+      requestAnimationFrame(() => jumpTo(1)); // start at real first
+
+      function rawToReal(raw: number) {
+        if (raw <= 0) return total - 1;
+        if (raw > total) return 0;
+        return raw - 1;
+      }
+
+      function updateDots(realI: number) {
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === realI);
+          d.setAttribute('aria-selected', String(i === realI));
         });
+      }
+
+      function goTo(realI: number) {
+        current = ((realI % total) + total) % total;
+        jumpTo(current + 1, true); // +1 to skip head clone
+        updateDots(current);
       }
 
       prevBtn?.addEventListener('click', () => goTo(current - 1));
@@ -188,19 +214,22 @@ const { slides, label = 'Project media' } = Astro.props;
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.slideIndex ?? '0')));
       });
 
-      // Keyboard nav
       carousel.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'ArrowLeft') goTo(current - 1);
         if (e.key === 'ArrowRight') goTo(current + 1);
       });
 
-      // Sync dots on scroll
+      let loopTimer: ReturnType<typeof setTimeout> | null = null;
       track.addEventListener('scroll', () => {
-        const idx = Math.round(track.scrollLeft / track.clientWidth);
-        if (idx !== current) {
-          current = idx;
-          dots.forEach((d, i) => d.classList.toggle('active', i === current));
-        }
+        const raw = Math.round(track.scrollLeft / track.clientWidth);
+        current = rawToReal(raw);
+        updateDots(current);
+        clearTimeout(loopTimer!);
+        loopTimer = setTimeout(() => {
+          const r = Math.round(track.scrollLeft / track.clientWidth);
+          if (r === 0) jumpTo(total);       // at head clone → jump to real last
+          else if (r > total) jumpTo(1);    // at tail clone → jump to real first
+        }, 80);
       }, { passive: true });
     });
   })();
