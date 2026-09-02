@@ -428,7 +428,7 @@ export const projects: Project[] = [
     category: 'systems',
     tags: ['Sustainability', 'Systems Design', 'Engineering Analysis', 'Data Analysis', 'Programming', 'Forecasting'],
     year: '2024',
-    course: 'Engineering in Context',
+    course: 'Masters Project',
     type: 'Group project',
     role: 'Systems analysis & research lead',
     accent_color: '#CFD9DC',
