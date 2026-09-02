@@ -3,11 +3,11 @@ import Base from '../layouts/Base.astro';
 import FloatingConstellation from '../components/FloatingConstellation.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Reveal from '../components/Reveal.astro';
-import { projects, featuredSlugs } from '../data/projects';
+import { projects } from '../data/projects';
 import { assetUrl } from '../utils/url';
 
 const base = import.meta.env.BASE_URL;
-const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).filter(Boolean);
+const carouselProjects = [...projects, ...projects]; // doubled for seamless looping
 ---
 
 <Base>
@@ -61,23 +61,27 @@ const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).f
   </section>
 
   <!-- ─── Selected work ─────────────────────────────────────────── -->
-  <section class="selected-work page-px max-w-page section-gap">
+  <section class="selected-work section-gap">
     <Reveal>
-      <a href={`${base}/portfolio`} class="selected-eyebrow-link">
+      <a href={`${base}/portfolio`} class="selected-eyebrow-link page-px max-w-page">
         <span class="serif-italic display-m selected-eyebrow">My projects →</span>
       </a>
     </Reveal>
 
-    <div class="featured-row">
-      {featured.map((p, i) => (
-        <Reveal delay={i * 80}>
-          <ProjectCard project={p} />
-        </Reveal>
-      ))}
-    </div>
+    <Reveal>
+      <div class="projects-marquee" role="region" aria-label="Project showcase, auto-scrolling">
+        <div class="projects-marquee-track">
+          {carouselProjects.map((p, i) => (
+            <div class="marquee-item" aria-hidden={i >= projects.length ? 'true' : undefined}>
+              <ProjectCard project={p} style="width:100%" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
 
     <Reveal>
-      <div class="all-cta">
+      <div class="all-cta page-px max-w-page">
         <a href={`${base}/portfolio`} class="btn-outline">See all projects →</a>
       </div>
     </Reveal>
@@ -247,26 +251,42 @@ const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).f
     border-bottom-width: 2px;
   }
 
-  .featured-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+  /* Auto-scrolling project marquee */
+  .projects-marquee {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
   }
-  /* Force uniform card height in the featured row */
-  .featured-row :global(.card-media) {
+
+  .projects-marquee-track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    animation: marquee-scroll 70s linear infinite;
+  }
+
+  .projects-marquee:hover .projects-marquee-track,
+  .projects-marquee-track:focus-within {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    flex: 0 0 clamp(220px, 22vw, 300px);
+  }
+  /* Force uniform card height along the marquee */
+  .marquee-item :global(.card-media) {
     aspect-ratio: 3 / 4;
   }
-  .featured-row :global(.card-media img) {
+  .marquee-item :global(.card-media img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  @media (max-width: 900px) {
-    .featured-row { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .featured-row { grid-template-columns: 1fr; }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   .all-cta {
@@ -280,6 +300,9 @@ const featured = featuredSlugs.map((s) => projects.find((p) => p.slug === s)!).f
       animation: none;
       opacity: 1;
       transform: none;
+    }
+    .projects-marquee-track {
+      animation: none;
     }
   }
 </style>

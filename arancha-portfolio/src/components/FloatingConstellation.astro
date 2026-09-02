@@ -112,7 +112,14 @@ const { projects } = Astro.props;
       tile.style.width     = tw + 'px';
       tile.style.height    = th + 'px';
       tile.style.left      = lp + '%';
-      tile.style.top       = tp + '%';
+      // Tiles anchored in the lower half grow upward from `bottom` instead of
+      // downward from `top` — otherwise their fixed pixel height can push
+      // past the container's bottom edge and get clipped by overflow:hidden.
+      if (tp >= 50) {
+        tile.style.bottom = (100 - tp) + '%';
+      } else {
+        tile.style.top = tp + '%';
+      }
       tile.style.transform = `rotate(${rot}deg)`;
 
       const dur   = durations[i % durations.length];
