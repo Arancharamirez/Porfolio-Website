@@ -38,7 +38,6 @@ const { projects } = Astro.props;
 
   .constellation-tile {
     position: absolute;
-    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(26, 26, 26, 0.10);
   }
@@ -79,8 +78,8 @@ const { projects } = Astro.props;
 
     const tiles = Array.from(wrap.querySelectorAll('.constellation-tile'));
 
-    const aspectRatios = [1.3, 0.78, 1.0, 1.25, 0.82, 1.1, 1.35, 0.75, 1.0, 1.2];
-    const widths       = [230, 270, 195, 310, 240, 205, 285, 250, 185, 260];
+    const aspectRatios = [1.3, 0.78, 1.0, 1.25, 0.82, 1.1, 1.35, 0.75, 1.0, 1.2, 1.15, 0.85];
+    const widths       = [230, 270, 195, 310, 240, 205, 285, 250, 185, 260, 220, 215];
 
     // Fixed layout — [left %, top %, rotation deg]
     // Tiles placed around the perimeter, clear of the centre text block
@@ -95,14 +94,16 @@ const { projects } = Astro.props;
       [10, 76,  5],   // bottom, left of centre
       [ 1, 52, -4],   // left edge, lower
       [ 2, 24,  7],   // left edge, upper
+      [87, 25,  5],   // right edge, mid
+      [ 4, 38, -5],   // left edge, mid
     ];
 
     // Deterministic drift — same every page load, no Math.random()
-    const durations = [9000, 11500, 8200, 13000, 10800, 9600, 12200, 10000, 8800, 11000];
-    const dxValues  = [ 18, -22,  14, -20,  24, -16,  20, -18,  16, -24];
-    const dyValues  = [-14,  18, -12,  16, -20,  14, -16,  12, -18,  20];
-    const drValues  = [  2,  -2, 1.5,  -2.5, 2, -1.5, 2.5,  -2, 1.5,  -2];
-    const delays    = [  0, -3200, -6500, -1800, -8000, -4500, -2200, -7000, -5500, -3800];
+    const durations = [9000, 11500, 8200, 13000, 10800, 9600, 12200, 10000, 8800, 11000, 10200, 11700];
+    const dxValues  = [ 18, -22,  14, -20,  24, -16,  20, -18,  16, -24, -19,  17];
+    const dyValues  = [-14,  18, -12,  16, -20,  14, -16,  12, -18,  20,  15, -13];
+    const drValues  = [  2,  -2, 1.5,  -2.5, 2, -1.5, 2.5,  -2, 1.5,  -2, -2, 2.2];
+    const delays    = [  0, -3200, -6500, -1800, -8000, -4500, -2200, -7000, -5500, -3800, -2600, -5000];
 
     tiles.forEach((tile, i) => {
       const tw = widths[i % widths.length];
