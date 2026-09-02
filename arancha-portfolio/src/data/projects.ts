@@ -2,7 +2,6 @@ export type Project = {
   slug: string;
   title: string;
   index: string;
-  size?: 'large';          // portfolio grid tile size — unset = normal square
   category: 'design' | 'engineering' | 'systems';
   tags: string[];
   year: string;
@@ -49,60 +48,11 @@ export type OtherProject = {
 
 export const projects: Project[] = [
 
-  // ─── 01 DESALINATION ───────────────────────────────────────────────────
-  {
-    slug: 'desalination',
-    title: 'Desalination',
-    index: '01 / 12',
-    category: 'systems',
-    tags: ['Sustainability', 'Systems Design', 'Engineering Analysis', 'Data Analysis', 'Programming', 'Forecasting'],
-    year: '2026',
-    course: 'Masters Project',
-    type: 'Group project',
-    role: 'Systems analysis & research lead',
-    accent_color: '#CFD9DC',
-    tagline: 'Making water scarcity solvable.',
-    one_line: 'A systems-level analysis of desalination technology as a response to global water stress.',
-    features: ['Systems Analysis', 'Economic Modelling', 'Environmental Assessment', 'Policy Framing'],
-    hero_image: '/images/projects/desalination/dts_tab1.png',
-    images: [
-      '/images/projects/desalination/dts_tab1.png',
-      '/images/projects/desalination/dts_tab2.png',
-      '/images/projects/desalination/dst_tab3.png',
-      '/images/projects/desalination/dst_tab4.png',
-      '/images/projects/desalination/dst_tab5.png',
-    ],
-    info: '[PLACEHOLDER — Add project context here]',
-    problem: '[PLACEHOLDER — Add problem statement here]',
-    solution: '[PLACEHOLDER — Add solution description here]',
-    feature_caption: '[PLACEHOLDER — Add feature caption here]',
-    feature_bold: '[PLACEHOLDER — Add feature bold statement here]',
-    feature_tags: ['[PLACEHOLDER]'],
-    role_sections: [
-      {
-        title: '[PLACEHOLDER — Role section 1 title]',
-        body: '[PLACEHOLDER — Role section 1 description]',
-        image: '/images/projects/desalination/dts_tab2.png',
-      },
-      {
-        title: '[PLACEHOLDER — Role section 2 title]',
-        body: '[PLACEHOLDER — Role section 2 description]',
-        image: '/images/projects/desalination/dst_tab3.png',
-      },
-    ],
-    soft_skills: ['[PLACEHOLDER]'],
-    hard_skills: ['[PLACEHOLDER]'],
-    tile_ratio: 'landscape',
-    has_video: false,
-    pdf_url: '/reports/A Strategic Engineering Analysis of Modular Desalination Plant Investments under Demand Uncertainty.pdf',
-  },
-
-    // ─── 02 HOUSESCOUT ─────────────────────────────────────────────────────
+    // ─── 01 HOUSESCOUT ─────────────────────────────────────────────────────
   {
     slug: 'housescout',
     title: 'HouseScout',
-    index: '02 / 12',
-    size: 'large',
+    index: '01 / 12',
     category: 'design',
     tags: ['UI/UX', 'App Design','User Research', 'Systems Design', 'Prototyping', 'Testing'],
     year: '2026',
@@ -113,7 +63,7 @@ export const projects: Project[] = [
     tagline: "Don't rent blind.",
     one_line: 'An independent scouting service that gives renters unfiltered, in-person eyes on a property before they sign.',
     features: ['In-Person Scouts', 'Unfiltered HD Media', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
-    hero_image: '/images/projects/housescout/ui 1.png',
+    hero_image: '/images/projects/housescout/Homepage mid.png',
     images: [
       '/images/projects/housescout/problem.png',
       '/images/projects/housescout/solution.png',
@@ -166,12 +116,11 @@ export const projects: Project[] = [
     pdf_url: '/reports/HouseScout P&L Report.pdf',
   },
 
-  // ─── 03 NEST ASSURED ───────────────────────────────────────────────────
+  // ─── 02 NEST ASSURED ───────────────────────────────────────────────────
   {
     slug: 'nest-assured',
     title: 'Nest Assured',
-    index: '03 / 12',
-    size: 'large',
+    index: '02 / 12',
     category: 'design',
     tags: ['Industrial Design', 'CAD', 'Prototyping', 'Testing', 'Programming'],
     year: '2024',
@@ -185,18 +134,9 @@ export const projects: Project[] = [
     hero_image: '/images/projects/nest-assured/hero anne.png',
     images: [
       '/images/projects/nest-assured/nest.png',
+      '/images/projects/nest-assured/hero josh.png',
       '/images/projects/nest-assured/device.png',
-      '/images/projects/nest-assured/closeup.png',
-      '/images/projects/nest-assured/exploded.png',
-      '/images/projects/nest-assured/packaging.png',
-      '/images/projects/nest-assured/box.png',
-      '/images/projects/nest-assured/UI.png',
-      '/images/projects/nest-assured/compliance.png',
-      '/images/projects/nest-assured/lofi.png',
-      '/images/projects/nest-assured/google env.png',
-      '/images/projects/nest-assured/side.png',
-      '/images/projects/nest-assured/bottom.png',
-      '/images/projects/nest-assured/sketchs.png',
+      '/images/projects/nest-assured/exploded.png'
     ],
     info: 'Developed as part of a university group project for the Industrial Design Engineering module. The challenge was to design and engineer a battery-powered, hand-operated device for home, garden, or educational use — one that appeals to a broad market while addressing the needs of an underserved user group. *Note: Google were not engaged in any consultancy or collaborative capacity with this project; the outcome is in no way endorsed by them.',
     problem: 'ADHD affects over 22 million people worldwide, leading to challenges with attention, organization, and memory. Many individuals struggle with misplaced items, disrupting their daily routines and increasing stress. Existing solutions often rely on complex ecosystems or smartphone apps, which can be overwhelming or ineffective.',
@@ -208,23 +148,84 @@ export const projects: Project[] = [
       {
         title: 'Prototyping & development',
         body: 'To evaluate feasibility and define performance requirements, multiple working prototypes were constructed and tested. Those used RFID tags and an ESPNOW-based communication system to allow real-time registration of tagged items, without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, the internal layout was refined to balance functionality with portability, ensuring the reader mechanism remained compact yet effective. Power, load and component specifications were outlined to model and predict mechanical performance under ideal conditions.',
-        image: '/images/projects/nest-assured/lofi.png',
+        images: [
+          { src: '/images/projects/nest-assured/sketchs.png', caption: 'Ideation & Sketching' },
+          { src: '/images/projects/nest-assured/lofi.png', caption: 'Low-Fidelity Prototyping' },
+          { src: '/images/projects/nest-assured/exploded.png', caption: 'Exploded View' },
+        ],
       },
       {
         title: 'Compliance & user guidelines',
         body: "If brought to market, Nest Assured would fall under UK consumer electronics regulations. I took responsibility for identifying relevant safety standards and ensuring the product design adhered to UKCA and CE directives. I developed the accompanying safety manual, as well as an accessible user guide styled in line with Google's branding conventions — based on analysis of real-world user documentation from similar products.",
-        image: '/images/projects/nest-assured/compliance.png',
+        images: [
+          { src: '/images/projects/nest-assured/compliance.png', caption: 'Compliance & User Guidelines' },
+          { src: '/images/projects/nest-assured/instructions.png', caption: 'Nest Assured instructions' },
+          { src: '/images/projects/nest-assured/packaging layout.png', caption: 'Packaging Design' },
+        ],
       },
       {
         title: 'Packaging design & rendering',
         body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. Using SolidWorks, I modeled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging in KeyShot, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
-        image: '/images/projects/nest-assured/packaging.png',
+        images: [
+          { src: '/images/projects/nest-assured/boxing.png', caption: 'Sustainable Packaging' },
+          { src: '/images/projects/nest-assured/google.png', caption: 'Alignment with Google Brand Identity' },
+          { src: '/images/projects/nest-assured/google env.png', caption: 'Product positioning within Google environment' },
+          { src: '/images/projects/nest-assured/hero.png', caption: 'Working product' },
+        ],
       },
     ],
     soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Project Planning', 'Presenting'],
     hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing'],
     tile_ratio: 'square',
-    has_video: true,
+    has_video: false,
+  },
+
+    // ─── 03 DESALINATION ───────────────────────────────────────────────────
+  {
+    slug: 'desalination',
+    title: 'SWRO Decision Tool',
+    index: '03 / 12',
+    category: 'systems',
+    tags: ['Sustainability', 'Systems Design', 'Engineering Analysis', 'Data Analysis', 'Programming', 'Forecasting'],
+    year: '2026',
+    course: 'Masters Project',
+    type: 'Group project',
+    role: 'Systems analysis & research lead',
+    accent_color: '#CFD9DC',
+    tagline: 'Making water scarcity solvable.',
+    one_line: 'A systems-level analysis of desalination technology as a response to global water stress.',
+    features: ['Systems Analysis', 'Economic Modelling', 'Environmental Assessment', 'Policy Framing'],
+    hero_image: '/images/projects/desalination/hero slim.png',
+    images: [
+      '/images/projects/desalination/dts_tab1.png',
+      '/images/projects/desalination/dts_tab2.png',
+      '/images/projects/desalination/dst_tab3.png',
+      '/images/projects/desalination/dst_tab4.png',
+      '/images/projects/desalination/dst_tab5.png',
+    ],
+    info: '[PLACEHOLDER — Add project context here]',
+    problem: '[PLACEHOLDER — Add problem statement here]',
+    solution: '[PLACEHOLDER — Add solution description here]',
+    feature_caption: '[PLACEHOLDER — Add feature caption here]',
+    feature_bold: '[PLACEHOLDER — Add feature bold statement here]',
+    feature_tags: ['[PLACEHOLDER]'],
+    role_sections: [
+      {
+        title: '[PLACEHOLDER — Role section 1 title]',
+        body: '[PLACEHOLDER — Role section 1 description]',
+        image: '/images/projects/desalination/dts_tab2.png',
+      },
+      {
+        title: '[PLACEHOLDER — Role section 2 title]',
+        body: '[PLACEHOLDER — Role section 2 description]',
+        image: '/images/projects/desalination/dst_tab3.png',
+      },
+    ],
+    soft_skills: ['[PLACEHOLDER]'],
+    hard_skills: ['[PLACEHOLDER]'],
+    tile_ratio: 'landscape',
+    has_video: false,
+    pdf_url: '/reports/A Strategic Engineering Analysis of Modular Desalination Plant Investments under Demand Uncertainty.pdf',
   },
 
   // ─── 04 OLIVE ──────────────────────────────────────────────────────────
@@ -232,7 +233,6 @@ export const projects: Project[] = [
     slug: 'olive',
     title: 'Olive',
     index: '04 / 12',
-    size: 'large',
     category: 'systems',
     tags: ['Sustainability', 'Systems Design', 'Data Analysis', 'Stakeholder Strategy', 'Product Design'],
     year: '2026',
@@ -280,47 +280,11 @@ export const projects: Project[] = [
     pdf_url: '/reports/Olive Report.pdf',
   },
 
-  // ─── 05 DATA TO PRODUCT ────────────────────────────────────────────────
-  {
-    slug: 'data-to-product',
-    title: 'Data to Product',
-    index: '05 / 12',
-    category: 'systems',
-    tags: ['Data Analysis', 'UI/UX', 'Programming', 'Forecasting'],
-    year: '2024',
-    course: '[PLACEHOLDER — Course name]',
-    type: '[PLACEHOLDER — Individual or group]',
-    role: '[PLACEHOLDER — Role]',
-    accent_color: '#DCD3E2',
-    tagline: '[PLACEHOLDER — Tagline]',
-    one_line: '[PLACEHOLDER — One-line description]',
-    features: ['[PLACEHOLDER]'],
-    hero_image: '',
-    images: [],
-    info: '[PLACEHOLDER — Add project context here]',
-    problem: '[PLACEHOLDER — Add problem statement here]',
-    solution: '[PLACEHOLDER — Add solution description here]',
-    feature_caption: '[PLACEHOLDER — Feature caption]',
-    feature_bold: '[PLACEHOLDER — Feature bold statement]',
-    feature_tags: ['[PLACEHOLDER]'],
-    role_sections: [
-      {
-        title: '[PLACEHOLDER — Role section 1 title]',
-        body: '[PLACEHOLDER — Role section 1 description]',
-        image: '',
-      },
-    ],
-    soft_skills: ['[PLACEHOLDER]'],
-    hard_skills: ['[PLACEHOLDER]'],
-    tile_ratio: 'landscape',
-    has_video: false,
-  },
-
-  // ─── 06 FOODJI ─────────────────────────────────────────────────────────
+    // ─── 05 FOODJI ─────────────────────────────────────────────────────────
   {
     slug: 'foodji',
     title: 'Foodji',
-    index: '06 / 12',
+    index: '05 / 12',
     category: 'design',
     tags: ['UI/UX', 'Sustainability', 'User Research', 'Prototyping'],
     year: '2022',
@@ -356,12 +320,47 @@ export const projects: Project[] = [
     pdf_url: '/reports/Foodji Final Report.pdf',
   },
 
+  // ─── 06 DATA TO PRODUCT ────────────────────────────────────────────────
+  {
+    slug: 'data-to-product',
+    title: 'Waste Trade',
+    index: '06 / 12',
+    category: 'systems',
+    tags: ['Data Analysis', 'UI/UX', 'Programming', 'Forecasting'],
+    year: '2024',
+    course: 'Data to Product',
+    type: 'Group',
+    role: '[PLACEHOLDER — Role]',
+    accent_color: '#DCD3E2',
+    tagline: '[PLACEHOLDER — Tagline]',
+    one_line: '[PLACEHOLDER — One-line description]',
+    features: ['[PLACEHOLDER]'],
+    hero_image: '/images/projects/data-to-product/hero.jpeg',
+    images: [],
+    info: '[PLACEHOLDER — Add project context here]',
+    problem: '[PLACEHOLDER — Add problem statement here]',
+    solution: '[PLACEHOLDER — Add solution description here]',
+    feature_caption: '[PLACEHOLDER — Feature caption]',
+    feature_bold: '[PLACEHOLDER — Feature bold statement]',
+    feature_tags: ['[PLACEHOLDER]'],
+    role_sections: [
+      {
+        title: '[PLACEHOLDER — Role section 1 title]',
+        body: '[PLACEHOLDER — Role section 1 description]',
+        image: '',
+      },
+    ],
+    soft_skills: ['[PLACEHOLDER]'],
+    hard_skills: ['[PLACEHOLDER]'],
+    tile_ratio: 'landscape',
+    has_video: false,
+  },
+
   // ─── 07 ACTIB ──────────────────────────────────────────────────────────
   {
     slug: 'actib',
     title: 'ACTIB',
     index: '07 / 12',
-    size: 'large',
     category: 'design',
     tags: ['Industrial Design', 'UI/UX', 'App Design' , 'Prototyping'],
     year: '2025',
@@ -372,7 +371,7 @@ export const projects: Project[] = [
     tagline: 'Precision you can feel.',
     one_line: 'A volleyball training glove with real-time haptic feedback for setters.',
     features: ['Intelligent Sportswear', 'Performance-Enhancing Glove', 'Haptic Feedback Training', 'Wrist Support', 'Builds Technique'],
-    hero_image: '/images/projects/actib/main.png',
+    hero_image: '/images/projects/actib/actib hero.png',
     images: [
       '/images/projects/actib/hero.png',
       '/images/projects/actib/angle.png',

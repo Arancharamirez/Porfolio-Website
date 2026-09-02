@@ -8,13 +8,27 @@ import { assetUrl } from '../utils/url';
 
 const base = import.meta.env.BASE_URL;
 const carouselProjects = [...projects, ...projects]; // doubled for seamless looping
+
+// Swap specific tile positions in the hero's floating image constellation only
+// — doesn't touch the shared `projects` order used by the portfolio grid, CV, etc.
+function swapBySlug(list: typeof projects, slugA: string, slugB: string) {
+  const arr = [...list];
+  const i = arr.findIndex((p) => p.slug === slugA);
+  const j = arr.findIndex((p) => p.slug === slugB);
+  if (i !== -1 && j !== -1) [arr[i], arr[j]] = [arr[j], arr[i]];
+  return arr;
+}
+const constellationProjects = swapBySlug(
+  swapBySlug(projects, 'nest-assured', 'actib'),
+  'housescout', 'ursa'
+);
 ---
 
 <Base>
   <!-- ─── Hero ─────────────────────────────────────────────────── -->
   <section class="hero page-px" aria-label="Introduction">
     <!-- Floating constellation sits behind the text -->
-    <FloatingConstellation projects={projects} />
+    <FloatingConstellation projects={constellationProjects} />
 
     <div class="hero-text">
       <h1 class="display-xl hero-name" data-reveal-hero>ARANCHA RAMÍREZ</h1>

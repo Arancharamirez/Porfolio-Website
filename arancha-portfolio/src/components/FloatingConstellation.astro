@@ -12,7 +12,7 @@ const { projects } = Astro.props;
 <!-- Pure background decoration — tiles are not interactive -->
 <div class="constellation-wrap" aria-hidden="true">
   {projects.map((p, i) => (
-    <div class="constellation-tile" data-index={i}>
+    <div class="constellation-tile" data-index={i} data-slug={p.slug}>
       <img
         src={assetUrl(p.hero_image || `/images/projects/${p.slug}/hero.jpg`)}
         alt=""
@@ -105,10 +105,23 @@ const { projects } = Astro.props;
     const drValues  = [  2,  -2, 1.5,  -2.5, 2, -1.5, 2.5,  -2, 1.5,  -2, -2, 2.2];
     const delays    = [  0, -3200, -6500, -1800, -8000, -4500, -2200, -7000, -5500, -3800, -2600, -5000];
 
+    // One-off manual nudges for specific projects, keyed by slug so they
+    // stick to the right image even if the underlying project order changes.
+    const slugOverrides: Record<string, { left?: number; top?: number; width?: number; zIndex?: number }> = {
+      foodji:      { top: 76 },              // moved further down
+      'all-ink':   { left: 9, zIndex: -1 },  // shifted right, sent behind other tiles
+      housescout:  { left: 14, width: 290 }, // shifted right, made larger
+    };
+
     tiles.forEach((tile, i) => {
-      const tw = widths[i % widths.length];
+      const slug = (tile as HTMLElement).dataset.slug ?? '';
+      const override = slugOverrides[slug];
+
+      let tw = override?.width ?? widths[i % widths.length];
+      let [lp, tp, rot] = positions[i % positions.length];
+      if (override?.left !== undefined) lp = override.left;
+      if (override?.top !== undefined) tp = override.top;
       const th = Math.round(tw * aspectRatios[i % aspectRatios.length]);
-      const [lp, tp, rot] = positions[i % positions.length];
 
       tile.style.width     = tw + 'px';
       tile.style.height    = th + 'px';
@@ -122,6 +135,7 @@ const { projects } = Astro.props;
         tile.style.top = tp + '%';
       }
       tile.style.transform = `rotate(${rot}deg)`;
+      if (override?.zIndex !== undefined) tile.style.zIndex = String(override.zIndex);
 
       const dur   = durations[i % durations.length];
       const dx    = dxValues[i % dxValues.length];

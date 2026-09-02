@@ -184,7 +184,10 @@ const { slides, label = 'Project media' } = Astro.props;
       let current = 0;
 
       function jumpTo(rawIdx: number, smooth = false) {
-        track.scrollTo({ left: rawIdx * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+        // 'auto' defers to the CSS `scroll-behavior: smooth` on this element,
+        // which makes the silent loop-reset visibly glide instead of
+        // snapping instantly — use 'instant' to truly bypass it.
+        track.scrollTo({ left: rawIdx * track.clientWidth, behavior: smooth ? 'smooth' : 'instant' });
       }
 
       requestAnimationFrame(() => jumpTo(1)); // start at real first

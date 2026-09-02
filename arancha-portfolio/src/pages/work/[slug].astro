@@ -118,7 +118,7 @@ const isDark = project.accent_color === '#1C2230';
       <Reveal>
         <div class="features-img-wrap">
           <img
-            src={assetUrl(`/images/projects/${slug}/feature.jpg`)}
+            src={assetUrl(`/images/projects/${slug}/feature.png`)}
             alt={`${project.title} feature`}
             class="features-img"
             loading="lazy"
@@ -384,7 +384,13 @@ const isDark = project.accent_color === '#1C2230';
   .role-area--flip {
     direction: rtl;
   }
-  .role-area--flip > * {
+  /* Targeting these classes directly (rather than `> *`) because the actual
+     DOM child here is <Reveal>'s own wrapper div, a separate component that
+     doesn't carry this page's scoped-style attribute — a child combinator
+     would silently fail to match it, leaking `direction: rtl` all the way
+     down into the scrollable image strip and breaking its scrollLeft math. */
+  .role-area--flip .role-img-wrap,
+  .role-area--flip .role-area-text {
     direction: ltr;
   }
   /* Scrollable image strip */
@@ -585,7 +591,10 @@ const isDark = project.accent_color === '#1C2230';
 
       // rawIdx layout: 0=head clone, 1..total=real items, total+1=tail clone
       function jumpTo(rawIdx: number, smooth = false) {
-        scroll!.scrollTo({ left: rawIdx * scroll!.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+        // 'auto' defers to the CSS `scroll-behavior: smooth` on this element,
+        // which makes the silent loop-reset visibly glide instead of
+        // snapping instantly — use 'instant' to truly bypass it.
+        scroll!.scrollTo({ left: rawIdx * scroll!.clientWidth, behavior: smooth ? 'smooth' : 'instant' });
       }
 
       // Start at real first item (skip head clone)
