@@ -78,7 +78,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Product & UI/UX design',
-        body: "As CIO I owned the UI/UX of both sides of the platform — the renter-facing job tracker (Request → Match → Viewing → Report) and the Scout app that local scouts use to accept jobs, follow guided shot-lists, and submit reports from the property. Getting the trust signals right was central: unedited video, AI-flagged warnings like hidden mould, and a visible chain of custody from request to report.",
+        body: "As CIO I owned the UI/UX of both sides of the platform — the renter-facing job tracker and the Scout app that local scouts use to accept jobs, follow guided shot-lists, and submit reports from the property. Getting the trust signals right was central: unedited video, AI-flagged warnings like hidden mould, and a visible chain of custody from request to report.",
         images: [
           { src: '/images/projects/housescout/ui 1.png', caption: 'Request a viewing' },
           { src: '/images/projects/housescout/ui 2.png', caption: 'Match with a Scout' },
@@ -91,6 +91,7 @@ export const projects: Project[] = [
         images: [
           { src: '/images/projects/housescout/street interview.png', caption: 'User interviews' },
           { src: '/images/projects/housescout/user testing.png', caption: 'User testing' },
+          { src: '/images/projects/housescout/viewings.png', caption: 'Attending viewings' },
         ],
       },
       {
