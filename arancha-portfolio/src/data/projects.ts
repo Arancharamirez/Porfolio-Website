@@ -363,7 +363,6 @@ export const projects: Project[] = [
     features: ['Global Trade Data', 'Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'Interactive Heat Map'],
     hero_image: '/images/projects/data-to-product/hero.jpeg',
     images: [
-      '/images/projects/data-to-product/ui.png',
     ],
     info: 'Developed for the Data to Product module in a two-person team with Zoe Hall, combining OECD waste-management data and UN Comtrade trade records into an interactive tool for exploring the global plastic waste trade. Built end-to-end from data sourcing through to a deployed web interface, and grounded in real-world validation against events like China’s 2018 import ban.',
     problem: 'Plastic waste is routinely exported from high-income countries to lower-income ones with less processing capacity and fewer environmental protections, but this global trade is poorly understood: there’s no clear, accessible way to see which countries actually process their own waste, which depend on others, and where processing already generates real economic value.',
