@@ -380,7 +380,11 @@ export const projects: Project[] = [
       {
         title: 'Interface design & development',
         body: 'I helped design and build the three-tab interface — Descriptive, Prescriptive and Forecasting — structured around an interactive world heat map so users can compare countries and drill into a given country’s history, current performance and projected trajectory. The interface went through multiple rounds of iteration, converging on a single-page layout with a consistent sidebar-and-map structure across all three tabs so switching between historical, prescriptive and forecasted views felt like one coherent product rather than three separate tools.',
-        image: '/images/projects/data-to-product/ui.png',
+        images: [
+          { src: '/images/projects/data-to-product/ui.png', caption: 'Raw data Visualisation' },
+          { src: '/images/projects/data-to-product/ui.png', caption: 'Forecasting' },
+          { src: '/images/projects/data-to-product/ui.png', caption: 'Prescriptive Analysis' },
+        ],
       },
     ],
     soft_skills: ['Cross-functional Collaboration', 'Research & Data Validation', 'Written & Visual Communication', 'Presenting'],
