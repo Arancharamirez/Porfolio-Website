@@ -31,7 +31,7 @@ export type Project = {
   hard_skills: string[];
   tile_ratio: 'square' | 'portrait' | 'landscape';
   has_video: boolean;
-  pdf_url?: string;
+  pdf_url?: string | string[];
 };
 
 export type OtherProject = {
@@ -106,7 +106,10 @@ export const projects: Project[] = [
     hard_skills: ['UI/UX Design (Figma)', 'Financial Modelling & P&L Forecasting', 'No-code Web (Framer)', 'Growth Marketing & Social Analytics'],
     tile_ratio: 'portrait',
     has_video: false,
-    pdf_url: '/reports/HouseScout P&L Report.pdf',
+    pdf_url: [
+      '/reports/HouseScout P&L Report.pdf',
+      '/reports/HouseScout Pitch.pdf',
+    ],
   },
 
   // ─── 02 NEST ASSURED ───────────────────────────────────────────────────
@@ -171,6 +174,7 @@ export const projects: Project[] = [
     hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing'],
     tile_ratio: 'square',
     has_video: false,
+    report : '/reports/Nest-Assured Report.pdf',
   },
 
     // ─── 03 DESALINATION ───────────────────────────────────────────────────
@@ -182,41 +186,43 @@ export const projects: Project[] = [
     tags: ['Sustainability', 'Systems Design', 'Engineering Analysis', 'Data Analysis', 'Programming', 'Forecasting'],
     year: '2026',
     course: 'Masters Project',
-    type: 'Group project',
-    role: 'Systems analysis & research lead',
+    type: 'Individual project',
+    role: 'Independent research, modelling & software development',
     accent_color: '#CFD9DC',
-    tagline: 'Making water scarcity solvable.',
-    one_line: 'A systems-level analysis of desalination technology as a response to global water stress.',
-    features: ['Systems Analysis', 'Economic Modelling', 'Environmental Assessment', 'Policy Framing'],
+    tagline: 'Design for the demand you don’t know yet.',
+    one_line: 'An interactive decision-support tool that values the flexibility to expand desalination capacity in stages — quantifying an expected €118M advantage over committing to a fixed design upfront.',
+    features: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Interactive Web Tool', 'Usability-Tested'],
     hero_image: '/images/projects/desalination/hero slim.png',
     images: [
+      '/images/projects/desalination/hero.png',
+      '/images/projects/desalination/excel 1.png',
     ],
-    info: '[PLACEHOLDER — Add project context here]',
-    problem: '[PLACEHOLDER — Add problem statement here]',
-    solution: '[PLACEHOLDER — Add solution description here]',
-    feature_caption: '[PLACEHOLDER — Add feature caption here]',
-    feature_bold: '[PLACEHOLDER — Add feature bold statement here]',
-    feature_tags: ['[PLACEHOLDER]'],
+    info: 'An MSc individual thesis for the Dyson School of Engineering at Imperial College London, developing and applying an integrated framework — combining real-options valuation, robustness assessment, and multi-criteria decision analysis — to the question of whether desalination capacity should be built as one fixed commitment or expanded flexibly in stages. The framework is applied to a real, live expansion decision at the Torrevieja SWRO plant in southeastern Spain, and delivered through an interactive Decision-Support Tool validated with ten usability-test participants and a practising water-utility engineer.',
+    problem: 'Large desalination plants are typically sized against a single demand forecast and built as one fixed commitment — a “predict and provide” approach that fails in two ways: over-investment if demand grows slower than expected, or expensive emergency expansion if it grows faster. Conventional NPV analysis treats these investments as static, systematically undervaluing the option to defer, expand or abandon capacity as real demand and energy prices reveal themselves over a project’s multi-decade life.',
+    solution: 'I built a four-phase framework — stochastic demand and energy-price simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — and applied it to Torrevieja’s planned 40hm³/yr expansion, comparing a single rigid build against a modular design that adds capacity in 5,000m³/day increments only when a utilisation trigger fires. Across 2,000 paired Monte Carlo trials, the modular design wins in 81% of simulated futures, delivering an Expected Value of Flexibility of €118M. I exposed the full framework through an interactive Decision-Support Tool — deployed to the web, requiring no installation — that lets specialist and non-specialist users alike adjust assumptions and see the recommendation update in real time.',
+    feature_caption: 'Quantifying the value of not committing too soon.',
+    feature_bold: "AN INTERACTIVE DECISION-SUPPORT TOOL THAT QUANTIFIES **€118 MILLION** OF FLEXIBILITY VALUE IN A REAL DESALINATION EXPANSION, WINNING IN **81%** OF 2,000 SIMULATED FUTURES.",
+    feature_tags: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Usability-Tested Tool', 'Deployed Web App'],
     role_sections: [
       {
-        title: '[Data Analysis & Systems Modelling]',
-        body: '[PLACEHOLDER — Role section 1 description]',
+        title: 'Techno-economic modelling & Monte Carlo simulation',
+        body: 'I built the full techno-economic model from the ground up: stochastic demand and electricity-price processes calibrated against 2003–2025 Spanish coastal water-demand records and OMIE wholesale price data, a 15-year discounted cash-flow model for both a rigid and a modular expansion design, and a rule-based trigger governing when the modular design commits to a new 5,000m³/day capacity module. Running the model across 2,000 paired Monte Carlo trials — using common random numbers so both designs face identical simulated futures — produced an Expected Value of Flexibility of €118M, with the modular design outperforming the rigid one in 81% of trials.',
         image: '/images/projects/desalination/excel 1.png',
       },
       {
-        title: '[UI/UX Design & Visualisation]',
-        body: '[PLACEHOLDER — Role section 2 description]',
+        title: 'Decision-Support Tool design & development',
+        body: 'I designed and built the interactive Decision-Support Tool from scratch in Python and deployed it to the web, translating the underlying simulation into a five-tab interface — About, Worked Example, Inputs, Uncertainty, and Decision — structured so analytical complexity increases as the user moves through it. Adjustable parameter sliders trigger a full 2,000-trial re-simulation on demand, and a plain-language recommendation banner, hoverable tooltips, and an MCDA radar chart make the underlying real-options and robustness analysis legible to non-specialist stakeholders as well as technical reviewers. I validated the interface through a structured usability study with ten participants across two user groups, plus a semi-structured interview with a practising water-utility engineer.',
         images: [
           { src: '/images/projects/desalination/dst_tab1.png', caption: 'About tab' },
           { src: '/images/projects/desalination/dst_tab2.png', caption: 'Worked example' },
           { src: '/images/projects/desalination/dst_tab3.png', caption: 'Inputs tab' },
           { src: '/images/projects/desalination/dst_tab4.png', caption: 'Uncertainty tab' },
-          { src: '/images/projects/desalination/dst_tab5.png', caption: 'Outputs tab' },
+          { src: '/images/projects/desalination/dst_tab5.png', caption: 'Decision tab' },
         ],
       },
     ],
-    soft_skills: ['[PLACEHOLDER]'],
-    hard_skills: ['[PLACEHOLDER]'],
+    soft_skills: ['Independent Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Presenting'],
+    hard_skills: ['Real Options Analysis', 'Monte Carlo Simulation (Python)', 'Multi-Criteria Decision Analysis', 'Techno-economic & Financial Modelling', 'Web App Development & Deployment'],
     tile_ratio: 'landscape',
     has_video: false,
     pdf_url: '/reports/A Strategic Engineering Analysis of Modular Desalination Plant Investments under Demand Uncertainty.pdf',
@@ -273,7 +279,7 @@ export const projects: Project[] = [
       },
     ],
     soft_skills: ['Stakeholder Analysis & Value-Focused Thinking', 'Decision Framing', 'Financial & Commercial Modelling', 'Cross-functional Collaboration', 'Written & Visual Communication'],
-    hard_skills: ['Data Analysis & Curtailment Modelling', 'Systems & Stakeholder Mapping', 'Pricing & Incentive Design', 'Project Management Frameworks (5Ws+1H)'],
+    hard_skills: ['Data Analysis & Curtailment Modelling', 'Systems & Stakeholder Mapping', 'Pricing & Incentive Design', 'Project Management Frameworks'],
     tile_ratio: 'portrait',
     has_video: false,
     pdf_url: '/reports/Olive Report.pdf',
@@ -301,7 +307,7 @@ export const projects: Project[] = [
     problem: 'Foodji’s AI-driven demand forecasting already cuts food waste by 70% against the industry average, yet its 95%-app-adopting customers still buy on convenience and price rather than carbon impact. No CO₂e data is surfaced at the point of purchase, and with Germany’s food sector responsible for over 20% of the country’s emissions, the gap between sustainable intent and actual purchasing behaviour remains wide open.',
     solution: 'We designed a Consumer Transparency & Incentivisation strategy: A–E colour-coded CO₂e labels shown on packaging and in the app at the point of meal selection, paired with a monthly digital loyalty card that rewards six low-carbon purchases with discounts, free meals or supplier vouchers. Grounded in nudge theory and operant conditioning, and built entirely on Foodji’s existing app infrastructure, the intervention targets a 20% reduction in meal-related CO₂e by 2028 — saving an estimated 576 tonnes of CO₂e a year — with reward costs capped at 2% of revenue.',
     feature_caption: 'Make the sustainable choice the easy choice.',
-    feature_bold: "A DATA-DRIVEN TRANSPARENCY AND REWARDS STRATEGY THAT NUDGES CONSUMERS TOWARD **LOWER-CARBON** MEALS, TARGETING A **20%** CUT IN EMISSIONS THROUGH EVERYDAY PURCHASING DECISIONS.",
+    feature_bold: "A DATA-DRIVEN TRANSPARENCY AND REWARDS STRATEGY THAT NUDGES CONSUMERS TOWARD **LOWER-CARBON** MEALS.",
     feature_tags: ['CO₂e Transparency Labels', 'Digital Loyalty Card', 'Nudge Theory', 'Operant Conditioning', 'SDG 12 Alignment', 'Impact Forecasting'],
     role_sections: [
       {
@@ -368,6 +374,7 @@ export const projects: Project[] = [
     hard_skills: ['[PLACEHOLDER]'],
     tile_ratio: 'landscape',
     has_video: false,
+    report : '/reports/Waste Trade Report.pdf',
   },
 
   // ─── 07 ACTIB ──────────────────────────────────────────────────────────
@@ -539,7 +546,7 @@ export const projects: Project[] = [
     hard_skills: ['CAD & Renders (Fusion360, Keyshot)', 'Engineering Analysis', 'Research Validation'],
     tile_ratio: 'landscape',
     has_video: true,
-    pdf_url: '/reports/Team 14 - HIVE-FU.pdf',
+    pdf_url: '/reports/HIVE-FU.pdf',
   },
 
     // ─── 10 ALL-INK ────────────────────────────────────────────────────────
