@@ -174,10 +174,10 @@ export const projects: Project[] = [
     hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing'],
     tile_ratio: 'square',
     has_video: false,
-    report : [
+    pdf_url: [
       '/reports/Nest Assured Report.pdf',
       '/reports/Nest Assured Pitch.pdf',
-    ]
+    ],
   },
 
     // ─── 03 DESALINATION ───────────────────────────────────────────────────
@@ -744,6 +744,7 @@ export const projects: Project[] = [
     hard_skills: ['Rapid Prototyping', 'Arduino & Electronics', 'UI/UX Design', 'User Research Methods'],
     tile_ratio: 'portrait',
     has_video: false,
+    pdf_url: '/reports/URSA Report.pdf',
   },
 ];
 
