@@ -152,9 +152,9 @@ const isDark = project.accent_color === '#1C2230';
         <div class:list={['role-area', i % 2 === 1 && 'role-area--flip']}>
           <Reveal>
             <div class="role-img-wrap">
-              <div class="role-img-scroll">
+              <div class:list={['role-img-scroll', roleImages(area).length === 1 && 'role-img-scroll--single']}>
                 {roleImages(area).map((img) => (
-                  <figure class:list={['role-img-item', project.slug === 'housescout' && area.title === 'Product & UI/UX design' && 'role-img-item--fit']}>
+                  <figure class="role-img-item">
                     <img
                       src={assetUrl(img.src)}
                       alt={img.caption || area.title}
@@ -396,6 +396,7 @@ const isDark = project.accent_color === '#1C2230';
   /* Scrollable image strip */
   .role-img-scroll {
     display: flex;
+    align-items: flex-start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -405,6 +406,10 @@ const isDark = project.accent_color === '#1C2230';
     border-radius: var(--radius-hero);
   }
   .role-img-scroll::-webkit-scrollbar { display: none; }
+  .role-img-scroll--single {
+    overflow-x: hidden;
+    scroll-snap-type: none;
+  }
   .role-img-item {
     flex: 0 0 100%;
     scroll-snap-align: start;
@@ -413,16 +418,10 @@ const isDark = project.accent_color === '#1C2230';
   }
   .role-img-item img {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    height: auto;
     display: block;
     border-radius: var(--radius-hero);
     background: var(--paper);
-  }
-  /* HouseScout's UI/UX carousel holds full phone-mockup screenshots —
-     `cover` would crop the UI itself, so show the whole image instead. */
-  .role-img-item--fit img {
-    object-fit: contain;
   }
   .role-img-error img {
     visibility: hidden;

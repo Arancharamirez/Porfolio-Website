@@ -66,7 +66,8 @@ export const projects: Project[] = [
     hero_image: '/images/projects/housescout/Homepage mid.png',
     images: [
       '/images/projects/housescout/fence.png',
-      '/images/projects/housescout/computer.png'
+      '/images/projects/housescout/computer.png',
+      '/images/projects/housescout/ui env.png',
     ],
     info: "Founded by a team of six as a real operating startup for a university venture-creation module, complete with our own scout network, paid user acquisition, and a funding plan pitched against live financial modelling.",
     problem: "Renting from a distance is a gamble. International students and relocating professionals routinely sign leases sight-unseen, relying on filtered listing photos and a rushed video call with an agent who represents the landlord, not them. Damp, mould and misrepresented rooms are discovered only after moving in — when it's too late to negotiate or walk away.",
@@ -189,11 +190,6 @@ export const projects: Project[] = [
     features: ['Systems Analysis', 'Economic Modelling', 'Environmental Assessment', 'Policy Framing'],
     hero_image: '/images/projects/desalination/hero slim.png',
     images: [
-      '/images/projects/desalination/dts_tab1.png',
-      '/images/projects/desalination/dts_tab2.png',
-      '/images/projects/desalination/dst_tab3.png',
-      '/images/projects/desalination/dst_tab4.png',
-      '/images/projects/desalination/dst_tab5.png',
     ],
     info: '[PLACEHOLDER — Add project context here]',
     problem: '[PLACEHOLDER — Add problem statement here]',
@@ -203,14 +199,20 @@ export const projects: Project[] = [
     feature_tags: ['[PLACEHOLDER]'],
     role_sections: [
       {
-        title: '[PLACEHOLDER — Role section 1 title]',
+        title: '[Data Analysis & Systems Modelling]',
         body: '[PLACEHOLDER — Role section 1 description]',
-        image: '/images/projects/desalination/dts_tab2.png',
+        image: '/images/projects/desalination/excel 1.png',
       },
       {
-        title: '[PLACEHOLDER — Role section 2 title]',
+        title: '[UI/UX Design & Visualisation]',
         body: '[PLACEHOLDER — Role section 2 description]',
-        image: '/images/projects/desalination/dst_tab3.png',
+        images: [
+          { src: '/images/projects/desalination/dst_tab1.png', caption: 'About tab' },
+          { src: '/images/projects/desalination/dst_tab2.png', caption: 'Worked example' },
+          { src: '/images/projects/desalination/dst_tab3.png', caption: 'Inputs tab' },
+          { src: '/images/projects/desalination/dst_tab4.png', caption: 'Uncertainty tab' },
+          { src: '/images/projects/desalination/dst_tab5.png', caption: 'Outputs tab' },
+        ],
       },
     ],
     soft_skills: ['[PLACEHOLDER]'],
@@ -237,10 +239,6 @@ export const projects: Project[] = [
     features: ['Smart Plug Control', 'Boiler Integration', 'Curtailment-Synced Scheduling', 'Community Value Dividend', 'Stakeholder Value-Exchange Model'],
     hero_image: '/images/projects/olive/plug.png',
     images: [
-      '/images/projects/olive/plug.png',
-      '/images/projects/olive/boiler.png',
-      '/images/projects/olive/temp.png',
-      '/images/projects/olive/logo.png',
     ],
     info: 'Developed for the Project Management module in 2026, in a six-person team, alongside an individual analytical report applying Value-Focused Thinking and stakeholder analysis to the same problem. The brief: propose an intervention for the Orkney Isles, where 23 wind turbines routinely generate more clean energy than the local grid can absorb.',
     problem: "Orkney's wind fleet regularly produces enough electricity to cover 115% of local demand, yet subsea transmission limits force the grid to curtail — discard — around 25 GWh of that power every year, worth an estimated £2.5M in lost revenue. Meanwhile 63% of Orkney households live in fuel poverty, unable to afford the heat they need, a rate far above the Scottish average.",
@@ -250,19 +248,28 @@ export const projects: Project[] = [
     feature_tags: ['Smart Plug & Boiler Control', 'Curtailment-Synced Scheduling', 'Stakeholder Value-Exchange', 'Community Dividend', 'Zero Upfront Cost'],
     role_sections: [
       {
-        title: 'Decision framing & stakeholder strategy',
+        title: 'Decision framing & stakeholder analysis',
         body: "I led the individual analytical strand of the project, applying a Value-Focused Thinking approach to reframe the brief from 'how do we reduce curtailment' to 'how do we maximise the local value of renewable wealth for every stakeholder'. Using a 5Ws+1H framework, I mapped the conflicting priorities of households, energy suppliers, Kaluza and government, identifying Community Trusts as the key gatekeepers of trust and adoption.",
-        image: '/images/projects/olive/logo.png',
+        images:  [
+          { src:  '/images/projects/olive/analysis 1.png', caption: 'Stakeholder behaviour' },
+          { src:  '/images/projects/olive/analysis 2.png', caption: 'Seasonality analysis' },
+        ]
       },
       {
         title: 'Curtailment modelling & the business case',
         body: "I built a conservative curtailment model from raw turbine output data — filtering out low-wind and maintenance downtime to isolate energy that was genuinely available but rejected by the grid — then scaled a single 900kW turbine's data to Orkney's 23-turbine fleet to quantify a baseline of 25.6 GWh, worth £2.56M, in annually wasted generation. This modelling underpinned the commercial case presented to stakeholders.",
-        image: '/images/projects/olive/boiler.png',
+        images:  [
+          { src:  '/images/projects/olive/money.png', caption: 'Pricing strategy' },
+          { src:  '/images/projects/olive/price.png', caption: 'Pricing strategy' },
+        ]
       },
       {
         title: 'Pricing strategy & value-exchange design',
         body: "Recognising that manual behavioural change and seasonality were the real bottlenecks to adoption, I helped shift the team's thinking from incentivising behaviour directly to incentivising permission — designing a value-exchange model where network operators and suppliers fund installation and platform costs in return for grid stability and revenue, while households receive free installation and lower bills, with a 20% community dividend to sustain long-term trust.",
-        image: '/images/projects/olive/temp.png',
+        images:  [
+          { src:  '/images/projects/olive/price.png', caption: 'Pricing strategy' },
+          { src:  '/images/projects/olive/positive.png', caption: 'Stakeholder advantages' },
+        ]
       },
     ],
     soft_skills: ['Stakeholder Analysis & Value-Focused Thinking', 'Decision Framing', 'Financial & Commercial Modelling', 'Cross-functional Collaboration', 'Written & Visual Communication'],
@@ -289,8 +296,6 @@ export const projects: Project[] = [
     features: ['[PLACEHOLDER]'],
     hero_image: '/images/projects/foodji/machine.png',
     images: [
-      '/images/projects/foodji/machine.png',
-      '/images/projects/foodji/food.png',
     ],
     info: '[PLACEHOLDER — Add project context here]',
     problem: '[PLACEHOLDER — Add problem statement here]',
@@ -300,9 +305,11 @@ export const projects: Project[] = [
     feature_tags: ['[PLACEHOLDER]'],
     role_sections: [
       {
-        title: '[PLACEHOLDER — Role section 1 title]',
+        title: 'Stakeholder Analysis',
         body: '[PLACEHOLDER — Role section 1 description]',
-        image: '/images/projects/foodji/machine.png',
+        images: [
+          { src: '/images/projects/foodji/machine.png', caption: 'Project overview' }
+        ],
       },
     ],
     soft_skills: ['[PLACEHOLDER]'],
@@ -366,17 +373,9 @@ export const projects: Project[] = [
     hero_image: '/images/projects/actib/actib hero.png',
     images: [
       '/images/projects/actib/hero.png',
-      '/images/projects/actib/angle.png',
-      '/images/projects/actib/front.png',
-      '/images/projects/actib/side.png',
       '/images/projects/actib/exploded.png',
-      '/images/projects/actib/ui.png',
-      '/images/projects/actib/sketches.png',
-      '/images/projects/actib/lofi.png',
-      '/images/projects/actib/analysis.png',
-      '/images/projects/actib/box.png',
     ],
-    info: 'Developed as part of a university individual project for the Advanced Industrial Design module in 2025. The challenge was to generate and develop a concept and touchpoint for a sports product, embodying the principles of desirability, feasibility and usability, aligning with industry standards.',
+    info: 'Developed as part of a university individual project for the Advanced Industrial Design module, the challenge was to generate and develop a concept and touchpoint for a sports product, embodying the principles of desirability, feasibility and usability, aligning with industry standards.',
     problem: 'Volleyball setters must make split-second decisions and execute precise sets under pressure. Even minor miscalculations in hand positioning or touch can disrupt an entire play. Traditional training relies on video analysis or verbal feedback, delaying corrections and limiting real-time skill improvement. Without instant feedback, athletes struggle to self-correct, slowing their progress.',
     solution: "Actib is a wearable training device that enhances setting accuracy through real-time haptic feedback. By providing instant corrections during drills, it helps setters refine hand positioning, force application, and wrist movement on the spot. Engineered for high-repetition training sessions, Actib's ergonomic design and responsive feedback system enable players to build precision, control, and consistency — ensuring they are game-ready with refined technique and confidence.",
     feature_caption: 'Never forget your things ever again.',
