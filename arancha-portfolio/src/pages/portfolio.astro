@@ -116,17 +116,10 @@ const base = import.meta.env.BASE_URL;
     max-width: 56ch;
   }
 
-  /* ─── Sticky filter bar ───────────────────────────────── */
+  /* ─── Filter bar ─────────────────────────────────────── */
   .filter-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 50;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    background-color: rgba(244, 241, 234, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
   }
   .filter-inner {
     display: flex;
@@ -138,6 +131,10 @@ const base = import.meta.env.BASE_URL;
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
+    width: max-content;
+    max-width: 100%;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
   }
 
   .filter-tag {

@@ -154,7 +154,7 @@ const isDark = project.accent_color === '#1C2230';
             <div class="role-img-wrap">
               <div class="role-img-scroll">
                 {roleImages(area).map((img) => (
-                  <figure class="role-img-item">
+                  <figure class:list={['role-img-item', project.slug === 'housescout' && area.title === 'Product & UI/UX design' && 'role-img-item--fit']}>
                     <img
                       src={assetUrl(img.src)}
                       alt={img.caption || area.title}
@@ -326,7 +326,7 @@ const isDark = project.accent_color === '#1C2230';
   .features-img-wrap {
     border-radius: var(--radius-hero);
     overflow: hidden;
-    background: var(--paper-soft);
+    background: var(--paper);
   }
   .features-img-placeholder {
     aspect-ratio: 4 / 5;
@@ -417,7 +417,12 @@ const isDark = project.accent_color === '#1C2230';
     object-fit: cover;
     display: block;
     border-radius: var(--radius-hero);
-    background: var(--paper-soft);
+    background: var(--paper);
+  }
+  /* HouseScout's UI/UX carousel holds full phone-mockup screenshots —
+     `cover` would crop the UI itself, so show the whole image instead. */
+  .role-img-item--fit img {
+    object-fit: contain;
   }
   .role-img-error img {
     visibility: hidden;

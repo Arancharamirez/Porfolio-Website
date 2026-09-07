@@ -1,9 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
-import { projects } from '../data/projects';
-
-const base = import.meta.env.BASE_URL;
 ---
 
 <Base
@@ -156,24 +153,6 @@ const base = import.meta.env.BASE_URL;
                 </p>
               </div>
             </div>
-          </section>
-        </Reveal>
-
-        <!-- Selected project work -->
-        <Reveal>
-          <section class="cv-section">
-            <h2 class="serif-italic cv-section-title">Selected project work</h2>
-            <ul class="project-list" role="list">
-              {projects.map((p) => (
-                <li class="project-list-item">
-                  <a href={`${base}/work/${p.slug}`} class="project-list-link">
-                    <span class="project-list-name">{p.title}</span>
-                    <span class="project-list-year micro">{p.year}</span>
-                  </a>
-                  <p class="project-list-desc caption">{p.one_line}</p>
-                </li>
-              ))}
-            </ul>
           </section>
         </Reveal>
 
@@ -335,45 +314,6 @@ const base = import.meta.env.BASE_URL;
     margin: 0;
     color: var(--ink-soft);
     line-height: 1.8;
-  }
-
-  /* ─── Project list ──────────────────────────────────── */
-  .project-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .project-list-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .project-list-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    text-decoration: none;
-    color: var(--ink);
-    margin-bottom: 0.2rem;
-    gap: 1rem;
-  }
-  .project-list-link:hover .project-list-name {
-    color: var(--accent);
-  }
-  .project-list-name {
-    font-weight: 600;
-    font-size: var(--body);
-    transition: color 150ms ease;
-  }
-  .project-list-year {
-    color: var(--ink-muted);
-    flex-shrink: 0;
-  }
-  .project-list-desc {
-    margin: 0;
-    color: var(--ink-soft);
   }
 
   /* ─── Responsive ─────────────────────────────────────── */
