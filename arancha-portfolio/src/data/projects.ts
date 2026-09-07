@@ -174,7 +174,10 @@ export const projects: Project[] = [
     hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing'],
     tile_ratio: 'square',
     has_video: false,
-    report : '/reports/Nest-Assured Report.pdf',
+    report : [
+      '/reports/Nest Assured Report.pdf',
+      '/reports/Nest Assured Pitch.pdf',
+    ]
   },
 
     // ─── 03 DESALINATION ───────────────────────────────────────────────────
@@ -282,7 +285,10 @@ export const projects: Project[] = [
     hard_skills: ['Data Analysis & Curtailment Modelling', 'Systems & Stakeholder Mapping', 'Pricing & Incentive Design', 'Project Management Frameworks'],
     tile_ratio: 'portrait',
     has_video: false,
-    pdf_url: '/reports/Olive Report.pdf',
+    pdf_url: [
+      '/reports/Olive Report.pdf',
+      '/reports/Strategic Evaluation of Demand-Side Response Integration for the Orkney Isles.pdf',
+    ]
   },
 
     // ─── 05 FOODJI ─────────────────────────────────────────────────────────
@@ -346,35 +352,42 @@ export const projects: Project[] = [
     title: 'Waste Trade',
     index: '06 / 12',
     category: 'systems',
-    tags: ['Data Analysis', 'UI/UX', 'Programming', 'Forecasting'],
-    year: '2024',
+    tags: ['Data Analysis', 'UI/UX', 'Programming', 'Forecasting', 'Sustainability'],
+    year: '2025',
     course: 'Data to Product',
-    type: 'Group',
-    role: '[PLACEHOLDER — Role]',
+    type: 'Group project',
+    role: 'Data science, modelling & product design',
     accent_color: '#DCD3E2',
-    tagline: '[PLACEHOLDER — Tagline]',
-    one_line: '[PLACEHOLDER — One-line description]',
-    features: ['[PLACEHOLDER]'],
+    tagline: 'Waste doesn’t disappear. It trades.',
+    one_line: 'An interactive data product that treats plastic waste as a form of currency, revealing which countries build real economic value from processing the world’s waste — and which remain dependent on others to do it for them.',
+    features: ['Global Trade Data', 'Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'Interactive Heat Map'],
     hero_image: '/images/projects/data-to-product/hero.jpeg',
-    images: [],
-    info: '[PLACEHOLDER — Add project context here]',
-    problem: '[PLACEHOLDER — Add problem statement here]',
-    solution: '[PLACEHOLDER — Add solution description here]',
-    feature_caption: '[PLACEHOLDER — Feature caption]',
-    feature_bold: '[PLACEHOLDER — Feature bold statement]',
-    feature_tags: ['[PLACEHOLDER]'],
+    images: [
+      '/images/projects/data-to-product/ui.png',
+    ],
+    info: 'Developed for the Data to Product module in a two-person team with Zoe Hall, combining OECD waste-management data and UN Comtrade trade records into an interactive tool for exploring the global plastic waste trade. Built end-to-end from data sourcing through to a deployed web interface, and grounded in real-world validation against events like China’s 2018 import ban.',
+    problem: 'Plastic waste is routinely exported from high-income countries to lower-income ones with less processing capacity and fewer environmental protections, but this global trade is poorly understood: there’s no clear, accessible way to see which countries actually process their own waste, which depend on others, and where processing already generates real economic value.',
+    solution: 'We built a data product that treats plastic waste as a form of currency — combining OECD and UN Comtrade records into two original indicators, Self-Sufficiency (how much of a country’s own waste it processes domestically) and Local Industry Value (the economic value a country derives from processing waste, domestic and imported). The interface moves from descriptive history through prescriptive metrics to ARIMA-based forecasting, all built around an interactive world heat map so policymakers, researchers and investors can compare countries and explore how waste-processing roles might evolve.',
+    feature_caption: 'See who profits from the world’s waste.',
+    feature_bold: "AN INTERACTIVE DATA PRODUCT THAT TREATS PLASTIC WASTE AS A **CURRENCY**, REVEALING WHICH COUNTRIES BUILD **REAL ECONOMIC VALUE** FROM PROCESSING THE WORLD'S WASTE.",
+    feature_tags: ['Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'World Heat Map', 'OECD & UN Comtrade Data'],
     role_sections: [
       {
-        title: '[PLACEHOLDER — Role section 1 title]',
-        body: '[PLACEHOLDER — Role section 1 description]',
-        image: '',
+        title: 'Data sourcing, imputation & modelling',
+        body: 'I worked across the full data pipeline: sourcing and curating OECD waste-management records and raw UN Comtrade trade data, and helping design the imputation method that filled gaps in reported trade quantities using country-specific, smoothed unit prices rather than a single global rate — validated by cross-checking against real events like China’s 2018 import ban. I also contributed to defining and testing the two prescriptive indicators at the core of the product, Self-Sufficiency and Local Industry Value, and to comparing ARIMA against ETS forecasting models, where ARIMA with bootstrap-sampled errors and price smoothing proved most reliable.',
+        image: '/images/projects/data-to-product/hero.jpeg',
+      },
+      {
+        title: 'Interface design & development',
+        body: 'I helped design and build the three-tab interface — Descriptive, Prescriptive and Forecasting — structured around an interactive world heat map so users can compare countries and drill into a given country’s history, current performance and projected trajectory. The interface went through multiple rounds of iteration, converging on a single-page layout with a consistent sidebar-and-map structure across all three tabs so switching between historical, prescriptive and forecasted views felt like one coherent product rather than three separate tools.',
+        image: '/images/projects/data-to-product/ui.png',
       },
     ],
-    soft_skills: ['[PLACEHOLDER]'],
-    hard_skills: ['[PLACEHOLDER]'],
+    soft_skills: ['Cross-functional Collaboration', 'Research & Data Validation', 'Written & Visual Communication', 'Presenting'],
+    hard_skills: ['Data Sourcing, Cleaning & Imputation', 'Time-Series Forecasting (ARIMA, ETS)', 'Statistical Modelling & Validation', 'Interactive Data Visualisation'],
     tile_ratio: 'landscape',
     has_video: false,
-    report : '/reports/Waste Trade Report.pdf',
+    pdf_url: '/reports/The Impact of Waste as a Currency Report.pdf',
   },
 
   // ─── 07 ACTIB ──────────────────────────────────────────────────────────
