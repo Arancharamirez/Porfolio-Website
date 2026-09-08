@@ -500,7 +500,7 @@ export const projects: Project[] = [
         body: "Of three concepts we evaluated against our design specification — a safety-first router, a customised discovery router, and a screen-free vibration-guided router — I helped build and test the customised navigation prototype that scored highest, iterating the UI through park interviews with 12 potential users before arriving at the final route-generation and gamification flow.",
         images: [
           { src: '/images/projects/two-step/ui2.png', caption: 'UI flow' },
-          { src: '/images/projects/two-step/ui4.png', caption: 'Gamification' },
+          { src: '/images/projects/two-step/ui4.png', caption: 'App Gamification' },
           { src: '/images/projects/two-step/two step.png', caption: 'User Testing' },
         ],
       },
