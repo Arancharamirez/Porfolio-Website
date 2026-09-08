@@ -597,18 +597,10 @@ export const projects: Project[] = [
     tagline: 'Effortless integration. Circular convenience.',
     one_line: 'A refillable ink cartridge ecosystem that makes sustainable printing effortless.',
     features: ['Refillable Ink Ecosystem', 'Smart Tracking', 'Effortless Integration', 'Packaging-free Delivery', 'Circular Convenience'],
-    hero_image: '/images/projects/all-ink/main image.png',
+    hero_image: '/images/projects/all-ink/main.png',
     images: [
+      '/images/projects/all-ink/delivery.png',
       '/images/projects/all-ink/all ink 2.png',
-      '/images/projects/all-ink/system design.png',
-      '/images/projects/all-ink/circular.png',
-      '/images/projects/all-ink/ui.png',
-      '/images/projects/all-ink/box.png',
-      '/images/projects/all-ink/main zoomed.png',
-      '/images/projects/all-ink/system.png',
-      '/images/projects/all-ink/analysis.png',
-      '/images/projects/all-ink/zoom clip.png',
-      '/images/projects/all-ink/zoom clip 2.png',
     ],
     info: 'Developed as part of a university group project for the Sustainable Design Engineering module. The brief required teams to identify key sustainability issues in a designated product — in this case, ink cartridges — and propose, prototype, and evaluate a holistic solution addressing the product, its packaging, and surrounding systems.',
     problem: 'Over 350 million ink cartridges are discarded each year, with only 15% being recycled. Existing recycling programs are limited, brand-specific, and often confusing or inconvenient for users. Most cartridges are made from mixed plastics, making disassembly and recycling even harder. Additionally, they are often packaged in excessive, non-recyclable materials, with little to no incentive for consumers to return or reuse them.',
@@ -629,9 +621,9 @@ export const projects: Project[] = [
         title: 'CAD & app development',
         body: 'I co-developed CAD models of the redesigned ink cartridge and the interlocking cap system, engineered for easy disassembly and refilling, and the design for the ALL-INK delivery box, integrating protective materials sourced from recycled cartridges. \n\nOn the digital side, I designed the ALL-INK mobile app, which allows users to subscribe, monitor ink levels, schedule deliveries, and track their environmental impact.',
         images: [
-          { src: '/images/projects/all-ink/main zoomed.png', caption: 'Exploded view of ink cartridge refill mechanism' },
+          { src: '/images/projects/all-ink/feature.png', caption: 'Exploded view of ink cartridge refill mechanism' },
           { src: '/images/projects/all-ink/box.png', caption: 'Accompanying secure delivery box design' },
-          { src: '/images/projects/all-ink/ui.png', caption: 'Complementary app design for ink level tracking and scheduling deliveries' },
+          { src: '/images/projects/all-ink/ui.png', caption: 'Complementary app' },
         ],
       },
       {
@@ -729,11 +721,7 @@ export const projects: Project[] = [
     hero_image: '/images/projects/ursa/hero.png',
     images: [
       '/images/projects/ursa/hero 2.png',
-      '/images/projects/ursa/design.png',
       '/images/projects/ursa/hero zoom.png',
-      '/images/projects/ursa/sketches.png',
-      '/images/projects/ursa/sketches 2.png',
-      '/images/projects/ursa/code.png',
     ],
     info: "Developed as part of a university group project for the Human Centred Design Engineering module. The brief was to design an intervention to enhance personal safety in urban areas, with the final outcome manifested as something that works for people, in real-life context.",
     problem: 'Cyclist safety in urban areas is a critical issue, with over 16,000 reported accidents in the UK in 2020, including 4,000 serious injuries. Key risks include cyclists using smartphones for navigation, which diverts attention from the road, and poor communication with other vehicles. Limited visibility and inadequate signalling increase the likelihood of collisions, especially in busy, low-light conditions.',
@@ -745,17 +733,24 @@ export const projects: Project[] = [
       {
         title: 'Research & development',
         body: "User research, interviews, and surveys targeting urban cyclists were conducted to identify major safety pain points — including poor visibility, limited communication with other road users, and distraction from phone-based navigation. This research directly shaped the product's core functionality: enabling hands-free navigation through haptic feedback and gesture-based signalling with integrated lights. I also supported market benchmarking and co-design sessions to ensure the glove addressed real-world user concerns and behaviours.",
-        image: '/images/projects/ursa/sketches.png',
+        images:[
+          { src: '/images/projects/ursa/sketches.png', caption: 'Initial Sketches' },
+          { src: '/images/projects/ursa/sketches 2.png', caption: 'Concept Development' },
+        ],
       },
       {
         title: 'Technical feasibility',
         body: 'I worked on validating the technical feasibility of URSA by helping prototype and test different vibration placements, light positions, and activation mechanisms using Arduino-based systems. I helped assess sensor performance, hand mobility, and battery placement to ensure a balance between functionality and comfort. I also participated in testing the glove in varied lighting and road conditions, gathering feedback that directly shaped the final form factor and component specification.',
-        image: '/images/projects/ursa/code.png',
+        images:[
+          { src: '/images/projects/ursa/code.png', caption: 'Code Implementation' },
+        ],
       },
       {
         title: 'Concept articulation & presentation',
         body: "I was responsible for synthesising our team's research and design decisions into a cohesive narrative, ensuring our concept was communicated clearly and persuasively. This included producing the final presentation materials, user scenario illustrations, and written rationale for each design decision. I also developed the URSA app UI concept, mapping out the key screens and user flows that would complement the glove's hardware features.",
-        image: '/images/projects/ursa/design.png',
+        images:[
+          { src: '/images/projects/ursa/feature.png', caption: 'Final Design' },
+        ],
       },
     ],
     soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Concept Articulation', 'Presenting'],
