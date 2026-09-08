@@ -446,7 +446,7 @@ export const projects: Project[] = [
         title: 'Packaging Design & Rendering',
         body: 'To support portability and hygiene, I developed a modular system with removable electronic components for easy washing. I designed a compact, pentagon-shaped storage case based on user feedback, using tactile form for easy identification in cluttered gym bags. \n\nThe case was rendered with high-fidelity visualizations and detailed CMF strategy, incorporating durable, lightweight materials like recycled ABS and molded EVA foam to enhance usability for athletes on the go.',
         images: [
-          { src: '/images/projects/actib/angle.png', caption: 'Acrib\'s final design' },
+          { src: '/images/projects/actib/angle.png', caption: 'Actib\'s final design' },
           { src: '/images/projects/actib/box.png', caption: 'Travel-friendly case' },
           { src: '/images/projects/actib/hero.png', caption: 'Visualisation of actib\'s physical embodiment' },
         ],
@@ -474,9 +474,11 @@ export const projects: Project[] = [
     tagline: 'Your journey, two steps at a time.',
     one_line: 'A navigation app that plots scenic, exploration-first walking routes instead of the fastest ones.',
     features: ['Scenic Route Generation', 'Local POI Discovery', 'Gamified Exploration', 'Partner Business Promotion', 'Save & Share Routes'],
-    hero_image: '/images/projects/two step/two step.png',
+    hero_image: '/images/projects/two-step/ui3.png',
     images: [
-      '/images/projects/two step/two step.png',
+      '/images/projects/two-step/green bb.png',
+      '/images/projects/two-step/city2.png',
+      '/images/projects/two-step/ui mix.png',
     ],
     info: 'Developed for a university venture-creation module in 2025, in a five-person team ("Wayfinding in the City"). The brief was to identify a commercially viable digital product opportunity and take it from problem framing through to a fully costed business case and go-to-market plan.',
     problem: "Digital life has flattened the experience of getting from A to B. Mapping apps optimise purely for speed or cost, and constant information overload has left people too overwhelmed to seek out anywhere unfamiliar — a trend the pandemic accelerated. The result is a generation that walks past hidden cafes, parks and independent shops every day without ever noticing them.",
@@ -488,17 +490,28 @@ export const projects: Project[] = [
       {
         title: 'User research & personas',
         body: "I contributed to the initial survey and interview research that shaped our design specification, and to developing our two core personas — Enthusiastic Erica, a spontaneous walker who wants scenic routes without the planning effort, and Curious Carlos, a tourist who wants local recommendations without researching a new city. These personas kept the concept anchored in real user needs through three rounds of concept evaluation.",
-        image: '/images/projects/two step/two step.png',
+        images: [
+          { src: '/images/projects/two-step/interviews.png', caption: 'Street Interviews' },
+          { src: '/images/projects/two-step/business.png', caption: 'Small Business Partnerships' },
+        ],
       },
       {
         title: 'Concept design & prototyping',
         body: "Of three concepts we evaluated against our design specification — a safety-first router, a customised discovery router, and a screen-free vibration-guided router — I helped build and test the customised navigation prototype that scored highest, iterating the UI through park interviews with 12 potential users before arriving at the final route-generation and gamification flow.",
-        image: '/images/projects/two step/two step.png',
+        images: [
+          { src: '/images/projects/two-step/ui2.png', caption: 'UI flow' },
+          { src: '/images/projects/two-step/ui4.png', caption: 'Gamification' },
+          { src: '/images/projects/two-step/two step.png', caption: 'User Testing' },
+        ],
       },
       {
         title: 'Market sizing & business model',
         body: "I worked on sizing the opportunity through top-down, bottom-up and value-theory approaches, arriving at a 5-year serviceable obtainable market of £9.13M, and on structuring the four-stream revenue model — business partnerships, PPC ads, subscriptions and business exposure — that underpins the £582K funding case and 54-month break-even projection.",
-        image: '/images/projects/two step/two step.png',
+        images: [
+          { src: '/images/projects/two-step/city.png', caption: 'Street Advertising' },
+          { src: '/images/projects/two-step/street bb.png', caption: 'Street Banners' },
+          { src: '/images/projects/two-step/card.png', caption: 'Marketing Campaign' },
+        ],
       },
     ],
     soft_skills: ['User Research & Persona Development', 'Concept Ideation & Evaluation', 'Market Sizing & Business Modelling', 'Stakeholder Interviews', 'Presenting'],
