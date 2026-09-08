@@ -668,17 +668,7 @@ export const projects: Project[] = [
     hero_image: '/images/projects/marios-garden/main.png',
     images: [
       '/images/projects/marios-garden/hero.png',
-      '/images/projects/marios-garden/assembly.png',
       '/images/projects/marios-garden/growth.png',
-      '/images/projects/marios-garden/system design.png',
-      '/images/projects/marios-garden/buttons.png',
-      '/images/projects/marios-garden/cad.png',
-      '/images/projects/marios-garden/code.png',
-      '/images/projects/marios-garden/light.png',
-      '/images/projects/marios-garden/laser cut.png',
-      '/images/projects/marios-garden/sketch.png',
-      '/images/projects/marios-garden/connection.png',
-      '/images/projects/marios-garden/can.png',
     ],
     info: "Mario's Garden was created as part of my Gizmo (physical computing) module. We were challenged to design, build, and demonstrate an electro-mechanical machine that celebrates mechanisms and engaging physical interaction.",
     problem: "Nature is disappearing from children's lives. With increasing screen time, urbanisation, and reduced outdoor play, kids are growing up more disconnected from the natural world than ever before. A UK study found that only 21% of children today have a strong connection to nature, compared to previous generations.",
@@ -690,23 +680,29 @@ export const projects: Project[] = [
       {
         title: 'Ideation & game algorithm',
         body: "I led the development of the game concept and core logic, framing the experience around simulating real-world plant care. I co-designed the system rules and growth algorithm, defining how plant health would be affected by inputs like light, water, and nutrients. This logic formed the backbone of the game, ensuring that every action the child takes — watering, adjusting light, or applying nutrients — directly influences the virtual plant's growth in a meaningful and educational way.",
-        image: '/images/projects/marios-garden/sketch.png',
+        images: [
+          { src: '/images/projects/marios-garden/sketch.png', caption: 'Initial Concept Sketches' }
+        ],
       },
       {
         title: 'Physical components & assembly',
         body: 'I designed and constructed the interactive interface, including tactile controls (buttons, plant, and blinds) that made the experience physically engaging for young users. I also built key physical components such as modular plant icons with LED feedback and servo-based animations that reflected plant growth or distress. This hands-on assembly process emphasized both ergonomics and durability, creating an inviting, child-friendly form factor.',
-        image: '/images/projects/marios-garden/assembly.png',
+        images: [
+          { src: '/images/projects/marios-garden/assembly.png', caption: 'Physical Assembly Process' }
+        ],
       },
       {
         title: 'Programming & electronics',
         body: 'During the final phase, we programmed and tested the game logic using Arduino, integrating various sensors (light, moisture, proximity) and outputs (LEDs, servos, speaker cues) to create a responsive and immersive environment. The system reads real-time data from physical inputs and updates the game state accordingly. I ensured smooth communication between hardware and game logic, fine-tuned feedback timing, and implemented visual and audio cues to reinforce in-game events and player decisions.',
-        image: '/images/projects/marios-garden/code.png',
+        images: [
+          { src: '/images/projects/marios-garden/code.png', caption: 'Programming & Electronics' }
+        ],
       },
     ],
     soft_skills: ['User-centred Research & Design for Educational Engagement', 'Visual Communication & Teamwork', 'Project Planning', 'Presenting'],
     hard_skills: ['Rapid Prototyping (3D Printing)', 'CAD (Fusion360)', 'Physical Mechanism', 'Algorithm Development', 'Programming (Python)', 'Electronics & Circuit Design', 'Video Editing'],
     tile_ratio: 'square',
-    has_video: true,
+    has_video: false,
     pdf_url: '/reports/Marios Garden Report.pdf',
   },
 
