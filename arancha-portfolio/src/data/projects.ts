@@ -665,7 +665,7 @@ export const projects: Project[] = [
     tagline: 'Care for your plant. Learn through play.',
     one_line: 'A sensor-driven plant care game that teaches children empathy for nature.',
     features: ['Gamified Education Game', 'Sensor-driven', 'Physical-digital Interaction', 'Nature through Play'],
-    hero_image: '/images/projects/marios-garden/main.png',
+    hero_image: '/images/projects/marios-garden/feature.png',
     images: [
       '/images/projects/marios-garden/hero.png',
       '/images/projects/marios-garden/growth.png',
@@ -681,21 +681,26 @@ export const projects: Project[] = [
         title: 'Ideation & game algorithm',
         body: "I led the development of the game concept and core logic, framing the experience around simulating real-world plant care. I co-designed the system rules and growth algorithm, defining how plant health would be affected by inputs like light, water, and nutrients. This logic formed the backbone of the game, ensuring that every action the child takes — watering, adjusting light, or applying nutrients — directly influences the virtual plant's growth in a meaningful and educational way.",
         images: [
-          { src: '/images/projects/marios-garden/sketch.png', caption: 'Initial Concept Sketches' }
+          { src: '/images/projects/marios-garden/sketch.png', caption: 'Initial Concept Sketches' },
+          { src: '/images/projects/marios-garden/laser cut.png', caption: 'Laser Cutting Process' },
         ],
       },
       {
         title: 'Physical components & assembly',
         body: 'I designed and constructed the interactive interface, including tactile controls (buttons, plant, and blinds) that made the experience physically engaging for young users. I also built key physical components such as modular plant icons with LED feedback and servo-based animations that reflected plant growth or distress. This hands-on assembly process emphasized both ergonomics and durability, creating an inviting, child-friendly form factor.',
         images: [
-          { src: '/images/projects/marios-garden/assembly.png', caption: 'Physical Assembly Process' }
+          { src: '/images/projects/marios-garden/system design.png', caption: 'System Design' },
+          { src: '/images/projects/marios-garden/cad.png', caption: 'CAD Design' },
+          { src: '/images/projects/marios-garden/design.png', caption: 'Physical Components' },
         ],
       },
       {
         title: 'Programming & electronics',
         body: 'During the final phase, we programmed and tested the game logic using Arduino, integrating various sensors (light, moisture, proximity) and outputs (LEDs, servos, speaker cues) to create a responsive and immersive environment. The system reads real-time data from physical inputs and updates the game state accordingly. I ensured smooth communication between hardware and game logic, fine-tuned feedback timing, and implemented visual and audio cues to reinforce in-game events and player decisions.',
         images: [
-          { src: '/images/projects/marios-garden/code.png', caption: 'Programming & Electronics' }
+          { src: '/images/projects/marios-garden/connection.png', caption: 'Physical Connections' },
+          { src: '/images/projects/marios-garden/connection 2.png', caption: 'Electronics Integration' },
+          { src: '/images/projects/marios-garden/code.png', caption: 'Programming' },
         ],
       },
     ],
