@@ -32,6 +32,8 @@ export type Project = {
   tile_ratio: 'square' | 'portrait' | 'landscape';
   has_video: boolean;
   pdf_url?: string | string[];
+  /** Optional external link (e.g. a deployed tool/demo) shown as its own button next to the report link. */
+  demo_url?: { label: string; url: string };
 };
 
 export type OtherProject = {
@@ -133,7 +135,7 @@ export const projects: Project[] = [
       '/images/projects/nest-assured/nest.png',
       '/images/projects/nest-assured/hero josh.png',
       '/images/projects/nest-assured/device.png',
-      '/images/projects/nest-assured/exploded.png'
+      '/images/projects/nest-assured/hero anne.png'
     ],
     info: 'Developed as part of a university group project for the Industrial Design Engineering module. The challenge was to design and engineer a battery-powered, hand-operated device for home, garden, or educational use — one that appeals to a broad market while addressing the needs of an underserved user group. *Note: Google were not engaged in any consultancy or collaborative capacity with this project; the outcome is in no way endorsed by them.',
     problem: 'ADHD affects over 22 million people worldwide, leading to challenges with attention, organization, and memory. Many individuals struggle with misplaced items, disrupting their daily routines and increasing stress. Existing solutions often rely on complex ecosystems or smartphone apps, which can be overwhelming or ineffective.',
@@ -230,6 +232,7 @@ export const projects: Project[] = [
     tile_ratio: 'landscape',
     has_video: false,
     pdf_url: '/reports/A Strategic Engineering Analysis of Modular Desalination Plant Investments under Demand Uncertainty.pdf',
+    demo_url: { label: 'Try the Decision Support Tool', url: 'https://masters-v1fu.onrender.com/' },
   },
 
   // ─── 04 OLIVE ──────────────────────────────────────────────────────────

@@ -246,7 +246,7 @@ const isDark = project.accent_color === '#1C2230';
   <section class="project-footer page-px max-w-page section-gap">
     <hr class="rule" />
     <div class="project-footer-inner">
-      {pdfLinks(project).length > 0 && (
+      {(pdfLinks(project).length > 0 || project.demo_url) && (
         <Reveal>
           <div class="pdf-links">
             {pdfLinks(project).map((link) => (
@@ -259,6 +259,16 @@ const isDark = project.accent_color === '#1C2230';
                 {link.label} ↗
               </a>
             ))}
+            {project.demo_url && (
+              <a
+                href={project.demo_url.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-outline-sm btn-outline-sm--accent"
+              >
+                {project.demo_url.label} ↗
+              </a>
+            )}
           </div>
         </Reveal>
       )}
@@ -576,6 +586,14 @@ const isDark = project.accent_color === '#1C2230';
     background: var(--ink);
     color: var(--paper);
     transform: translateY(-2px);
+  }
+  .btn-outline-sm--accent {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-outline-sm--accent:hover {
+    background: transparent;
+    color: var(--ink);
   }
   .next-project {
     display: flex;
