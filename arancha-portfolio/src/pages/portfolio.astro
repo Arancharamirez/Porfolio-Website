@@ -58,7 +58,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     ))}
 
-    <!-- Other projects (text cards, open project page) -->
+    <!-- Other projects (image cards, same treatment as case studies) -->
     {otherProjects.map((p, i) => (
       <div
         class="grid-item"
@@ -66,26 +66,7 @@ const base = import.meta.env.BASE_URL;
         data-tags={p.tags.join(',')}
       >
         <Reveal delay={(projects.length + i) * 40}>
-          <a
-            href={`${base}/work/other/${p.slug}`}
-            class="text-card"
-            aria-label={`${p.title} — view project`}
-          >
-            <div class="text-card-inner">
-              <span class="text-card-index micro">{p.index}</span>
-              <h2 class="text-card-title title">{p.title}</h2>
-              <p class="text-card-course caption">{p.course}</p>
-              <p class="text-card-desc caption">{p.one_line}</p>
-            </div>
-            <div class="text-card-footer">
-              <div class="text-card-tags">
-                {p.tags.map((t) => (
-                  <span class="text-card-tag micro">{t}</span>
-                ))}
-              </div>
-              <span class="text-card-cta micro">View project →</span>
-            </div>
-          </a>
+          <ProjectCard project={p} href={`${base}/work/other/${p.slug}`} />
         </Reveal>
       </div>
     ))}
@@ -220,90 +201,6 @@ const base = import.meta.env.BASE_URL;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  /* ─── Text card (for other projects) ────────────────────── */
-  .text-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    min-height: 220px;
-    min-width: 0;
-    overflow: hidden;
-    overflow-wrap: break-word;
-    border-radius: var(--radius-card);
-    background: var(--paper-soft);
-    border: 1px solid var(--rule);
-    padding: 1.5rem;
-    text-decoration: none;
-    color: var(--ink);
-    transition: transform 220ms ease-out, box-shadow 220ms ease-out, background 220ms ease-out;
-    box-sizing: border-box;
-  }
-  .text-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(26, 26, 26, 0.08);
-    background: var(--card);
-  }
-
-  .text-card-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    flex: 1;
-  }
-  .text-card-index {
-    color: var(--ink-muted);
-    margin-bottom: 0.25rem;
-  }
-  .text-card-title {
-    margin: 0;
-    font-size: var(--title);
-    font-weight: 600;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-  .text-card-course {
-    margin: 0;
-    color: var(--ink-muted);
-  }
-  .text-card-desc {
-    margin: 0.5rem 0 0;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-
-  .text-card-footer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-    flex-wrap: wrap;
-  }
-  .text-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-  }
-  .text-card-tag {
-    color: var(--ink-muted);
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .text-card-tag + .text-card-tag::before {
-    content: '·';
-    margin-right: 0.3rem;
-  }
-  .text-card-cta {
-    color: var(--ink-muted);
-    transition: color 200ms ease;
-  }
-  .text-card:hover .text-card-cta {
-    color: var(--accent);
   }
 </style>
 

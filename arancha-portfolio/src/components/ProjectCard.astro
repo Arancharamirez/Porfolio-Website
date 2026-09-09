@@ -1,20 +1,27 @@
 ---
-import type { Project } from '../data/projects';
 import { assetUrl } from '../utils/url';
 
 export interface Props {
-  project: Project;
+  project: {
+    slug: string;
+    title: string;
+    index: string;
+    one_line: string;
+    hero_image?: string;
+  };
+  /** Defaults to `/work/<slug>` — pass an override for projects that live elsewhere (e.g. `/work/other/<slug>`). */
+  href?: string;
   style?: string;
 }
 
-const { project, style } = Astro.props;
+const { project, href, style } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const href = `${base}/work/${project.slug}`;
+const linkHref = href ?? `${base}/work/${project.slug}`;
 const heroImg = assetUrl(project.hero_image || `/images/projects/${project.slug}/hero.jpg`);
 ---
 
 <a
-  href={href}
+  href={linkHref}
   class="project-card"
   style={style}
   aria-label={`${project.title} — ${project.one_line}`}
