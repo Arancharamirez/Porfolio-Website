@@ -46,6 +46,12 @@ export type OtherProject = {
   tags: string[];
   hero_image?: string;
   pdf_url?: string;
+  accent_color?: string;
+  // Lightweight project page fields — context / brief / solution only,
+  // pointing to the full report for detail rather than a full case study.
+  info?: string;
+  problem?: string;
+  solution?: string;
 };
 
 export const projects: Project[] = [
@@ -348,13 +354,15 @@ export const projects: Project[] = [
         body: 'I mapped Foodji’s full stakeholder ecosystem — from meal suppliers and vending-machine technicians to regulatory bodies and waste contractors — and analysed how the company embeds the UN SDGs across its operations and supply chain. This fed into a value-mapping exercise across customer, network, society and environment lenses, alongside a study of Germany’s political and regulatory landscape, including the Waste Framework Directive and incoming carbon-tax proposals, which grounded our strategic focus on SDG 12 and the consumer intention-behaviour gap.',
         images: [
           { src: '/images/projects/foodji/stakeholder map.png', caption: 'Foodji stakeholder ecosystem map' },
+          { src: '/images/projects/foodji/sdg.png', caption: 'SDG Goals' },
+          { src: '/images/projects/foodji/value map.png', caption: 'Value mapping across lenses' },
         ],
       },
       {
         title: 'Intervention design, evaluation & selection',
         body: 'Building on our Theory of Change, I helped develop and evaluate three candidate interventions — CO₂e transparency and rewards, dynamic pricing on near-expiry meals, and a gamified sustainability leaderboard — scoring each against an IDEO-based decision matrix for desirability, feasibility, viability and sustainability. I contributed to the case for our final direction: A–E colour-coded CO₂e labelling paired with a digital loyalty card, selected for building entirely on Foodji’s existing app infrastructure at minimal implementation cost.',
         images: [
-          { src: '/images/projects/foodji/feature.png', caption: 'Design intervention' },
+          { src: '/images/projects/foodji/box.png', caption: 'Design intervention' },
           { src: '/images/projects/foodji/evaluation.png', caption: 'Intervention evaluation matrix' },
         ],
       },
@@ -362,7 +370,7 @@ export const projects: Project[] = [
         title: 'Financial modelling, impact case & delivery roadmap',
         body: 'I contributed to the quantitative case behind the final intervention — calculating meal-level CO₂e using an LCA-based methodology, modelling a shift in Foodji’s purchasing mix projected to save 576 tonnes of CO₂e a year, and costing the loyalty rewards programme against a 2%-of-revenue cap. I also helped structure the four-phase implementation roadmap and risk mitigation plan, benchmarking our approach against comparable interventions from HelloFresh, Too Good To Go and Germany’s Pfand deposit scheme.',
         images: [
-          { src: '/images/projects/foodji/machine.png', caption: 'Foodji smart vending machine' },
+          { src: '/images/projects/foodji/roadmap.png', caption: 'Implementation roadmap' },
         ],
       },
     ],
@@ -808,6 +816,10 @@ export const otherProjects: OtherProject[] = [
     one_line: 'An economic feasibility analysis of urban drone delivery networks, evaluating cost structures, regulation, and last-mile logistics.',
     tags: ['Systems Design', 'Data Analysis', 'Forecasting', 'Programming'],
     hero_image: '/images/projects/drone-delivery/drone.png',
+    accent_color: '#AFC9DD',
+    info: 'A group project with Andria Ioannides and Aaron Bendor for the Economics & Finance for Systems Design module, evaluating the economic viability of an autonomous drone delivery network for on-demand food delivery in London.',
+    problem: 'London’s food-delivery boom is straining an already congested city — delivery vehicles account for 17% of road traffic, and last-mile emissions are projected to rise sharply as personal deliveries double by 2030. Autonomous drone delivery offers an alternative, but existing feasibility studies rely on deterministic cost models that ignore real-world uncertainty in demand, battery costs and weather disruption, making it hard to know which fleet configuration is actually worth building.',
+    solution: 'We built a Discounted Cash Flow model comparing three drone-hub configurations — small, medium and large fleets — then stress-tested each with a 2,000-trial Monte Carlo simulation across demand and lithium-price uncertainty, layering in real-options decision rules for expanding the fleet over time. The small-drone fleet emerged as the most robust and cost-effective configuration, and a “pragmatic” flexible expansion rule — adding drones only once demand outstrips capacity — delivered the highest expected NPV of the three flexibility strategies tested.',
     pdf_url: '/reports/Assessing the Feasibility of Autonomous Drone Delivery Systems - A Strategic Flexibility Approach.pdf',
   },
   {
@@ -819,6 +831,10 @@ export const otherProjects: OtherProject[] = [
     one_line: 'A machine-learning model for short-range rainfall probability forecasting using historical meteorological datasets.',
     tags: ['Forecasting', 'Programming', 'Data Analysis'],
     hero_image: '/images/projects/rain-prediction/airport.png',
+    accent_color: '#C7CDD4',
+    info: 'A four-person group project with Zara Iqbal, Tharindu Ranaweera and Tamara Carpar for the Data Science module, comparing machine-learning models for predicting next-day rain at Sydney Airport from historical weather observations.',
+    problem: 'Airport operations depend on accurate short-range rain forecasting to manage flight safety, scheduling and cost, but tools like weather radar and satellite imagery are expensive and resolution-limited. Whether next-day rain could be reliably predicted from a single day’s weather observations — and which modelling approach handled this best — was an open question.',
+    solution: 'Using ten years of daily weather observations from Sydney Airport, we trained and compared four classification models — Decision Trees, Support Vector Machines, Random Forest and Logistic Regression — each tuned independently on the same cleaned, balanced dataset. Logistic Regression, which I built and tuned through forward feature selection, achieved the best overall validation accuracy and recall (79% accuracy, 92% recall), identifying humidity, cloud cover and temperature at 3pm as the strongest predictors of rain the next day.',
     pdf_url: '/reports/Using existing weather conditions to.pdf',
   },
   {
@@ -830,6 +846,10 @@ export const otherProjects: OtherProject[] = [
     one_line: 'Finite element analysis of a hip implant under physiological loading, assessing stress distribution and fatigue risk.',
     tags: ['Engineering Analysis', 'CAD', 'Material Analysis'],
     hero_image: '/images/projects/hip-implant-fea/hip.png',
+    accent_color: '#D8C9B8',
+    info: 'An individual project for the Biomechanics & Structural Analysis module, using finite element analysis in Ansys to assess whether a hip implant design meets vibration and fatigue-life safety requirements.',
+    problem: 'Hip implants must avoid resonant natural frequencies that could accelerate loosening or fatigue failure, and must withstand millions of loading cycles over a target 15-year lifespan — but it wasn’t known whether the original implant geometry, in either titanium or stainless steel, actually met these requirements.',
+    solution: 'I ran natural-frequency and fatigue simulations on the implant in both Titanium Ti-6Al-4V and Stainless Steel 316L, then iteratively redesigned the geometry — thickening the neck and adding cut-out channels to shift stiffness and mass — to push more of its five vibrational modes into the safe 200Hz–3000Hz range. Both materials comfortably exceeded the 15-year fatigue-life target throughout, while the redesigned titanium implant proved the stronger candidate overall, passing static failure analysis where the stainless-steel version did not.',
     pdf_url: '/reports/FEA Hip Implant Report.pdf',
   },
 ];
