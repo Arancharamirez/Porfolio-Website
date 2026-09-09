@@ -211,28 +211,43 @@ const constellationProjects = swapBySlug(
     align-items: center;
     padding: 0.75em 1.75em;
     border-radius: 9999px;
+    border: 1.5px solid transparent;
     font-family: var(--font-sans);
     font-size: var(--body);
     font-weight: 500;
     text-decoration: none;
-    transition: transform 200ms ease, box-shadow 200ms ease;
+    cursor: pointer;
+    transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease, filter 150ms ease;
   }
   .btn-primary:hover,
   .btn-outline:hover {
     transform: translateY(-2px);
   }
+  /* Pressed state — settle back down and darken, giving tactile click feedback */
+  .btn-primary:active,
+  .btn-outline:active {
+    transform: translateY(0) scale(0.97);
+    filter: brightness(0.85);
+  }
   .btn-primary {
     background: var(--ink);
+    border-color: var(--ink);
     color: var(--paper);
     box-shadow: 0 2px 8px rgba(26, 26, 26, 0.15);
   }
   .btn-primary:hover {
-    box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px rgba(46, 74, 107, 0.35);
   }
   .btn-outline {
-    border: 1.5px solid var(--ink);
+    border-color: var(--ink);
     color: var(--ink);
     background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--paper);
   }
 
   /* ─── About note ────────────────────────────────────────── */
