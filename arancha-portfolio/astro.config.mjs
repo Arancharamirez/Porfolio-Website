@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 // If the repo is at https://github.com/yourusername/arancha-portfolio,
 // then base should be '/arancha-portfolio'
 export default defineConfig({
-  site: 'https://yourusername.github.io',
-  base: '/arancha-portfolio',
+  site: 'https://arancharamirez.github.io',
+  base: '/Porfolio-Website',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
