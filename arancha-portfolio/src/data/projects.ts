@@ -146,7 +146,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Prototyping & development',
-        body: 'To evaluate feasibility and define performance requirements, multiple working prototypes were constructed and tested. Those used RFID tags and an ESPNOW-based communication system to allow real-time registration of tagged items, without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, the internal layout was refined to balance functionality with portability, ensuring the reader mechanism remained compact yet effective. Power, load and component specifications were outlined to model and predict mechanical performance under ideal conditions.',
+        body: 'I helped build and test multiple working prototypes to evaluate feasibility and define performance requirements, using RFID tags and an ESPNOW-based communication system to enable real-time registration of tagged items without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, I refined the internal layout to balance functionality with portability, keeping the reader mechanism compact yet effective. I also outlined power, load and component specifications to model and predict mechanical performance under ideal conditions.',
         images: [
           { src: '/images/projects/nest-assured/sketchs.png', caption: 'Ideation & Sketching' },
           { src: '/images/projects/nest-assured/lofi.png', caption: 'Low-Fidelity Prototyping' },
@@ -211,23 +211,46 @@ export const projects: Project[] = [
     feature_tags: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Usability-Tested Tool', 'Deployed Web App'],
     role_sections: [
       {
-        title: 'Techno-economic modelling & Monte Carlo simulation',
-        body: 'I built the full techno-economic model from the ground up: stochastic demand and electricity-price processes calibrated against 2003–2025 Spanish coastal water-demand records and OMIE wholesale price data, a 15-year discounted cash-flow model for both a rigid and a modular expansion design, and a rule-based trigger governing when the modular design commits to a new 5,000m³/day capacity module. Running the model across 2,000 paired Monte Carlo trials — using common random numbers so both designs face identical simulated futures — produced an Expected Value of Flexibility of €118M, with the modular design outperforming the rigid one in 81% of trials.',
-        image: '/images/projects/desalination/excel 1.png',
+        title: 'Methodology',
+        body: 'I developed the project’s integrated four-phase framework — stochastic simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — sharing a single Monte Carlo ensemble across all four phases so they stayed methodologically consistent rather than being computed in isolation. Applying this to Torrevieja’s planned 40hm³/yr expansion, I built the underlying techno-economic model from scratch: a rigid design committing its full €89M budget across three years, against a modular design capped at €66M and built in 5,000m³/day increments, governed by a decision rule I calibrated with an 85% build threshold, a 70% abandonment threshold, and a one-year construction lag per module.',
+        images:  [
+          { src: '/images/projects/desalination/4 framework.png', caption: 'our-Phase Framework' },
+          { src: '/images/projects/desalination/trigger rule.png', caption: 'Expansion trigger rule' },
+        ],
       },
       {
-        title: 'Decision-Support Tool design & development',
-        body: 'I designed and built the interactive Decision-Support Tool from scratch in Python and deployed it to the web, translating the underlying simulation into a five-tab interface — About, Worked Example, Inputs, Uncertainty, and Decision — structured so analytical complexity increases as the user moves through it. Adjustable parameter sliders trigger a full 2,000-trial re-simulation on demand, and a plain-language recommendation banner, hoverable tooltips, and an MCDA radar chart make the underlying real-options and robustness analysis legible to non-specialist stakeholders as well as technical reviewers. I validated the interface through a structured usability study with ten participants across two user groups, plus a semi-structured interview with a practising water-utility engineer.',
+        title: 'Forecasting & modelling',
+        body: 'I calibrated stochastic demand and electricity-price processes against 2003–2025 Spanish market data, then ran the model across 2,000 paired Monte Carlo trials — using the same simulated futures for both designs — to isolate the value of flexibility from sampling noise. This produced an Expected Value of Flexibility of €118M, with the modular design outperforming the rigid one in 81% of trials and holding a substantially higher downside floor (€424M vs €311M at the 5th percentile). I stress-tested the result with a ±20% deterministic sensitivity analysis across every input, confirming water price and operational efficiency as the two parameters the verdict is most exposed to.',
         images: [
-          { src: '/images/projects/desalination/dst_tab1.png', caption: 'About tab' },
-          { src: '/images/projects/desalination/dst_tab2.png', caption: 'Worked example' },
-          { src: '/images/projects/desalination/dst_tab3.png', caption: 'Inputs tab' },
-          { src: '/images/projects/desalination/dst_tab4.png', caption: 'Uncertainty tab' },
-          { src: '/images/projects/desalination/dst_tab5.png', caption: 'Decision tab' },
+          { src: '/images/projects/desalination/forecast.png', caption: 'Monte Carlo fan charts of water and electricity price' },
+          { src: '/images/projects/desalination/module.png', caption: 'Module deployment under demand scenarios' },
+          { src: '/images/projects/desalination/histogram.png', caption: 'Annual Cash-Flow Diagram' },
+          { src: '/images/projects/desalination/npv.png', caption: 'Rigid and Flexible Net Present Values (NPV)' },
+          { src: '/images/projects/desalination/tornado.png', caption: 'Tornado sensitivity of mean NPV to a ±20% perturbation ' },
+
+        ],
+      },
+      {
+        title: 'Decision-Support Tool UI',
+        body: 'I designed and built the interactive Decision-Support Tool from scratch in Python and deployed it to the web, translating the underlying analysis into a five-tab interface — About, Worked Example, Inputs, Uncertainty and Decision — structured so analytical complexity increases as the user moves through it. Adjustable parameter sliders trigger a full 2,000-trial re-simulation on demand, and a colour-coded recommendation banner, hoverable tooltips and an MCDA radar chart make the underlying real-options and robustness analysis legible to non-specialist stakeholders as well as technical reviewers.',
+        images: [
+          { src: '/images/projects/desalination/dst_tab1.png', caption: 'About tab — onboarding and methodology overview' },
+          { src: '/images/projects/desalination/dst_tab2.png', caption: 'Worked Example tab — stepwise walkthrough of the analysis' },
+          { src: '/images/projects/desalination/dst_tab3.png', caption: 'Inputs tab — adjustable parameters' },
+          { src: '/images/projects/desalination/dst_tab4.png', caption: 'Uncertainty tab — Monte Carlo simulation and robustness assessment' },
+          { src: '/images/projects/desalination/dst_tab5.png', caption: 'Decision tab — recommendation and MCDA radar' },
+        ],
+      },
+      {
+        title: 'User testing',
+        body: 'I validated the tool through a formative usability study with ten participants split evenly between specialists and non-specialists, each completing a five-stage protocol of free exploration, task-based evaluation, a semi-structured interview and a questionnaire. Specialists rated the tool highly on perceived task success (8.0/10) and ease of use (7.6/10), confirming it works as a credible analytical artefact, while non-specialists found it easy to navigate but harder to fully interpret — the clearest evidence that its accessibility extension to non-specialists is still partial. I supplemented the study with a semi-structured interview with a practising water-utility engineer, who confirmed the workflow priorities specialists raised and surfaced a new requirement: documenting the source and reasoning behind each input assumption, which the tool doesn’t yet support.',
+        images: [
+          { src: '/images/projects/desalination/usability.png', caption: 'Usability ratings by participant' },
+          { src: '/images/projects/desalination/success.png', caption: 'Task success against ease of use by participant' },
         ],
       },
     ],
-    soft_skills: ['Independent Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Presenting'],
+    soft_skills: ['Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Oral Presention', 'Literature Review & Critical Analysis'],
     hard_skills: ['Real Options Analysis', 'Monte Carlo Simulation (Python)', 'Multi-Criteria Decision Analysis', 'Techno-economic & Financial Modelling', 'Web App Development & Deployment'],
     tile_ratio: 'landscape',
     has_video: false,
@@ -376,17 +399,31 @@ export const projects: Project[] = [
     feature_tags: ['Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'World Heat Map', 'OECD & UN Comtrade Data'],
     role_sections: [
       {
-        title: 'Data sourcing, imputation & modelling',
-        body: 'I worked across the full data pipeline: sourcing and curating OECD waste-management records and raw UN Comtrade trade data, and helping design the imputation method that filled gaps in reported trade quantities using country-specific, smoothed unit prices rather than a single global rate — validated by cross-checking against real events like China’s 2018 import ban. I also contributed to defining and testing the two prescriptive indicators at the core of the product, Self-Sufficiency and Local Industry Value, and to comparing ARIMA against ETS forecasting models, where ARIMA with bootstrap-sampled errors and price smoothing proved most reliable.',
-        image: '/images/projects/data-to-product/hero.jpeg',
+        title: 'Data sourcing & Imputation',
+        body: 'I sourced and curated OECD waste-management records and raw UN Comtrade trade data, and designed the imputation method that filled gaps in reported trade quantities using country-specific, smoothed unit prices rather than a single global rate. I also contributed to defining and testing the two prescriptive indicators at the core of the product, Self-Sufficiency and Local Industry Value.',
+        images: [
+          { src: '/images/projects/data-to-product/Data processing.png', caption: 'Methodology' },
+          { src: '/images/projects/data-to-product/Local industry val deriv.png', caption: 'Local Industry Derivation' },
+          { src: '/images/projects/data-to-product/SelfSufficiency deriv.png', caption: 'Self-Sufficiency Derivation' },
+        ],
       },
       {
-        title: 'Interface design & development',
-        body: 'I helped design and build the three-tab interface — Descriptive, Prescriptive and Forecasting — structured around an interactive world heat map so users can compare countries and drill into a given country’s history, current performance and projected trajectory. The interface went through multiple rounds of iteration, converging on a single-page layout with a consistent sidebar-and-map structure across all three tabs so switching between historical, prescriptive and forecasted views felt like one coherent product rather than three separate tools.',
+        title: 'Modelling & Forecasting',
+        body: 'I evaluated and compared forecasting approaches for the product’s predictive layer, testing ARIMA against Exponential Smoothing (ETS) on a held-out set of recent years and stress-testing both on the most volatile countries in the dataset to surface weaknesses early. I found that forecasting the underlying raw quantities first and deriving the prescriptive metrics from those forecasts consistently produced smoother, more reliable results than forecasting the metrics directly, since it avoided the error amplification that direct forecasting showed. For Self-Sufficiency I implemented an ARIMA model with bootstrap-resampled errors to capture realistic year-to-year uncertainty, and for Local Industry Value I added a layer of controlled noise and price smoothing to stop isolated unit-price spikes from distorting its long-term trajectory. I selected the final bottom-up ARIMA approach after it outperformed every alternative tested, including forecasts run on fully imputed data, which we kept only to keep the engine running for countries with sparse histories rather than to improve accuracy.',
         images: [
-          { src: '/images/projects/data-to-product/ui.png', caption: 'Raw data Visualisation' },
-          { src: '/images/projects/data-to-product/ui.png', caption: 'Forecasting' },
-          { src: '/images/projects/data-to-product/ui.png', caption: 'Prescriptive Analysis' },
+          { src: '/images/projects/data-to-product/direct forecast.png', caption: 'Comparing ETS and ARIMA for the direct forecast' },
+          { src: '/images/projects/data-to-product/bottomup forecasting.png', caption: 'Bottom–up forecasting of raw components' },
+          { src: '/images/projects/data-to-product/arima forecast.png', caption: 'Forecasts using ARIMA with bootstrap-resampled errors' },
+          { src: '/images/projects/data-to-product/comparison.png', caption: 'Comparison of alternative forecasting methods' },
+        ],
+      },
+      {
+        title: 'Interface design & Development',
+        body: 'I designed and built the three-tab interface — Descriptive, Prescriptive and Forecasting — structured around an interactive world heat map so users can compare countries and drill into a given country’s history, current performance and projected trajectory. I iterated the interface through multiple rounds, converging on a single-page layout with a consistent sidebar-and-map structure across all three tabs so switching between historical, prescriptive and forecasted views felt like one coherent product rather than three separate tools.',
+        images: [
+          { src: '/images/projects/data-to-product/ui.png', caption: 'Raw data Visualisation UI' },
+          { src: '/images/projects/data-to-product/ui2.png', caption: 'Forecasting UI' },
+          { src: '/images/projects/data-to-product/ui3.png', caption: 'Prescriptive Analysis UI' },
         ],
       },
     ],
@@ -435,7 +472,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Product & UI/UX Design',
-        body: "I designed the glove's ergonomic form using iterative CAD modelling, and materials testing to ensure a balance between performance and comfort. Features like structured support zones, moisture-wicking materials, open fingertip design, and articulation grooves were developed for high-precision training. \n\nThe haptic feedback module was integrated into the glove just above the wrist joint, after testing several placements to ensure it delivered clear, unobtrusive cues. I also developed a customizable vibration system, allowing users to select different feedback intensities through interchangeable modules. \n\nIn parallel, I designed the Actib app UI, which complements the glove by allowing athletes to set preferences, monitor performance, and track precision-based metrics.",
+        body: "I designed the glove's ergonomic form using iterative CAD modelling and materials testing to balance performance and comfort, developing features like structured support zones, moisture-wicking materials, open fingertip design, and articulation grooves for high-precision training. \n\nI tested several placements before integrating the haptic feedback module into the glove just above the wrist joint, ensuring it delivered clear, unobtrusive cues. I also developed a customizable vibration system, allowing users to select different feedback intensities through interchangeable modules. \n\nIn parallel, I designed the Actib app UI, which complements the glove by allowing athletes to set preferences, monitor performance, and track precision-based metrics.",
         images: [
           { src: '/images/projects/actib/main.png', caption: 'Actib\'s final design' },
           { src: '/images/projects/actib/exploded.png', caption: 'Exploded view of the glove structure' },
@@ -444,7 +481,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Packaging Design & Rendering',
-        body: 'To support portability and hygiene, I developed a modular system with removable electronic components for easy washing. I designed a compact, pentagon-shaped storage case based on user feedback, using tactile form for easy identification in cluttered gym bags. \n\nThe case was rendered with high-fidelity visualizations and detailed CMF strategy, incorporating durable, lightweight materials like recycled ABS and molded EVA foam to enhance usability for athletes on the go.',
+        body: 'To support portability and hygiene, I developed a modular system with removable electronic components for easy washing. I designed a compact, pentagon-shaped storage case based on user feedback, using tactile form for easy identification in cluttered gym bags. \n\nI rendered the case with high-fidelity visualizations and a detailed CMF strategy, specifying durable, lightweight materials like recycled ABS and molded EVA foam to enhance usability for athletes on the go.',
         images: [
           { src: '/images/projects/actib/angle.png', caption: 'Actib\'s final design' },
           { src: '/images/projects/actib/box.png', caption: 'Travel-friendly case' },
@@ -551,7 +588,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Contextual studies & System design',
-        body: 'To ground our concept in plausible futures, we began with foresight methods and an in-depth literature review. We focused on a scenario set in 2055, where long-term deep space expeditions face extreme conditions — communication delays, no evacuation options, and prolonged isolation. I was responsible for researching technological trends and future forecasting in the medical and aerospace sectors. Through this, I identified a likely trajectory toward compact, AI-assisted diagnostic and treatment devices by 2055. This analysis highlighted three key drivers: social acceptance of autonomous care, advances in real-time medical data processing, and the miniaturization of non-invasive surgical tools.',
+        body: 'To ground our concept in plausible futures, we began with foresight methods and an in-depth literature review, focusing on a scenario set in 2055 where long-term deep space expeditions face extreme conditions — communication delays, no evacuation options, and prolonged isolation. I researched technological trends and future forecasting in the medical and aerospace sectors, and through this identified a likely trajectory toward compact, AI-assisted diagnostic and treatment devices by 2055. This analysis highlighted three key drivers: social acceptance of autonomous care, advances in real-time medical data processing, and the miniaturization of non-invasive surgical tools.',
         images:  [
           { src:  '/images/projects/hive-fu/steepv.png', caption: 'STEEP Analysis' },
           { src:  '/images/projects/hive-fu/sketches.png', caption: 'Ideation Sketches' },
@@ -560,14 +597,14 @@ export const projects: Project[] = [
       },
       {
         title: 'User interaction design',
-        body: "By engaging with both space medicine professionals and HIFU experts, our system requirements were refined, ultimately contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions. This helped define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, HIVE-FU featured a concave probe head and hexagonal tessellation pattern. This geometry ensured uniform energy distribution, minimized distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
+        body: "I engaged with space medicine professionals and HIFU experts to refine our system requirements, contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions and helping define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, I helped give HIVE-FU a concave probe head and hexagonal tessellation pattern, a geometry that ensured uniform energy distribution, minimized distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
         images: [
           { src:  '/images/projects/hive-fu/expert evaluation.png', caption: 'Expert Evaluation' },
         ],
       },
       {
         title: 'CAD, Rendering & Project Management',
-        body: 'Using SolidWorks the CAD was developed, translating our conceptual system into a detailed mechanical model. The final design was rendered in KeyShot, allowing us to produce high-fidelity visuals that communicated both functionality and aesthetic — supporting both our final pitch and explainer video. Beyond technical work, I also took on project management responsibilities. I delegated tasks within the team, created a Gantt chart to monitor progress, and ensured milestones were met on time. I also coordinated expert interviews, which were essential for validating the technical feasibility of our speculative solution.',
+        body: 'I developed the CAD in SolidWorks, translating our conceptual system into a detailed mechanical model, then rendered the final design in KeyShot to produce high-fidelity visuals that communicated both functionality and aesthetic — supporting both our final pitch and explainer video. Beyond technical work, I also took on project management responsibilities: I delegated tasks within the team, created a Gantt chart to monitor progress, and ensured milestones were met on time. I also coordinated expert interviews, which were essential for validating the technical feasibility of our speculative solution.',
         images: [
           { src: '/images/projects/hive-fu/exploded.png', caption: 'Exploded View' },
           { src: '/images/projects/hive-fu/folded.png', caption: 'Folded View' },
@@ -732,7 +769,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Research & development',
-        body: "User research, interviews, and surveys targeting urban cyclists were conducted to identify major safety pain points — including poor visibility, limited communication with other road users, and distraction from phone-based navigation. This research directly shaped the product's core functionality: enabling hands-free navigation through haptic feedback and gesture-based signalling with integrated lights. I also supported market benchmarking and co-design sessions to ensure the glove addressed real-world user concerns and behaviours.",
+        body: "I helped conduct user research, interviews, and surveys with urban cyclists to identify major safety pain points — including poor visibility, limited communication with other road users, and distraction from phone-based navigation. This research directly shaped the product's core functionality: enabling hands-free navigation through haptic feedback and gesture-based signalling with integrated lights. I also supported market benchmarking and co-design sessions to ensure the glove addressed real-world user concerns and behaviours.",
         images:[
           { src: '/images/projects/ursa/sketches.png', caption: 'Initial Sketches' },
           { src: '/images/projects/ursa/sketches 2.png', caption: 'Concept Development' },
@@ -747,7 +784,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Concept articulation & presentation',
-        body: "I was responsible for synthesising our team's research and design decisions into a cohesive narrative, ensuring our concept was communicated clearly and persuasively. This included producing the final presentation materials, user scenario illustrations, and written rationale for each design decision. I also developed the URSA app UI concept, mapping out the key screens and user flows that would complement the glove's hardware features.",
+        body: "I synthesised our team's research and design decisions into a cohesive narrative, ensuring our concept was communicated clearly and persuasively. I produced the final presentation materials, user scenario illustrations, and written rationale for each design decision, and also developed the URSA app UI concept, mapping out the key screens and user flows that would complement the glove's hardware features.",
         images:[
           { src: '/images/projects/ursa/feature.png', caption: 'Final Design' },
         ],
