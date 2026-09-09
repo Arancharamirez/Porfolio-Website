@@ -144,7 +144,7 @@ export const projects: Project[] = [
       '/images/projects/nest-assured/hero anne.png'
     ],
     info: 'Developed as part of a university group project for the Industrial Design Engineering module. The challenge was to design and engineer a battery-powered, hand-operated device for home, garden, or educational use — one that appeals to a broad market while addressing the needs of an underserved user group. *Note: Google were not engaged in any consultancy or collaborative capacity with this project; the outcome is in no way endorsed by them.',
-    problem: 'ADHD affects over 22 million people worldwide, leading to challenges with attention, organization, and memory. Many individuals struggle with misplaced items, disrupting their daily routines and increasing stress. Existing solutions often rely on complex ecosystems or smartphone apps, which can be overwhelming or ineffective.',
+    problem: 'ADHD affects over 22 million people worldwide, leading to challenges with attention, organisation, and memory. Many individuals struggle with misplaced items, disrupting their daily routines and increasing stress. Existing solutions often rely on complex ecosystems or smartphone apps, which can be overwhelming or ineffective.',
     solution: "Nest Assured is a seamless plug-and-play RFID tracking system designed to integrate effortlessly into fast-paced lifestyles. Using RFID and ESPNOW technology, it ensures compatibility across all devices and items. Tailored for young adults with ADHD — but beneficial for anyone — Nest Assured eliminates the frustration of misplaced belongings without adding digital clutter. It's not just another app lost in a sea of notifications, nor a product locked into a restrictive ecosystem.",
     feature_caption: 'Never forget your things ever again.',
     feature_bold: 'THE MOST INTUITIVE AND **EFFORTLESS** SCANNER THAT **INSPIRES** CONFIDENCE AND RELIABILITY IN ANY SITUATION.',
@@ -170,7 +170,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Packaging design & rendering',
-        body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. Using SolidWorks, I modeled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging in KeyShot, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
+        body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. Using SolidWorks, I modelled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging in KeyShot, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
         images: [
           { src: '/images/projects/nest-assured/boxing.png', caption: 'Sustainable Packaging' },
           { src: '/images/projects/nest-assured/google.png', caption: 'Alignment with Google Brand Identity' },
@@ -220,7 +220,7 @@ export const projects: Project[] = [
         title: 'Methodology',
         body: 'I developed the project’s integrated four-phase framework — stochastic simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — sharing a single Monte Carlo ensemble across all four phases so they stayed methodologically consistent rather than being computed in isolation. Applying this to Torrevieja’s planned 40hm³/yr expansion, I built the underlying techno-economic model from scratch: a rigid design committing its full €89M budget across three years, against a modular design capped at €66M and built in 5,000m³/day increments, governed by a decision rule I calibrated with an 85% build threshold, a 70% abandonment threshold, and a one-year construction lag per module.',
         images:  [
-          { src: '/images/projects/desalination/4 framework.png', caption: 'our-Phase Framework' },
+          { src: '/images/projects/desalination/4 framework.png', caption: 'Four-Phase Framework' },
           { src: '/images/projects/desalination/trigger rule.png', caption: 'Expansion trigger rule' },
         ],
       },
@@ -232,7 +232,7 @@ export const projects: Project[] = [
           { src: '/images/projects/desalination/module.png', caption: 'Module deployment under demand scenarios' },
           { src: '/images/projects/desalination/histogram.png', caption: 'Annual Cash-Flow Diagram' },
           { src: '/images/projects/desalination/npv.png', caption: 'Rigid and Flexible Net Present Values (NPV)' },
-          { src: '/images/projects/desalination/tornado.png', caption: 'Tornado sensitivity of mean NPV to a ±20% perturbation ' },
+          { src: '/images/projects/desalination/tornado.png', caption: 'Tornado sensitivity of mean NPV to a ±20% perturbation' },
 
         ],
       },
@@ -256,7 +256,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Oral Presention', 'Literature Review & Critical Analysis'],
+    soft_skills: ['Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Oral Presentation', 'Literature Review & Critical Analysis'],
     hard_skills: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Techno-economic & Financial Modelling', 'Web App Development & Deployment', 'Excel', 'Programming (Python, JavaScript)'],
     tile_ratio: 'landscape',
     has_video: false,
@@ -315,7 +315,7 @@ export const projects: Project[] = [
       },
     ],
     soft_skills: ['Stakeholder Analysis & Value-Focused Thinking', 'Decision Framing', 'Financial & Commercial Modelling', 'Cross-functional Collaboration', 'Written & Visual Communication'],
-    hard_skills: ['Data Analysis & Curtailment Modelling', 'Systems & Stakeholder Mapping', 'Pricing & Incentive Design', 'Project Management Frameworks', 'Programming (R.Shiny)'],
+    hard_skills: ['Data Analysis & Curtailment Modelling', 'Systems & Stakeholder Mapping', 'Pricing & Incentive Design', 'Project Management Frameworks', 'Programming (R Shiny)'],
     tile_ratio: 'portrait',
     has_video: false,
     pdf_url: [
@@ -436,7 +436,7 @@ export const projects: Project[] = [
       },
     ],
     soft_skills: ['Cross-functional Collaboration', 'Research & Data Validation', 'Written & Visual Communication', 'Presenting'],
-    hard_skills: ['Data Sourcing, Cleaning & Imputation', 'Time-Series Forecasting (ARIMA, ETS)', 'Statistical Modelling & Validation', 'Interactive Data Visualisation', 'Programming (R.Shiny)'],
+    hard_skills: ['Data Sourcing, Cleaning & Imputation', 'Time-Series Forecasting (ARIMA, ETS)', 'Statistical Modelling & Validation', 'Interactive Data Visualisation', 'Programming (R Shiny)'],
     tile_ratio: 'landscape',
     has_video: false,
     pdf_url: '/reports/The Impact of Waste as a Currency Report.pdf',
@@ -480,7 +480,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Product & UI/UX Design',
-        body: "I designed the glove's ergonomic form using iterative CAD modelling and materials testing to balance performance and comfort, developing features like structured support zones, moisture-wicking materials, open fingertip design, and articulation grooves for high-precision training. \n\nI tested several placements before integrating the haptic feedback module into the glove just above the wrist joint, ensuring it delivered clear, unobtrusive cues. I also developed a customizable vibration system, allowing users to select different feedback intensities through interchangeable modules. \n\nIn parallel, I designed the Actib app UI, which complements the glove by allowing athletes to set preferences, monitor performance, and track precision-based metrics.",
+        body: "I designed the glove's ergonomic form using iterative CAD modelling and materials testing to balance performance and comfort, developing features like structured support zones, moisture-wicking materials, open fingertip design, and articulation grooves for high-precision training. \n\nI tested several placements before integrating the haptic feedback module into the glove just above the wrist joint, ensuring it delivered clear, unobtrusive cues. I also developed a customisable vibration system, allowing users to select different feedback intensities through interchangeable modules. \n\nIn parallel, I designed the Actib app UI, which complements the glove by allowing athletes to set preferences, monitor performance, and track precision-based metrics.",
         images: [
           { src: '/images/projects/actib/main.png', caption: 'Actib\'s final design' },
           { src: '/images/projects/actib/exploded.png', caption: 'Exploded view of the glove structure' },
@@ -489,7 +489,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Packaging Design & Rendering',
-        body: 'To support portability and hygiene, I developed a modular system with removable electronic components for easy washing. I designed a compact, pentagon-shaped storage case based on user feedback, using tactile form for easy identification in cluttered gym bags. \n\nI rendered the case with high-fidelity visualizations and a detailed CMF strategy, specifying durable, lightweight materials like recycled ABS and molded EVA foam to enhance usability for athletes on the go.',
+        body: 'To support portability and hygiene, I developed a modular system with removable electronic components for easy washing. I designed a compact, pentagon-shaped storage case based on user feedback, using tactile form for easy identification in cluttered gym bags. \n\nI rendered the case with high-fidelity visualisations and a detailed CMF strategy, specifying durable, lightweight materials like recycled ABS and moulded EVA foam to enhance usability for athletes on the go.',
         images: [
           { src: '/images/projects/actib/angle.png', caption: 'Actib\'s final design' },
           { src: '/images/projects/actib/box.png', caption: 'Travel-friendly case' },
@@ -596,7 +596,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Contextual studies & System design',
-        body: 'To ground our concept in plausible futures, we began with foresight methods and an in-depth literature review, focusing on a scenario set in 2055 where long-term deep space expeditions face extreme conditions — communication delays, no evacuation options, and prolonged isolation. I researched technological trends and future forecasting in the medical and aerospace sectors, and through this identified a likely trajectory toward compact, AI-assisted diagnostic and treatment devices by 2055. This analysis highlighted three key drivers: social acceptance of autonomous care, advances in real-time medical data processing, and the miniaturization of non-invasive surgical tools.',
+        body: 'To ground our concept in plausible futures, we began with foresight methods and an in-depth literature review, focusing on a scenario set in 2055 where long-term deep space expeditions face extreme conditions — communication delays, no evacuation options, and prolonged isolation. I researched technological trends and future forecasting in the medical and aerospace sectors, and through this identified a likely trajectory toward compact, AI-assisted diagnostic and treatment devices by 2055. This analysis highlighted three key drivers: social acceptance of autonomous care, advances in real-time medical data processing, and the miniaturisation of non-invasive surgical tools.',
         images:  [
           { src:  '/images/projects/hive-fu/steepv.png', caption: 'STEEP Analysis' },
           { src:  '/images/projects/hive-fu/sketches.png', caption: 'Ideation Sketches' },
@@ -605,7 +605,7 @@ export const projects: Project[] = [
       },
       {
         title: 'User interaction design',
-        body: "I engaged with space medicine professionals and HIFU experts to refine our system requirements, contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions and helping define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, I helped give HIVE-FU a concave probe head and hexagonal tessellation pattern, a geometry that ensured uniform energy distribution, minimized distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
+        body: "I engaged with space medicine professionals and HIFU experts to refine our system requirements, contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions and helping define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, I helped give HIVE-FU a concave probe head and hexagonal tessellation pattern, a geometry that ensured uniform energy distribution, minimised distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
         images: [
           { src:  '/images/projects/hive-fu/expert evaluation.png', caption: 'Expert Evaluation' },
         ],
@@ -648,7 +648,7 @@ export const projects: Project[] = [
       '/images/projects/all-ink/all ink 2.png',
     ],
     info: 'Developed as part of a university group project for the Sustainable Design Engineering module. The brief required teams to identify key sustainability issues in a designated product — in this case, ink cartridges — and propose, prototype, and evaluate a holistic solution addressing the product, its packaging, and surrounding systems.',
-    problem: 'Over 350 million ink cartridges are discarded each year, with only 15% being recycled. Existing recycling programs are limited, brand-specific, and often confusing or inconvenient for users. Most cartridges are made from mixed plastics, making disassembly and recycling even harder. Additionally, they are often packaged in excessive, non-recyclable materials, with little to no incentive for consumers to return or reuse them.',
+    problem: 'Over 350 million ink cartridges are discarded each year, with only 15% being recycled. Existing recycling programmes are limited, brand-specific, and often confusing or inconvenient for users. Most cartridges are made from mixed plastics, making disassembly and recycling even harder. Additionally, they are often packaged in excessive, non-recyclable materials, with little to no incentive for consumers to return or reuse them.',
     solution: 'ALL-INK reimagines the ink cartridge as a refillable, user-friendly product. A redesigned cartridge features a removable cap secured by an interlocking system, allowing for easy refilling. Paired with a subscription-based service and a dedicated online platform, users can track usage, schedule refills, and manage returns. Deliveries and returns are facilitated through a reusable outdoor secure delivery box — eliminating excess packaging and enabling convenient, sustainable exchange. ALL-INK offers a circular system that simplifies cartridge reuse and makes sustainable printing effortless.',
     feature_caption: 'Never worry about printing again.',
     feature_bold: 'A SEAMLESS AND **LOW-WASTE** PRINTING SOLUTION THAT MAKES SUSTAINABILITY **EFFORTLESS** FOR EVERY USER.',
@@ -656,7 +656,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'System redesign',
-        body: 'I led early user research, identifying key frustrations such as brand-specific recycling, inconvenient returns, and lack of incentives. These insights informed a closed-loop service model that prioritizes user convenience and circularity. I co-developed a subscription-based system supported by a mobile app and a secure outdoor delivery box for seamless cartridge exchange. The redesigned system removes brand restrictions, simplifies returns, and integrates collection, refill, and delivery into a unified, low-impact process.',
+        body: 'I led early user research, identifying key frustrations such as brand-specific recycling, inconvenient returns, and lack of incentives. These insights informed a closed-loop service model that prioritises user convenience and circularity. I co-developed a subscription-based system supported by a mobile app and a secure outdoor delivery box for seamless cartridge exchange. The redesigned system removes brand restrictions, simplifies returns, and integrates collection, refill, and delivery into a unified, low-impact process.',
         images: [
           { src: '/images/projects/all-ink/system design.png', caption: 'Systems diagram outlining the key processes involved in our proposal' },
           { src: '/images/projects/all-ink/system.png', caption: 'Closed-loop recycling system' },
@@ -724,7 +724,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Physical components & assembly',
-        body: 'I designed and constructed the interactive interface, including tactile controls (buttons, plant, and blinds) that made the experience physically engaging for young users. I also built key physical components such as modular plant icons with LED feedback and servo-based animations that reflected plant growth or distress. This hands-on assembly process emphasized both ergonomics and durability, creating an inviting, child-friendly form factor.',
+        body: 'I designed and constructed the interactive interface, including tactile controls (buttons, plant, and blinds) that made the experience physically engaging for young users. I also built key physical components such as modular plant icons with LED feedback and servo-based animations that reflected plant growth or distress. This hands-on assembly process emphasised both ergonomics and durability, creating an inviting, child-friendly form factor.',
         images: [
           { src: '/images/projects/marios-garden/system design.png', caption: 'System Design' },
           { src: '/images/projects/marios-garden/cad.png', caption: 'CAD Design' },
