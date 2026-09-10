@@ -77,12 +77,12 @@ export const projects: Project[] = [
       '/images/projects/housescout/computer.png',
       '/images/projects/housescout/ui env.png',
     ],
-    info: "Founded by a team of six as a real operating startup for a university venture-creation module, complete with our own scout network, paid user acquisition, and a funding plan pitched against live financial modelling.",
-    problem: "Renting from a distance is a gamble. International students and relocating professionals routinely sign leases sight-unseen, relying on filtered listing photos and a rushed video call with an agent who represents the landlord, not them. Damp, mould and misrepresented rooms are discovered only after moving in — when it's too late to negotiate or walk away.",
-    solution: "HouseScout sends an independent local Scout to physically attend a viewing on the renter's behalf, capturing unedited HD photo and video and flagging issues like hidden mould directly in the report. Renters track every job — Request, Match, Viewing, Report — in real time through the app, while the same property database and API can be licensed to relocation agencies and referral partners.",
+    info: "Founded by a team of six studenys as a real operating startup for a university venture-creation module, complete with our own scout network, paid user acquisition, and a funding plan pitched against live financial modelling.",
+    problem: "Renting from a distance is a gamble. International students and relocating professionals routinely sign leases sight-unseen, relying on filtered listing photos and rushed video calls with agents who represent the landlord, not them. Damp, mould and misrepresented rooms are discovered only after moving in — when it's too late to negotiate or walk away.",
+    solution: "HouseScout sends an independent local Scout to physically attend a viewing on the renter's behalf, capturing unedited photos and videos and flagging issues like hidden mould directly in the report. Renters track every step — Request, Match, Viewing, Report — in real time through the app, while the same property database and API can be licensed to relocation agencies and referral partners.",
     feature_caption: 'Never rent blind again.',
     feature_bold: "THE FIRST **INDEPENDENT** SCOUTING SERVICE THAT GIVES RENTERS **UNBIASED**, UNFILTERED EYES ON A PROPERTY BEFORE THEY SIGN.",
-    feature_tags: ['Unfiltered HD Media', 'In-Person Advocacy', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
+    feature_tags: ['Unfiltered Media', 'In-Person Advocacy', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
     role_sections: [
       {
         title: 'Product & UI/UX design',
