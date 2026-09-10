@@ -11,10 +11,10 @@ export interface Props {
   };
   /** Defaults to `/work/<slug>` — pass an override for projects that live elsewhere (e.g. `/work/other/<slug>`). */
   href?: string;
-  style?: string;
+  cardStyle?: string;
 }
 
-const { project, href, style } = Astro.props;
+const { project, href, cardStyle } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const linkHref = href ?? `${base}/work/${project.slug}`;
 const heroImg = assetUrl(project.hero_image || `/images/projects/${project.slug}/hero.jpg`);
@@ -23,7 +23,7 @@ const heroImg = assetUrl(project.hero_image || `/images/projects/${project.slug}
 <a
   href={linkHref}
   class="project-card"
-  style={style}
+  style={cardStyle}
   aria-label={`${project.title} — ${project.one_line}`}
 >
   <div class="card-media">
@@ -43,109 +43,3 @@ const heroImg = assetUrl(project.hero_image || `/images/projects/${project.slug}
     <p class="card-desc">{project.one_line}</p>
   </div>
 </a>
-
-<style>
-  .project-card {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    background: var(--card);
-    box-shadow: 0 2px 8px rgba(26, 26, 26, 0.06);
-    transition:
-      transform 220ms ease-out,
-      box-shadow 220ms ease-out;
-    text-decoration: none;
-  }
-  .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
-  }
-
-  /* Card-media: flows naturally — image height drives card height */
-  .card-media {
-    position: relative;
-    background: var(--paper-soft);
-  }
-  .card-media img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  /* Placeholder: hidden by default, shown via onerror when image fails */
-  .card-placeholder {
-    display: none;
-    width: 100%;
-    min-height: 220px;
-    background: var(--paper-soft);
-    align-items: center;
-    justify-content: center;
-  }
-  .card-placeholder-index {
-    color: var(--ink-muted);
-  }
-
-  /* Overlay sits on top of the image */
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(26, 26, 26, 0);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1.25rem;
-    transition: background 220ms ease-out;
-  }
-  .project-card:hover .card-overlay {
-    background: rgba(26, 26, 26, 0.4);
-  }
-
-  .card-title,
-  .card-desc {
-    opacity: 0;
-    transform: translateY(6px);
-    transition:
-      opacity 220ms ease-out,
-      transform 220ms ease-out;
-    margin: 0;
-    color: #fff;
-    overflow-wrap: break-word;
-  }
-  .project-card:hover .card-title,
-  .project-card:hover .card-desc {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .card-title {
-    font-size: var(--title);
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.35rem;
-  }
-  .card-desc {
-    font-size: var(--caption);
-    opacity: 0;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  .project-card:hover .card-desc {
-    opacity: 0.85;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .project-card,
-    .card-media img,
-    .card-overlay,
-    .card-title,
-    .card-desc {
-      transition: none;
-    }
-    .project-card:hover {
-      transform: none;
-    }
-    .project-card:hover .card-title,
-    .project-card:hover .card-desc {
-      opacity: 1;
-      transform: none;
-    }
-  }
-</style>

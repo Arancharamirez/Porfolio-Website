@@ -87,7 +87,7 @@ const constellationProjects = swapBySlug(
         <div class="projects-marquee-track">
           {carouselProjects.map((p, i) => (
             <div class="marquee-item" aria-hidden={i >= projects.length ? 'true' : undefined}>
-              <ProjectCard project={p} style="width:100%" />
+              <ProjectCard project={p} cardStyle="width:100%" />
             </div>
           ))}
         </div>
@@ -215,11 +215,16 @@ const constellationProjects = swapBySlug(
     font-size: var(--body);
     font-weight: 500;
     text-decoration: none;
-    transition: transform 200ms ease, box-shadow 200ms ease;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, color 200ms ease, filter 120ms ease;
   }
   .btn-primary:hover,
   .btn-outline:hover {
     transform: translateY(-2px);
+  }
+  .btn-primary:active,
+  .btn-outline:active {
+    transform: translateY(0) scale(0.97);
+    filter: brightness(0.85);
   }
   .btn-primary {
     background: var(--ink);
@@ -227,12 +232,17 @@ const constellationProjects = swapBySlug(
     box-shadow: 0 2px 8px rgba(26, 26, 26, 0.15);
   }
   .btn-primary:hover {
+    background: var(--accent);
     box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
   }
   .btn-outline {
     border: 1.5px solid var(--ink);
     color: var(--ink);
     background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--paper);
   }
 
   /* ─── About note ────────────────────────────────────────── */

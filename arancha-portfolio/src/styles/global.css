@@ -231,3 +231,115 @@ mark {
   padding: 0 0.1em;
   border-radius: 2px;
 }
+
+/* ─── Project card (src/components/ProjectCard.astro) ──────
+   Lives here globally rather than as a component-scoped
+   <style> block: Astro/Vite's per-component CSS chunking
+   silently drops this component's styles from every build
+   output when it's used across multiple page bundles (index
+   + portfolio) — reproduced on a clean cache, clean build.
+   Global-sheet placement sidesteps that chunking bug entirely
+   since every page already loads this stylesheet. ─────────── */
+.project-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.06);
+  transition:
+    transform 220ms ease-out,
+    box-shadow 220ms ease-out;
+  text-decoration: none;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+}
+
+/* Card-media: flows naturally — image height drives card height */
+.card-media {
+  position: relative;
+  background: var(--paper-soft);
+}
+.card-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Placeholder: hidden by default, shown via onerror when image fails */
+.card-placeholder {
+  display: none;
+  width: 100%;
+  min-height: 220px;
+  background: var(--paper-soft);
+  align-items: center;
+  justify-content: center;
+}
+.card-placeholder-index {
+  color: var(--ink-muted);
+}
+
+/* Overlay sits on top of the image */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 26, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  transition: background 220ms ease-out;
+}
+.project-card:hover .card-overlay {
+  background: rgba(26, 26, 26, 0.4);
+}
+
+.card-title,
+.card-desc {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 220ms ease-out,
+    transform 220ms ease-out;
+  margin: 0;
+  color: #fff;
+  overflow-wrap: break-word;
+}
+.project-card:hover .card-title,
+.project-card:hover .card-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-title {
+  font-size: var(--title);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+.card-desc {
+  font-size: var(--caption);
+  opacity: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+.project-card:hover .card-desc {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .card-media img,
+  .card-overlay,
+  .card-title,
+  .card-desc {
+    transition: none;
+  }
+  .project-card:hover {
+    transform: none;
+  }
+  .project-card:hover .card-title,
+  .project-card:hover .card-desc {
+    opacity: 1;
+    transform: none;
+  }
+}
