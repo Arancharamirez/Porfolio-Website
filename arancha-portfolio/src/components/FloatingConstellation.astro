@@ -115,7 +115,7 @@ const { projects } = Astro.props;
     const slugOverrides: Record<string, { left?: number; top?: number; width?: number; zIndex?: number }> = {
       foodji:      { top: 76 },              // moved further down
       'all-ink':   { left: 9, zIndex: -1 },  // shifted right, sent behind other tiles
-      housescout:  { left: 14, width: 290 }, // shifted right, made larger
+      housescout:  { left: 14, width: 290, zIndex: 3 }, // shifted right, made larger, brought to front
       'two-step':  { left: 4, top: 84, zIndex: 2 }, // shifted further left and down, brought in front of hive-fu
     };
 
