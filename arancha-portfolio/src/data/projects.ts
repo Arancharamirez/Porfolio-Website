@@ -162,7 +162,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Compliance & user guidelines',
-        body: "If brought to market, Nest Assured would fall under UK consumer electronics regulations. I took responsibility for identifying relevant safety standards and ensuring the product design adhered to UKCA and CE directives. I developed the accompanying safety manual, as well as an accessible user guide styled in line with Google's branding conventions — based on analysis of real-world user documentation from similar products.",
+        body: "If brought to market, Nest Assured would fall under UK consumer electronics regulations. Therefore, I took responsibility for identifying relevant safety standards and ensuring the product design adhered to UKCA and CE directives. I developed the accompanying safety manual, as well as an accessible user guide styled in line with Google's branding conventions — based on analysis and market researchof real-world user documentation from similar products.",
         images: [
           { src: '/images/projects/nest-assured/compliance.png', caption: 'Compliance & User Guidelines' },
           { src: '/images/projects/nest-assured/instructions.png', caption: 'Nest Assured instructions' },
@@ -171,7 +171,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Packaging design & rendering',
-        body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. Using SolidWorks, I modelled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging in KeyShot, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
+        body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. I modelled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
         images: [
           { src: '/images/projects/nest-assured/boxing.png', caption: 'Sustainable Packaging' },
           { src: '/images/projects/nest-assured/google.png', caption: 'Alignment with Google Brand Identity' },
@@ -180,8 +180,8 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Project Planning', 'Presenting'],
-    hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing', 'Programming (Python)'],
+    soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Project Planning', 'Oral Presentation & Pitching', 'Brand Storytelling'],
+    hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (SolidWorks,Fusion360, Keyshot)', 'Branding Positioning', 'Packaging Design', 'Industry Compliance', 'Video Editing', 'Programming (Python)'],
     tile_ratio: 'square',
     has_video: false,
     pdf_url: [
@@ -204,22 +204,22 @@ export const projects: Project[] = [
     accent_color: '#CFD9DC',
     tagline: 'Design for the demand you don’t know yet.',
     one_line: 'An interactive decision-support tool that values the flexibility to expand desalination capacity in stages — quantifying an expected €118M advantage over committing to a fixed design upfront.',
-    features: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Interactive Web Tool', 'Usability-Tested'],
+    features: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Interactive Decision Support Tool', 'Usability-Tested'],
     hero_image: '/images/projects/desalination/hero slim.png',
     images: [
       '/images/projects/desalination/hero.png',
       '/images/projects/desalination/excel 1.png',
     ],
-    info: 'An MSc individual thesis for the Dyson School of Engineering at Imperial College London, developing and applying an integrated framework — combining real-options valuation, robustness assessment, and multi-criteria decision analysis — to the question of whether desalination capacity should be built as one fixed commitment or expanded flexibly in stages. The framework is applied to a real, live expansion decision at the Torrevieja SWRO plant in southeastern Spain, and delivered through an interactive Decision-Support Tool validated with ten usability-test participants and a practising water-utility engineer.',
-    problem: 'Large desalination plants are typically sized against a single demand forecast and built as one fixed commitment — a “predict and provide” approach that fails in two ways: over-investment if demand grows slower than expected, or expensive emergency expansion if it grows faster. Conventional NPV analysis treats these investments as static, systematically undervaluing the option to defer, expand or abandon capacity as real demand and energy prices reveal themselves over a project’s multi-decade life.',
-    solution: 'I built a four-phase framework — stochastic demand and energy-price simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — and applied it to Torrevieja’s planned 40hm³/yr expansion, comparing a single rigid build against a modular design that adds capacity in 5,000m³/day increments only when a utilisation trigger fires. Across 2,000 paired Monte Carlo trials, the modular design wins in 81% of simulated futures, delivering an Expected Value of Flexibility of €118M. I exposed the full framework through an interactive Decision-Support Tool — deployed to the web, requiring no installation — that lets specialist and non-specialist users alike adjust assumptions and see the recommendation update in real time.',
+    info: 'Developed as my MSc thesis for the Dyson School of Engineering at Imperial College London, developing and applying an integrated framework to the question of whether desalination plant capacity should be built as one fixed commitment or expanded flexibly in stages. The framework is applied to a real, live expansion decision at the Torrevieja SWRO plant in southeastern Spain, and delivered through an interactive Decision-Support Tool.',
+    problem: 'Large desalination plants are typically sized against single demand forecasts and built as one fixed commitment — a “predict and provide” approach that fails in two ways: over-investment if demand grows slower than expected, or expensive emergency expansion if it grows faster. Conventional NPV analysis treats these investments as static, systematically undervaluing the option to defer, expand or abandon capacity as real demand and energy prices reveal themselves over a project’s multi-decade life.',
+    solution: 'I built a four-phase framework — stochastic demand and energy-price simulation, ROA, robustness assessment, and MCDA — and applied it to Torrevieja’s planned expansion, comparing a single rigid build against a modular design that adds capacity in increments only when a utilisation trigger fires. Across 2,000 paired Monte Carlo trials, the modular design wins in 81% of simulated futures, delivering an EVoF of €118M. I delivered the full framework through an interactive Decision-Support Tool that lets specialist and non-specialist users alike adjust assumptions and see the recommendation update in real time.',
     feature_caption: 'Quantifying the value of not committing too soon.',
     feature_bold: "AN INTERACTIVE DECISION-SUPPORT TOOL THAT QUANTIFIES **€118 MILLION** OF FLEXIBILITY VALUE IN A REAL DESALINATION EXPANSION, WINNING IN **81%** OF 2,000 SIMULATED FUTURES.",
     feature_tags: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Usability-Tested Tool', 'Deployed Web App'],
     role_sections: [
       {
         title: 'Methodology',
-        body: 'I developed the project’s integrated four-phase framework — stochastic simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — sharing a single Monte Carlo ensemble across all four phases so they stayed methodologically consistent rather than being computed in isolation. Applying this to Torrevieja’s planned 40hm³/yr expansion, I built the underlying techno-economic model from scratch: a rigid design committing its full €89M budget across three years, against a modular design capped at €66M and built in 5,000m³/day increments, governed by a decision rule I calibrated with an 85% build threshold, a 70% abandonment threshold, and a one-year construction lag per module.',
+        body: 'I designed and developed the project’s integrated four-phase framework — stochastic simulation, real-options valuation, robustness assessment, and multi-criteria decision analysis — sharing a single Monte Carlo ensemble across all phases so they stayed methodologically consistent rather than being computed in isolation. Applying this to Torrevieja’s planned 40hm³/yr expansion, I built the underlying techno-economic model from scratch: a rigid design committing its full €89M budget across three years, against a modular design capped at €66M and built in 5,000m³/day increments, governed by a decision rule I calibrated with an 85% build threshold, a 70% abandonment threshold, and a one-year construction lag per module.',
         images:  [
           { src: '/images/projects/desalination/4 framework.png', caption: 'Four-Phase Framework' },
           { src: '/images/projects/desalination/trigger rule.png', caption: 'Expansion trigger rule' },
@@ -239,7 +239,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Decision-Support Tool UI',
-        body: 'I designed and built the interactive Decision-Support Tool from scratch in Python and deployed it to the web, translating the underlying analysis into a five-tab interface — About, Worked Example, Inputs, Uncertainty and Decision — structured so analytical complexity increases as the user moves through it. Adjustable parameter sliders trigger a full 2,000-trial re-simulation on demand, and a colour-coded recommendation banner, hoverable tooltips and an MCDA radar chart make the underlying real-options and robustness analysis legible to non-specialist stakeholders as well as technical reviewers.',
+        body: 'I designed and built the interactive Decision-Support Tool in Python and deployed it to the web, translating the underlying analysis into a five-tab interface — About, Worked Example, Inputs, Uncertainty and Decision — structured so analytical complexity increases as the user moves through it. Adjustable parameter sliders trigger a full 2,000-trial re-simulation on demand, and a colour-coded recommendation banner, hoverable tooltips and an MCDA radar chart make the underlying real-options and robustness analysis legible to non-specialist stakeholders as well as technical reviewers.',
         images: [
           { src: '/images/projects/desalination/dst_tab1.png', caption: 'About tab — onboarding and methodology overview' },
           { src: '/images/projects/desalination/dst_tab2.png', caption: 'Worked Example tab — stepwise walkthrough of the analysis' },
@@ -257,7 +257,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Oral Presentation', 'Literature Review & Critical Analysis'],
+    soft_skills: ['Literature Review & Critical Analysis', 'Research & Thesis Writing', 'Technical Communication', 'Usability Testing & Evaluation', 'Oral Presentation'],
     hard_skills: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Techno-economic & Financial Modelling', 'Web App Development & Deployment', 'Excel', 'Programming (Python, JavaScript)'],
     tile_ratio: 'landscape',
     has_video: false,
