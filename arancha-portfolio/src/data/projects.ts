@@ -294,6 +294,7 @@ export const projects: Project[] = [
         title: 'Decision framing & stakeholder analysis',
         body: "I led the individual analytical strand of the project, applying a Value-Focused Thinking approach to reframe the brief from 'how do we reduce curtailment' to 'how do we maximise the local value of renewable wealth for every stakeholder'. Using a 5Ws+1H framework, I mapped the conflicting priorities of households, energy suppliers, Kaluza and government, identifying Community Trusts as the key gatekeepers of trust and adoption.",
         images:  [
+          { src:  '/images/projects/olive/stakeholder.png', caption: 'Stakeholder Priorities' },
           { src:  '/images/projects/olive/analysis 1.png', caption: 'Stakeholder behaviour' },
           { src:  '/images/projects/olive/analysis 2.png', caption: 'Seasonality analysis' },
         ]
@@ -302,8 +303,8 @@ export const projects: Project[] = [
         title: 'Curtailment modelling & the business case',
         body: "I built a conservative curtailment model from raw turbine output data — filtering out low-wind and maintenance downtime to isolate energy that was genuinely available but rejected by the grid — then scaled a single 900kW turbine's data to Orkney's 23-turbine fleet to quantify a baseline of 25.6 GWh, worth £2.56M, in annually wasted generation. This modelling underpinned the commercial case presented to stakeholders.",
         images:  [
+          { src:  '/images/projects/olive/surplus.png', caption: 'Surplus Energy Analysis' },
           { src:  '/images/projects/olive/money.png', caption: 'Pricing strategy' },
-          { src:  '/images/projects/olive/price.png', caption: 'Pricing strategy' },
         ]
       },
       {
