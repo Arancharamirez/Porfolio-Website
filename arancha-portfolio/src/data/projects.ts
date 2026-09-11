@@ -70,14 +70,14 @@ export const projects: Project[] = [
     accent_color: '#E8DFD2',
     tagline: "Don't rent blind.",
     one_line: 'An independent scouting service that gives renters unfiltered, in-person eyes on a property before they sign.',
-    features: ['In-Person Scouts', 'Unfiltered HD Media', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
+    features: ['In-Person Scouts', 'Unfiltered Media', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
     hero_image: '/images/projects/housescout/Homepage mid.png',
     images: [
       '/images/projects/housescout/fence.png',
       '/images/projects/housescout/computer.png',
       '/images/projects/housescout/ui env.png',
     ],
-    info: "Founded by a team of six studenys as a real operating startup for a university venture-creation module, complete with our own scout network, paid user acquisition, and a funding plan pitched against live financial modelling.",
+    info: "Founded by a team of six students as a real operating startup for a university venture-creation module, complete with our own scout network, paid user acquisition, and a funding plan pitched against live financial modelling.",
     problem: "Renting from a distance is a gamble. International students and relocating professionals routinely sign leases sight-unseen, relying on filtered listing photos and rushed video calls with agents who represent the landlord, not them. Damp, mould and misrepresented rooms are discovered only after moving in — when it's too late to negotiate or walk away.",
     solution: "HouseScout sends an independent local Scout to physically attend a viewing on the renter's behalf, capturing unedited photos and videos and flagging issues like hidden mould directly in the report. Renters track every step — Request, Match, Viewing, Report — in real time through the app, while the same property database and API can be licensed to relocation agencies and referral partners.",
     feature_caption: 'Never rent blind again.',
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Product & UI/UX design',
-        body: "As CIO I owned the UI/UX of both sides of the platform — the renter-facing job tracker and the Scout app that local scouts use to accept jobs, follow guided shot-lists, and submit reports from the property. Getting the trust signals right was central: unedited video, AI-flagged warnings like hidden mould, and a visible chain of custody from request to report.",
+        body: "As CIO I designed and developed the UI/UX of both sides of the platform — the renter-facing job tracker and the Scout app that local scouts use to accept jobs, follow guided shot-lists, and submit reports from the property. Getting the trust signals right was central: unedited video, AI-flagged warnings like hidden mould, and a visible chain of custody from request to report. As well as contributing to the website's front-end design, marketing and brand positioning.",
         images: [
           { src: '/images/projects/housescout/ui 1.png', caption: 'Request a viewing' },
           { src: '/images/projects/housescout/ui 2.png', caption: 'Match with a Scout' },
@@ -95,7 +95,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Validating the problem',
-        body: "Before building, we grounded the concept in real renter pain points — unfiltered images, in-person representation, and total advocacy — validated through desk research on internal migration and international relocation trends. That research shaped both the product's three pillars and the honest, unfiltered brand voice: Don't just hope for the best. Ensure it.",
+        body: "Before building, we grounded the concept in real renter pain points — unfiltered images, in-person representation, and total advocacy — validated through desk research, surveys & questionnaires and user interviews on internal migration and international relocation trends. That research shaped both the product's three pillars and the honest, unfiltered brand voice: Don't just hope for the best. Ensure it.",
         images: [
           { src: '/images/projects/housescout/street interview.png', caption: 'User interviews' },
           { src: '/images/projects/housescout/user testing.png', caption: 'User testing' },
@@ -103,15 +103,15 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Growth, funding & the pitch',
-        body: "I helped run our organic Instagram campaign (@get_housescout) to validate demand ahead of fundraising — reaching over 115K views in 30 days with zero ad spend. That traction fed directly into the funding plan and P&L model I contributed to: a phased raise from FFF equity through to a £500K Series A, targeting break-even in month 26 and a 40% gross margin by Year 3.",
+        title: 'Growth, Funding & the Pitch',
+        body: "I helped run our organic Instagram campaign (@get_housescout) to validate demand ahead of fundraising — reaching over 115K views in 30 days. That traction fed directly into the funding plan and P&L model outlined for HouseScout's success: a phased raise from FFF equity through to a £500K Series A, targeting break-even in month 26 and a 40% gross margin by Year 3.",
         images: [
           { src: '/images/projects/housescout/stand.png', caption: 'Brand stand at university' },
           { src: '/images/projects/housescout/ads.png', caption: 'Organic Instagram growth campaign' },
         ],
       },
     ],
-    soft_skills: ['User-centred Research & Design', 'Stakeholder & Investor Communication', 'Startup Strategy & Team Leadership', 'Brand Storytelling', 'Presenting'],
+    soft_skills: ['User-centred Research & Design', 'Stakeholder & Investor Communication', 'Startup Strategy & Team Leadership', 'Brand Storytelling', 'Oral Presentation & Pitching'],
     hard_skills: ['UI/UX Design (Figma)', 'Financial Modelling & P&L Forecasting', 'No-code Web (Framer)', 'Growth Marketing & Social Analytics'],
     tile_ratio: 'portrait',
     has_video: false,
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     year: '2024',
     course: 'Industrial Design Engineering',
     type: 'Group project',
-    role: 'Compliance, packaging & rendering',
+    role: 'Compliance, branding, packaging, CAD & rendering',
     accent_color: '#F0EAD0',
     tagline: "Google's first item tracker.",
     one_line: 'A plug-and-play RFID tracker designed for young adults with ADHD.',
@@ -152,11 +152,12 @@ export const projects: Project[] = [
     role_sections: [
       {
         title: 'Prototyping & development',
-        body: 'I helped build and test multiple working prototypes to evaluate feasibility and define performance requirements, using RFID tags and an ESPNOW-based communication system to enable real-time registration of tagged items without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, I refined the internal layout to balance functionality with portability, keeping the reader mechanism compact yet effective. I also outlined power, load and component specifications to model and predict mechanical performance under ideal conditions.',
+        body: 'I co-built and tested multiple prototypes to evaluate feasibility and define performance requirements, using RFID tags and an ESPNOW-based communication system to enable real-time registration of tagged items without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, the internal layout was refined to balance functionality with portability, keeping the reader mechanism compact yet effective. I also outlined power, load and component specifications to model and predict mechanical performance under ideal conditions.',
         images: [
           { src: '/images/projects/nest-assured/sketchs.png', caption: 'Ideation & Sketching' },
           { src: '/images/projects/nest-assured/lofi.png', caption: 'Low-Fidelity Prototyping' },
           { src: '/images/projects/nest-assured/exploded.png', caption: 'Exploded View' },
+          { src: '/images/projects/nest-assured/UI.png', caption: 'UI & Screen Interaction' },
         ],
       },
       {
