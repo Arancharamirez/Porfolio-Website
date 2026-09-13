@@ -42,6 +42,8 @@ export type OtherProject = {
   index: string;
   course: string;
   year: string;
+  type: string;
+  role: string;
   one_line: string;
   tags: string[];
   hero_image?: string;
@@ -85,7 +87,7 @@ export const projects: Project[] = [
     feature_tags: ['Unfiltered Media', 'In-Person Advocacy', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
     role_sections: [
       {
-        title: 'Product & UI/UX design',
+        title: 'Product & UI/UX Design',
         body: "As CIO I designed and developed the UI/UX of both sides of the platform — the renter-facing job tracker and the Scout app that local scouts use to accept jobs, follow guided shot-lists, and submit reports from the property. Getting the trust signals right was central: unedited video, AI-flagged warnings like hidden mould, and a visible chain of custody from request to report. As well as contributing to the website's front-end design, marketing and brand positioning.",
         images: [
           { src: '/images/projects/housescout/ui 1.png', caption: 'Request a viewing' },
@@ -94,7 +96,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Validating the problem',
+        title: 'Validating the Problem',
         body: "Before building, we grounded the concept in real renter pain points — unfiltered images, in-person representation, and total advocacy — validated through desk research, surveys & questionnaires and user interviews on internal migration and international relocation trends. That research shaped both the product's three pillars and the honest, unfiltered brand voice: Don't just hope for the best. Ensure it.",
         images: [
           { src: '/images/projects/housescout/street interview.png', caption: 'User interviews' },
@@ -151,7 +153,7 @@ export const projects: Project[] = [
     feature_tags: ['Ergonomic Concave Dial', 'Seamless', 'Ergonomic Comfort', 'Tactile Feedback', 'Multi-functional Attachment', 'Smart Screen'],
     role_sections: [
       {
-        title: 'Prototyping & development',
+        title: 'Prototyping & Development',
         body: 'I co-built and tested multiple prototypes to evaluate feasibility and define performance requirements, using RFID tags and an ESPNOW-based communication system to enable real-time registration of tagged items without relying on Wi-Fi or Bluetooth ecosystems. Through hands-on iteration, the internal layout was refined to balance functionality with portability, keeping the reader mechanism compact yet effective. I also outlined power, load and component specifications to model and predict mechanical performance under ideal conditions.',
         images: [
           { src: '/images/projects/nest-assured/sketchs.png', caption: 'Ideation & Sketching' },
@@ -161,7 +163,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Compliance & user guidelines',
+        title: 'Compliance & User Guidelines',
         body: "If brought to market, Nest Assured would fall under UK consumer electronics regulations. Therefore, I took responsibility for identifying relevant safety standards and ensuring the product design adhered to UKCA and CE directives. I developed the accompanying safety manual, as well as an accessible user guide styled in line with Google's branding conventions — based on analysis and market researchof real-world user documentation from similar products.",
         images: [
           { src: '/images/projects/nest-assured/compliance.png', caption: 'Compliance & User Guidelines' },
@@ -170,7 +172,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Packaging design & rendering',
+        title: 'Packaging Design & Rendering',
         body: "Given the premium target market, I designed the product packaging to reflect a high-end, sustainable experience consistent with Google's current product line. I modelled a custom-fit packaging solution with protective inserts and minimal plastic. I then rendered the final packaging, producing high-fidelity visuals that communicated both the branding and physical design effectively.",
         images: [
           { src: '/images/projects/nest-assured/boxing.png', caption: 'Sustainable Packaging' },
@@ -226,7 +228,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Forecasting & modelling',
+        title: 'Forecasting & Modelling',
         body: 'I calibrated stochastic demand and electricity-price processes against 2003–2025 Spanish market data, then ran the model across 2,000 paired Monte Carlo trials — using the same simulated futures for both designs — to isolate the value of flexibility from sampling noise. This produced an Expected Value of Flexibility of €118M, with the modular design outperforming the rigid one in 81% of trials and holding a substantially higher downside floor (€424M vs €311M at the 5th percentile). I stress-tested the result with a ±20% deterministic sensitivity analysis across every input, confirming water price and operational efficiency as the two parameters the verdict is most exposed to.',
         images: [
           { src: '/images/projects/desalination/forecast.png', caption: 'Monte Carlo fan charts of water and electricity price' },
@@ -249,8 +251,8 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'User testing',
-        body: 'I validated the tool through a formative usability study with ten participants split evenly between specialists and non-specialists, each completing a five-stage protocol of free exploration, task-based evaluation, a semi-structured interview and a questionnaire. Specialists rated the tool highly on perceived task success (8.0/10) and ease of use (7.6/10), confirming it works as a credible analytical artefact, while non-specialists found it easy to navigate but harder to fully interpret — the clearest evidence that its accessibility extension to non-specialists is still partial. I supplemented the study with a semi-structured interview with a practising water-utility engineer, who confirmed the workflow priorities specialists raised and surfaced a new requirement: documenting the source and reasoning behind each input assumption, which the tool doesn’t yet support.',
+        title: 'User Testing',
+        body: 'The tool was then validated through a formative usability study with ten participants split evenly between specialists and non-specialists, each completing a five-stage protocol of free exploration, task-based evaluation, a semi-structured interview and a questionnaire. Specialists rated the tool highly on perceived task success (8.0/10) and ease of use (7.6/10), confirming it works as a credible analytical artefact, while non-specialists found it easy to navigate but harder to fully interpret — the clearest evidence that its accessibility extension to non-specialists is still partial. I supplemented the study with a semi-structured interview with a practising water-utility engineer, who confirmed the workflow priorities specialists raised and surfaced a new requirement: documenting the source and reasoning behind each input assumption, which the tool doesn’t yet support.',
         images: [
           { src: '/images/projects/desalination/usability.png', caption: 'Usability ratings by participant' },
           { src: '/images/projects/desalination/success.png', caption: 'Task success against ease of use by participant' },
@@ -291,7 +293,7 @@ export const projects: Project[] = [
     feature_tags: ['Smart Plug & Boiler Control', 'Curtailment-Synced Scheduling', 'Stakeholder Value-Exchange', 'Community Dividend', 'Zero Upfront Cost'],
     role_sections: [
       {
-        title: 'Decision framing & stakeholder analysis',
+        title: 'Decision Framing & Stakeholder Analysis',
         body: "I led the individual analytical strand of the project, applying a Value-Focused Thinking approach to reframe the brief from 'how do we reduce curtailment' to 'how do we maximise the local value of renewable wealth for every stakeholder'. Using a 5Ws+1H framework, I mapped the conflicting priorities of households, energy suppliers, Kaluza and government, identifying Community Trusts as the key gatekeepers of trust and adoption.",
         images:  [
           { src:  '/images/projects/olive/stakeholder.png', caption: 'Stakeholder Priorities' },
@@ -300,7 +302,7 @@ export const projects: Project[] = [
         ]
       },
       {
-        title: 'Curtailment modelling & the business case',
+        title: 'Curtailment Modelling & the Business Case',
         body: "I built a conservative curtailment model from raw turbine output data — filtering out low-wind and maintenance downtime to isolate energy that was genuinely available but rejected by the grid — then scaled a single 900kW turbine's data to Orkney's 23-turbine fleet to quantify a baseline of 25.6 GWh, worth £2.56M, in annually wasted generation. This modelling underpinned the commercial case presented to stakeholders.",
         images:  [
           { src:  '/images/projects/olive/surplus.png', caption: 'Surplus Energy Analysis' },
@@ -308,7 +310,7 @@ export const projects: Project[] = [
         ]
       },
       {
-        title: 'Pricing strategy & value-exchange design',
+        title: 'Pricing Strategy & Value-exchange Design',
         body: "Recognising that manual behavioural change and seasonality were the real bottlenecks to adoption, I helped shift the team's thinking from incentivising behaviour directly to incentivising permission — designing a value-exchange model where network operators and suppliers fund installation and platform costs in return for grid stability and revenue, while households receive free installation and lower bills, with a 20% community dividend to sustain long-term trust.",
         images:  [
           { src:  '/images/projects/olive/price.png', caption: 'Pricing strategy' },
@@ -338,21 +340,21 @@ export const projects: Project[] = [
     type: 'Group project',
     role: 'Strategy, stakeholder analysis & financial modelling',
     accent_color: '#D9E2C9',
-    tagline: 'See the carbon. Choose better.',
+    tagline: 'See the . Choose better.',
     one_line: 'A CO₂e transparency and rewards strategy for Foodji’s smart vending network, nudging 100,000 monthly consumers toward lower-carbon meals without restricting choice.',
     features: ['CO₂e Meal Labelling', 'Digital Loyalty Rewards', 'Nudge-Based Behaviour Change', 'Stakeholder & SDG Mapping', 'Financial Impact Modelling', 'Systems-Level Strategy'],
     hero_image: '/images/projects/foodji/machine.png',
     images: [
     ],
-    info: 'Developed for the Sustainable Design & Strategy module in a three-person team, analysing Foodji — a Munich-based smart vending company serving over 100,000 meals a month across Germany. The brief was to apply value-focused and systems thinking to design a behavioural sustainability intervention grounded in a real company’s stakeholder ecosystem, competitive landscape and regulatory context.',
+    info: 'Developed for the Sustainable Design & Strategy module, analysing Foodji — a Munich-based smart vending company serving over 100,000 meals a month across Germany. The brief was to apply value-focused and systems thinking to design a behavioural sustainability intervention grounded in a real company’s stakeholder ecosystem, competitive landscape and regulatory context.',
     problem: 'Foodji’s AI-driven demand forecasting already cuts food waste by 70% against the industry average, yet its 95%-app-adopting customers still buy on convenience and price rather than carbon impact. No CO₂e data is surfaced at the point of purchase, and with Germany’s food sector responsible for over 20% of the country’s emissions, the gap between sustainable intent and actual purchasing behaviour remains wide open.',
-    solution: 'We designed a Consumer Transparency & Incentivisation strategy: A–E colour-coded CO₂e labels shown on packaging and in the app at the point of meal selection, paired with a monthly digital loyalty card that rewards six low-carbon purchases with discounts, free meals or supplier vouchers. Grounded in nudge theory and operant conditioning, and built entirely on Foodji’s existing app infrastructure, the intervention targets a 20% reduction in meal-related CO₂e by 2028 — saving an estimated 576 tonnes of CO₂e a year — with reward costs capped at 2% of revenue.',
+    solution: 'We designed a Consumer Transparency & Incentivisation strategy: A–E colour-coded CO₂e labels shown on packaging and in the app at the point of meal selection, paired with a monthly digital loyalty card that rewards low-carbon purchases. Grounded in nudge theory and operant conditioning, and built entirely on Foodji’s existing app infrastructure, the intervention targets a 20% reduction in meal-related CO₂e by 2028 — saving an estimated 576 tonnes of CO₂e a year.',
     feature_caption: 'Make the sustainable choice the easy choice.',
     feature_bold: "A DATA-DRIVEN TRANSPARENCY AND REWARDS STRATEGY THAT NUDGES CONSUMERS TOWARD **LOWER-CARBON** MEALS.",
     feature_tags: ['CO₂e Transparency Labels', 'Digital Loyalty Card', 'Nudge Theory', 'Operant Conditioning', 'SDG 12 Alignment', 'Impact Forecasting'],
     role_sections: [
       {
-        title: 'Ecosystem, stakeholder & landscape analysis',
+        title: 'Ecosystem, Stakeholder & Landscape Analysis',
         body: 'I mapped Foodji’s full stakeholder ecosystem — from meal suppliers and vending-machine technicians to regulatory bodies and waste contractors — and analysed how the company embeds the UN SDGs across its operations and supply chain. This fed into a value-mapping exercise across customer, network, society and environment lenses, alongside a study of Germany’s political and regulatory landscape, including the Waste Framework Directive and incoming carbon-tax proposals, which grounded our strategic focus on SDG 12 and the consumer intention-behaviour gap.',
         images: [
           { src: '/images/projects/foodji/stakeholder map.png', caption: 'Foodji stakeholder ecosystem map' },
@@ -361,22 +363,22 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Intervention design, evaluation & selection',
+        title: 'Intervention Design, Evaluation & Selection',
         body: 'Building on our Theory of Change, I helped develop and evaluate three candidate interventions — CO₂e transparency and rewards, dynamic pricing on near-expiry meals, and a gamified sustainability leaderboard — scoring each against an IDEO-based decision matrix for desirability, feasibility, viability and sustainability. I contributed to the case for our final direction: A–E colour-coded CO₂e labelling paired with a digital loyalty card, selected for building entirely on Foodji’s existing app infrastructure at minimal implementation cost.',
         images: [
-          { src: '/images/projects/foodji/box.png', caption: 'Design intervention' },
+          { src: '/images/projects/foodji/box.png', caption: 'Chosen Design intervention' },
           { src: '/images/projects/foodji/evaluation.png', caption: 'Intervention evaluation matrix' },
         ],
       },
       {
-        title: 'Financial modelling, impact case & delivery roadmap',
+        title: 'Financial Modelling, Impact Case & Delivery Roadmap',
         body: 'I contributed to the quantitative case behind the final intervention — calculating meal-level CO₂e using an LCA-based methodology, modelling a shift in Foodji’s purchasing mix projected to save 576 tonnes of CO₂e a year, and costing the loyalty rewards programme against a 2%-of-revenue cap. I also helped structure the four-phase implementation roadmap and risk mitigation plan, benchmarking our approach against comparable interventions from HelloFresh, Too Good To Go and Germany’s Pfand deposit scheme.',
         images: [
           { src: '/images/projects/foodji/roadmap.png', caption: 'Implementation roadmap' },
         ],
       },
     ],
-    soft_skills: ['Stakeholder Analysis & Systems Mapping', 'Behavioural & Nudge Theory Application', 'Cross-functional Collaboration', 'Written & Visual Communication', 'Presenting'],
+    soft_skills: ['Stakeholder Analysis & Systems Mapping', 'Behavioural & Nudge Theory Application', 'Cross-functional Collaboration', 'Written & Visual Communication', 'Oral Presentation & Pitching'],
     hard_skills: ['Financial & Impact Modelling', 'LCA-based CO₂e Data Analysis', 'Decision Matrix Evaluation (IDEO Framework)', 'Theory of Change Frameworks'],
     tile_ratio: 'square',
     has_video: false,
@@ -395,22 +397,22 @@ export const projects: Project[] = [
     type: 'Group project',
     role: 'Data science, modelling & product design',
     accent_color: '#DCD3E2',
-    tagline: 'Waste doesn’t disappear. It trades.',
+    tagline: 'Waste doesn’t disappear. It’s traded.',
     one_line: 'An interactive data product that treats plastic waste as a form of currency, revealing which countries build real economic value from processing the world’s waste — and which remain dependent on others to do it for them.',
     features: ['Global Trade Data', 'Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'Interactive Heat Map'],
     hero_image: '/images/projects/data-to-product/hero.jpeg',
     images: [
     ],
-    info: 'Developed for the Data to Product module in a two-person team with Zoe Hall, combining OECD waste-management data and UN Comtrade trade records into an interactive tool for exploring the global plastic waste trade. Built end-to-end from data sourcing through to a deployed web interface, and grounded in real-world validation against events like China’s 2018 import ban.',
+    info: 'Developed for the Data to Product module, combining data processing and forecasting into an interactive tool for exploring the global plastic waste trade. Built end-to-end from data sourcing through to a deployed web interface, and grounded in real-world validation.',
     problem: 'Plastic waste is routinely exported from high-income countries to lower-income ones with less processing capacity and fewer environmental protections, but this global trade is poorly understood: there’s no clear, accessible way to see which countries actually process their own waste, which depend on others, and where processing already generates real economic value.',
-    solution: 'We built a data product that treats plastic waste as a form of currency — combining OECD and UN Comtrade records into two original indicators, Self-Sufficiency (how much of a country’s own waste it processes domestically) and Local Industry Value (the economic value a country derives from processing waste, domestic and imported). The interface moves from descriptive history through prescriptive metrics to ARIMA-based forecasting, all built around an interactive world heat map so policymakers, researchers and investors can compare countries and explore how waste-processing roles might evolve.',
+    solution: 'We built a data product that treats plastic waste as a form of currency — combining OECD and UN Comtrade records into two original indicators, Self-Sufficiency (how much of a country’s own waste it processes domestically) and Local Industry Value (the economic value a country derives from processing waste, domestic and imported). The interface moves from descriptive history through prescriptive metrics to ARIMA-based forecasting, all built around an interactive world heat map so stakeholders can compare countries and explore how waste-processing roles might evolve.',
     feature_caption: 'See who profits from the world’s waste.',
     feature_bold: "AN INTERACTIVE DATA PRODUCT THAT TREATS PLASTIC WASTE AS A **CURRENCY**, REVEALING WHICH COUNTRIES BUILD **REAL ECONOMIC VALUE** FROM PROCESSING THE WORLD'S WASTE.",
     feature_tags: ['Self-Sufficiency Index', 'Local Industry Value', 'ARIMA Forecasting', 'World Heat Map', 'OECD & UN Comtrade Data'],
     role_sections: [
       {
         title: 'Data sourcing & Imputation',
-        body: 'I sourced and curated OECD waste-management records and raw UN Comtrade trade data, and designed the imputation method that filled gaps in reported trade quantities using country-specific, smoothed unit prices rather than a single global rate. I also contributed to defining and testing the two prescriptive indicators at the core of the product, Self-Sufficiency and Local Industry Value.',
+        body: 'I co-sourced and co-curated OECD waste-management records and raw UN Comtrade trade data, and designed the imputation method that filled gaps in reported trade quantities using country-specific, smoothed unit prices rather than a single global rate. I also contributed to defining and testing the two prescriptive indicators at the core of the product, Self-Sufficiency and Local Industry Value.',
         images: [
           { src: '/images/projects/data-to-product/Data processing.png', caption: 'Methodology' },
           { src: '/images/projects/data-to-product/Local industry val deriv.png', caption: 'Local Industry Derivation' },
@@ -419,7 +421,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Modelling & Forecasting',
-        body: 'I evaluated and compared forecasting approaches for the product’s predictive layer, testing ARIMA against Exponential Smoothing (ETS) on a held-out set of recent years and stress-testing both on the most volatile countries in the dataset to surface weaknesses early. I found that forecasting the underlying raw quantities first and deriving the prescriptive metrics from those forecasts consistently produced smoother, more reliable results than forecasting the metrics directly, since it avoided the error amplification that direct forecasting showed. For Self-Sufficiency I implemented an ARIMA model with bootstrap-resampled errors to capture realistic year-to-year uncertainty, and for Local Industry Value I added a layer of controlled noise and price smoothing to stop isolated unit-price spikes from distorting its long-term trajectory. I selected the final bottom-up ARIMA approach after it outperformed every alternative tested, including forecasts run on fully imputed data, which we kept only to keep the engine running for countries with sparse histories rather than to improve accuracy.',
+        body: 'I evaluated and compared forecasting approaches for the product’s predictive layer, testing ARIMA against Exponential Smoothing (ETS) on a held-out set of recent years and stress-testing both on the most volatile countries in the dataset to surface weaknesses early. I found that forecasting the underlying raw quantities first and deriving the prescriptive metrics from those forecasts consistently produced smoother, more reliable results than forecasting the metrics directly, since it avoided the error amplification that direct forecasting showed. For Self-Sufficiency I implemented an ARIMA model with bootstrap-resampled errors to capture realistic year-to-year uncertainty, and for Local Industry Value I added a layer of controlled noise and price smoothing to stop isolated unit-price spikes from distorting its long-term trajectory. The final bottom-up ARIMA approach was chosen after it outperformed every alternative tested, including forecasts run on fully imputed data, which we kept only to keep the engine running for countries with sparse histories rather than to improve accuracy.',
         images: [
           { src: '/images/projects/data-to-product/direct forecast.png', caption: 'Comparing ETS and ARIMA for the direct forecast' },
           { src: '/images/projects/data-to-product/bottomup forecasting.png', caption: 'Bottom–up forecasting of raw components' },
@@ -428,7 +430,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Interface design & Development',
+        title: 'Interface Design & Development',
         body: 'I designed and built the three-tab interface — Descriptive, Prescriptive and Forecasting — structured around an interactive world heat map so users can compare countries and drill into a given country’s history, current performance and projected trajectory. I iterated the interface through multiple rounds, converging on a single-page layout with a consistent sidebar-and-map structure across all three tabs so switching between historical, prescriptive and forecasted views felt like one coherent product rather than three separate tools.',
         images: [
           { src: '/images/projects/data-to-product/ui.png', caption: 'Raw data Visualisation UI' },
@@ -437,7 +439,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['Cross-functional Collaboration', 'Research & Data Validation', 'Written & Visual Communication', 'Presenting'],
+    soft_skills: ['Cross-functional Collaboration', 'Research & Data Validation', 'Written & Visual Communication', 'Oral Presentation & Pitching'],
     hard_skills: ['Data Sourcing, Cleaning & Imputation', 'Time-Series Forecasting (ARIMA, ETS)', 'Statistical Modelling & Validation', 'Interactive Data Visualisation', 'Programming (R Shiny)'],
     tile_ratio: 'landscape',
     has_video: false,
@@ -462,10 +464,10 @@ export const projects: Project[] = [
     hero_image: '/images/projects/two-step/ui3.png',
     images: [
       '/images/projects/two-step/green bb.png',
-      '/images/projects/two-step/city2.png',
       '/images/projects/two-step/ui mix.png',
+      '/images/projects/two-step/city2.png',
     ],
-    info: 'Developed for a university venture-creation module in 2025, in a five-person team ("Wayfinding in the City"). The brief was to identify a commercially viable digital product opportunity and take it from problem framing through to a fully costed business case and go-to-market plan.',
+    info: 'Developed for a university venture-creation module in 2025 as a group project. The brief was to identify a commercially viable digital product opportunity and take it from problem framing through to a fully costed business case and go-to-market plan.',
     problem: "Digital life has flattened the experience of getting from A to B. Mapping apps optimise purely for speed or cost, and constant information overload has left people too overwhelmed to seek out anywhere unfamiliar — a trend the pandemic accelerated. The result is a generation that walks past hidden cafes, parks and independent shops every day without ever noticing them.",
     solution: "Two Step is an alternative navigation app that plots routes prioritising discovery over efficiency, surfacing cafes, parks, pubs and hidden gems along the way. A mascot-led gamification layer of weekly challenges rewards exploration, while local businesses pay to be featured as waypoints — turning a walk into a source of serendipity rather than just a route to a destination.",
     feature_caption: 'Your journey, two steps at a time.',
@@ -473,15 +475,15 @@ export const projects: Project[] = [
     feature_tags: ['Scenic Routing', 'Local Discovery', 'Gamified Walks', 'Partner Promotions', 'Save & Share'],
     role_sections: [
       {
-        title: 'User research & personas',
-        body: "I contributed to the initial survey and interview research that shaped our design specification, and to developing our two core personas — Enthusiastic Erica, a spontaneous walker who wants scenic routes without the planning effort, and Curious Carlos, a tourist who wants local recommendations without researching a new city. These personas kept the concept anchored in real user needs through three rounds of concept evaluation.",
+        title: 'User Research & Personas',
+        body: "I contributed to the initial survey and interview research that shaped our design specification, and to developing our two core personas — Enthusiastic Erica, a spontaneous walker who wants scenic routes without the planning effort, and Curious Carlos, a tourist who wants local recommendations without researching a new city. These personas kept the concept anchored in real user needs through three rounds of concept evaluation. Additionally, I conducted interbiews with local business owners to understand their needs and willingness to pay for promotion, which informed the revenue model and go-to-market strategy.",
         images: [
           { src: '/images/projects/two-step/interviews.png', caption: 'Street Interviews' },
           { src: '/images/projects/two-step/business.png', caption: 'Small Business Partnerships' },
         ],
       },
       {
-        title: 'Concept design & prototyping',
+        title: 'Concept Design & Prototyping',
         body: "Of three concepts we evaluated against our design specification — a safety-first router, a customised discovery router, and a screen-free vibration-guided router — I helped build and test the customised navigation prototype that scored highest, iterating the UI through park interviews with 12 potential users before arriving at the final route-generation and gamification flow.",
         images: [
           { src: '/images/projects/two-step/ui2.png', caption: 'UI flow' },
@@ -490,7 +492,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'Market sizing & business model',
+        title: 'Market Sizing & Business Model',
         body: "I worked on sizing the opportunity through top-down, bottom-up and value-theory approaches, arriving at a 5-year serviceable obtainable market of £9.13M, and on structuring the four-stream revenue model — business partnerships, PPC ads, subscriptions and business exposure — that underpins the £582K funding case and 54-month break-even projection.",
         images: [
           { src: '/images/projects/two-step/city.png', caption: 'Street Advertising' },
@@ -499,7 +501,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['User Research & Persona Development', 'Concept Ideation & Evaluation', 'Market Sizing & Business Modelling', 'Stakeholder Interviews', 'Presenting'],
+    soft_skills: ['User Research & Persona Development', 'Concept Ideation & Evaluation', 'Market Sizing & Business Modelling', 'Stakeholder Interviews', 'Oral Presentation & Pitching'],
     hard_skills: ['UI/UX Prototyping', 'Google Maps & Navigation APIs', 'Financial Modelling (P&L, SOM)', 'Marketing Channel Strategy'],
     tile_ratio: 'landscape',
     has_video: false,
@@ -530,7 +532,7 @@ export const projects: Project[] = [
     problem: 'Volleyball setters must make split-second decisions and execute precise sets under pressure. Even minor miscalculations in hand positioning or touch can disrupt an entire play. Traditional training relies on video analysis or verbal feedback, delaying corrections and limiting real-time skill improvement. Without instant feedback, athletes struggle to self-correct, slowing their progress.',
     solution: "Actib is a wearable training device that enhances setting accuracy through real-time haptic feedback. By providing instant corrections during drills, it helps setters refine hand positioning, force application, and wrist movement on the spot. Engineered for high-repetition training sessions, Actib's ergonomic design and responsive feedback system enable players to build precision, control, and consistency — ensuring they are game-ready with refined technique and confidence.",
     feature_caption: 'Never forget your things ever again.',
-    feature_bold: 'THE MOST **RESPONSIVE** AND INTUITIVE TRAINING DEVICE THAT BUILDS **PRECISION**, CONTROL, AND CONFIDENCE ON THE COURT.',
+    feature_bold: 'A **RESPONSIVE** AND INTUITIVE TRAINING GLOVE THAT BUILDS **PRECISION**, CONTROL, AND CONFIDENCE ON THE COURT.',
     feature_tags: ['Technique & Precision Driven', 'Haptic Response', 'Ergonomic Comfort', 'Motion-Sensing', 'Consistency Building', 'Intuitive Case'],
     role_sections: [
       {
@@ -561,7 +563,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['User-centred Research & Design', 'Industrial Design', 'Visual Communication & Storytelling', 'Project Planning & Time Management', 'Presenting'],
+    soft_skills: ['User-centred Research & Design', 'Industrial Design', 'Visual Communication & Storytelling', 'Project Planning & Time Management', 'Oral Presenting'],
     hard_skills: ['Rapid Prototyping (Lo-fi & 3D Printing)', 'CAD & Renders (Fusion360, Keyshot)', 'Packaging Design', 'UI/UX Design', 'CMF Strategy'],
     tile_ratio: 'portrait',
     has_video: false,
@@ -597,7 +599,7 @@ export const projects: Project[] = [
     feature_tags: ['Non-invasive Surgery', 'Autonomous Treatment', 'AI-assisted Care', 'Compact & Reliable', 'Multi-functional Head'],
     role_sections: [
       {
-        title: 'Contextual studies & System design',
+        title: 'Contextual Studies & System Design',
         body: 'To ground our concept in plausible futures, we began with foresight methods and an in-depth literature review, focusing on a scenario set in 2055 where long-term deep space expeditions face extreme conditions — communication delays, no evacuation options, and prolonged isolation. I researched technological trends and future forecasting in the medical and aerospace sectors, and through this identified a likely trajectory toward compact, AI-assisted diagnostic and treatment devices by 2055. This analysis highlighted three key drivers: social acceptance of autonomous care, advances in real-time medical data processing, and the miniaturisation of non-invasive surgical tools.',
         images:  [
           { src:  '/images/projects/hive-fu/steepv.png', caption: 'STEEP Analysis' },
@@ -606,15 +608,15 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'User interaction design',
-        body: "I engaged with space medicine professionals and HIFU experts to refine our system requirements, contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions and helping define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, I helped give HIVE-FU a concave probe head and hexagonal tessellation pattern, a geometry that ensured uniform energy distribution, minimised distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
+        title: 'User Interaction Design',
+        body: "We engaged with space medicine professionals and HIFU experts to refine our system requirements, contributing to the development of a fully non-invasive surgical device suited to extraterrestrial missions and helping define the device's core interaction model — ensuring it was intuitive, reliable, and operable under space constraints. Drawing inspiration from the ergonomics of current medical devices, I helped give HIVE-FU a concave probe head and hexagonal tessellation pattern, a geometry that ensured uniform energy distribution, minimised distortion, and enhanced imaging resolution — critical for accurate, non-invasive intervention.",
         images: [
           { src:  '/images/projects/hive-fu/expert evaluation.png', caption: 'Expert Evaluation' },
         ],
       },
       {
         title: 'CAD, Rendering & Project Management',
-        body: 'I developed the CAD in SolidWorks, translating our conceptual system into a detailed mechanical model, then rendered the final design in KeyShot to produce high-fidelity visuals that communicated both functionality and aesthetic — supporting both our final pitch and explainer video. Beyond technical work, I also took on project management responsibilities: I delegated tasks within the team, created a Gantt chart to monitor progress, and ensured milestones were met on time. I also coordinated expert interviews, which were essential for validating the technical feasibility of our speculative solution.',
+        body: 'I co-developed the CAD in SolidWorks, translating our conceptual system into a detailed mechanical model, then rendered the final design in KeyShot to produce high-fidelity visuals that communicated both functionality and aesthetic — supporting both our final pitch and explainer video. Beyond technical work, I also took on project management responsibilities: I delegated tasks within the team, created a Gantt chart to monitor progress, and ensured milestones were met on time. I also coordinated expert interviews, which were essential for validating the technical feasibility of our speculative solution.',
         images: [
           { src: '/images/projects/hive-fu/exploded.png', caption: 'Exploded View' },
           { src: '/images/projects/hive-fu/folded.png', caption: 'Folded View' },
@@ -622,7 +624,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['Human-centred Research & Design', 'Futures Design', 'Communication', 'Expert Interviews', 'Project Planning', 'Presenting'],
+    soft_skills: ['Human-centred Research & Design', 'Futures Design', 'Communication', 'Expert Interviews', 'Project Planning', 'Oral Presentation & Pitching'],
     hard_skills: ['CAD & Renders (Fusion360, Keyshot)', 'Engineering Analysis', 'Research Validation'],
     tile_ratio: 'landscape',
     has_video: false,
@@ -651,13 +653,13 @@ export const projects: Project[] = [
     ],
     info: 'Developed as part of a university group project for the Sustainable Design Engineering module. The brief required teams to identify key sustainability issues in a designated product — in this case, ink cartridges — and propose, prototype, and evaluate a holistic solution addressing the product, its packaging, and surrounding systems.',
     problem: 'Over 350 million ink cartridges are discarded each year, with only 15% being recycled. Existing recycling programmes are limited, brand-specific, and often confusing or inconvenient for users. Most cartridges are made from mixed plastics, making disassembly and recycling even harder. Additionally, they are often packaged in excessive, non-recyclable materials, with little to no incentive for consumers to return or reuse them.',
-    solution: 'ALL-INK reimagines the ink cartridge as a refillable, user-friendly product. A redesigned cartridge features a removable cap secured by an interlocking system, allowing for easy refilling. Paired with a subscription-based service and a dedicated online platform, users can track usage, schedule refills, and manage returns. Deliveries and returns are facilitated through a reusable outdoor secure delivery box — eliminating excess packaging and enabling convenient, sustainable exchange. ALL-INK offers a circular system that simplifies cartridge reuse and makes sustainable printing effortless.',
+    solution: 'ALL-INK reimagines the ink cartridge as a refillable, user-friendly product. A redesigned cartridge features a removable cap secured by an interlocking system, allowing for easy refilling. Paired with a subscription-based service and a dedicated online platform, users can track usage, schedule refills, and manage returns. Deliveries and returns are facilitated through a reusable outdoor secure delivery box — eliminating excess packaging and enabling convenient, sustainable exchange.',
     feature_caption: 'Never worry about printing again.',
     feature_bold: 'A SEAMLESS AND **LOW-WASTE** PRINTING SOLUTION THAT MAKES SUSTAINABILITY **EFFORTLESS** FOR EVERY USER.',
     feature_tags: ['Sustainably Engineered', 'Effortless', 'Smart Tracking', 'Refillable & Reusable', 'Circular Convenience', 'Secure Delivery'],
     role_sections: [
       {
-        title: 'System redesign',
+        title: 'System Redesign',
         body: 'I led early user research, identifying key frustrations such as brand-specific recycling, inconvenient returns, and lack of incentives. These insights informed a closed-loop service model that prioritises user convenience and circularity. I co-developed a subscription-based system supported by a mobile app and a secure outdoor delivery box for seamless cartridge exchange. The redesigned system removes brand restrictions, simplifies returns, and integrates collection, refill, and delivery into a unified, low-impact process.',
         images: [
           { src: '/images/projects/all-ink/system design.png', caption: 'Systems diagram outlining the key processes involved in our proposal' },
@@ -665,7 +667,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: 'CAD & app development',
+        title: 'CAD & App Development',
         body: 'I co-developed CAD models of the redesigned ink cartridge and the interlocking cap system, engineered for easy disassembly and refilling, and the design for the ALL-INK delivery box, integrating protective materials sourced from recycled cartridges. \n\nOn the digital side, I designed the ALL-INK mobile app, which allows users to subscribe, monitor ink levels, schedule deliveries, and track their environmental impact.',
         images: [
           { src: '/images/projects/all-ink/feature.png', caption: 'Exploded view of ink cartridge refill mechanism' },
@@ -709,32 +711,32 @@ export const projects: Project[] = [
       '/images/projects/marios-garden/hero.png',
       '/images/projects/marios-garden/growth.png',
     ],
-    info: "Mario's Garden was created as part of my Gizmo (physical computing) module. We were challenged to design, build, and demonstrate an electro-mechanical machine that celebrates mechanisms and engaging physical interaction.",
+    info: "Mario's Garden was created as part of my Gizmo (physical computing) module, where we were challenged to design, build, and demonstrate an electro-mechanical machine that celebrates mechanisms and engaging physical interaction.",
     problem: "Nature is disappearing from children's lives. With increasing screen time, urbanisation, and reduced outdoor play, kids are growing up more disconnected from the natural world than ever before. A UK study found that only 21% of children today have a strong connection to nature, compared to previous generations.",
     solution: "Mario's Garden bridges the digital and natural worlds by using play as a learning tool. Through simple, engaging game mechanics, children discover how light, water, and nutrients affect plant health. Using interactive electronics and sensors, the game allows children to influence the game through real-world actions. By simulating the needs of real plants, the game responds to how children 'care' for their virtual garden, creating a more immersive and educational experience.",
     feature_caption: 'Learning through play.',
-    feature_bold: 'A HIGHLY **ENGAGING** AND EDUCATIONAL PLANT CARE EXPERIENCE THAT FOSTERS **CURIOSITY** AND CONFIDENCE IN NURTURING NATURE.',
+    feature_bold: 'AN **ENGAGING** AND EDUCATIONAL PLANT CARE EXPERIENCE THAT FOSTERS **CURIOSITY** AND CONFIDENCE IN NURTURING NATURE.',
     feature_tags: ['Gamified Learning Experience', 'Interactive Mechanism', 'Empathy Building', 'Sensor-based Reaction', 'Adaptive Learning System', 'Smart Screen'],
     role_sections: [
       {
-        title: 'Ideation & game algorithm',
+        title: 'Ideation & Game Algorithm',
         body: "I led the development of the game concept and core logic, framing the experience around simulating real-world plant care. I co-designed the system rules and growth algorithm, defining how plant health would be affected by inputs like light, water, and nutrients. This logic formed the backbone of the game, ensuring that every action the child takes — watering, adjusting light, or applying nutrients — directly influences the virtual plant's growth in a meaningful and educational way.",
         images: [
           { src: '/images/projects/marios-garden/sketch.png', caption: 'Initial Concept Sketches' },
-          { src: '/images/projects/marios-garden/laser cut.png', caption: 'Laser Cutting Process' },
+          { src: '/images/projects/marios-garden/system design.png', caption: 'System Design' },
         ],
       },
       {
-        title: 'Physical components & assembly',
+        title: 'Physical Components & Assembly',
         body: 'I designed and constructed the interactive interface, including tactile controls (buttons, plant, and blinds) that made the experience physically engaging for young users. I also built key physical components such as modular plant icons with LED feedback and servo-based animations that reflected plant growth or distress. This hands-on assembly process emphasised both ergonomics and durability, creating an inviting, child-friendly form factor.',
         images: [
-          { src: '/images/projects/marios-garden/system design.png', caption: 'System Design' },
           { src: '/images/projects/marios-garden/cad.png', caption: 'CAD Design' },
+          { src: '/images/projects/marios-garden/laser cut.png', caption: 'Laser Cutting Process' },
           { src: '/images/projects/marios-garden/design.png', caption: 'Physical Components' },
         ],
       },
       {
-        title: 'Programming & electronics',
+        title: 'Programming & Electronics',
         body: 'During the final phase, we programmed and tested the game logic using Arduino, integrating various sensors (light, moisture, proximity) and outputs (LEDs, servos, speaker cues) to create a responsive and immersive environment. The system reads real-time data from physical inputs and updates the game state accordingly. I ensured smooth communication between hardware and game logic, fine-tuned feedback timing, and implemented visual and audio cues to reinforce in-game events and player decisions.',
         images: [
           { src: '/images/projects/marios-garden/connection.png', caption: 'Physical Connections' },
@@ -743,7 +745,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    soft_skills: ['User-centred Research & Design for Educational Engagement', 'Visual Communication & Teamwork', 'Project Planning', 'Presenting'],
+    soft_skills: ['User-centred Research & Design for Educational Engagement', 'Visual Communication & Teamwork', 'Project Planning', 'Oral Presentation & Pitching'],
     hard_skills: ['Rapid Prototyping (3D Printing)', 'CAD (Fusion360)', 'Physical Mechanism', 'Algorithm Development', 'Programming (Python)', 'Electronics & Circuit Design', 'Video Editing'],
     tile_ratio: 'square',
     has_video: false,
@@ -771,36 +773,36 @@ export const projects: Project[] = [
       '/images/projects/ursa/hero zoom.png',
     ],
     info: "Developed as part of a university group project for the Human Centred Design Engineering module. The brief was to design an intervention to enhance personal safety in urban areas, with the final outcome manifested as something that works for people, in real-life context.",
-    problem: 'Cyclist safety in urban areas is a critical issue, with over 16,000 reported accidents in the UK in 2020, including 4,000 serious injuries. Key risks include cyclists using smartphones for navigation, which diverts attention from the road, and poor communication with other vehicles. Limited visibility and inadequate signalling increase the likelihood of collisions, especially in busy, low-light conditions.',
+    problem: 'Cyclist safety in urban areas is a critical issue, with over 16,000 reported accidents in the UK alone in 2020, including 4,000 serious injuries. Key risks include cyclists using smartphones for navigation, which diverts attention from the road, and poor communication with other vehicles. Limited visibility and inadequate signalling increase the likelihood of collisions, especially in busy, low-light conditions.',
     solution: "URSA is a guidance and communication glove that enhances cyclist safety by providing haptic feedback for navigation, allowing cyclists to stay focused on the road without the need to glance at their phones. The glove also includes built-in lights that signal hand gestures, improving visibility and ensuring that other vehicles can clearly see and register the cyclist's intentions. Paired with the URSA app, it tracks performance, monitors routes, and offers real-time safety updates, providing a seamless, secure, and intuitive cycling experience.",
     feature_caption: 'Cycling without fear.',
     feature_bold: 'AN INTUITIVE AND **SAFETY-FOCUSED** CYCLING GLOVE, COMBINING INNOVATIVE **GUIDANCE** AND **COMMUNICATION** FEATURES FOR A SECURE COMMUTE.',
     feature_tags: ['Haptic Feedback Guidance', 'Smart Navigation', 'Visibility Enhancing', 'Intuitive Signalling', 'Multi-functional attachment', 'Circuit Comfort'],
     role_sections: [
       {
-        title: 'Research & development',
-        body: "I helped conduct user research, interviews, and surveys with urban cyclists to identify major safety pain points — including poor visibility, limited communication with other road users, and distraction from phone-based navigation. This research directly shaped the product's core functionality: enabling hands-free navigation through haptic feedback and gesture-based signalling with integrated lights. I also supported market benchmarking and co-design sessions to ensure the glove addressed real-world user concerns and behaviours.",
+        title: 'Research & Development',
+        body: "I conducted user research, interviews, and surveys with urban cyclists to identify major safety pain points — including poor visibility, limited communication with other road users, and distraction from phone-based navigation. This research directly shaped the product's core functionality: enabling hands-free navigation through haptic feedback and gesture-based signalling with integrated lights. I also supported market benchmarking and co-design sessions to ensure the glove addressed real-world user concerns and behaviours.",
         images:[
           { src: '/images/projects/ursa/sketches.png', caption: 'Initial Sketches' },
           { src: '/images/projects/ursa/sketches 2.png', caption: 'Concept Development' },
         ],
       },
       {
-        title: 'Technical feasibility',
-        body: 'I worked on validating the technical feasibility of URSA by helping prototype and test different vibration placements, light positions, and activation mechanisms using Arduino-based systems. I helped assess sensor performance, hand mobility, and battery placement to ensure a balance between functionality and comfort. I also participated in testing the glove in varied lighting and road conditions, gathering feedback that directly shaped the final form factor and component specification.',
+        title: 'Technical Feasibility',
+        body: 'I worked on validating the technical feasibility of URSA by prototyping and testing different vibration placements, light positions, and activation mechanisms using Arduino-based systems. I assessed sensor performance, hand mobility, and battery placement to ensure a balance between functionality and comfort. I also participated in testing the glove in varied lighting and road conditions, gathering feedback that directly shaped the final form factor and component specification.',
         images:[
           { src: '/images/projects/ursa/code.png', caption: 'Code Implementation' },
         ],
       },
       {
-        title: 'Concept articulation & presentation',
+        title: 'Concept Articulation & Presentation',
         body: "I synthesised our team's research and design decisions into a cohesive narrative, ensuring our concept was communicated clearly and persuasively. I produced the final presentation materials, user scenario illustrations, and written rationale for each design decision, and also developed the URSA app UI concept, mapping out the key screens and user flows that would complement the glove's hardware features.",
         images:[
           { src: '/images/projects/ursa/feature.png', caption: 'Final Design' },
         ],
       },
     ],
-    soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Concept Articulation', 'Presenting'],
+    soft_skills: ['User-centred Research & Design', 'Communication & Teamwork', 'Concept Articulation', ' Oral Presentation & Pitching'],
     hard_skills: ['Rapid Prototyping', 'Arduino & Electronics', 'UI/UX Design', 'User Research Methods'],
     tile_ratio: 'portrait',
     has_video: false,
@@ -823,7 +825,7 @@ export const otherProjects: OtherProject[] = [
     accent_color: '#AFC9DD',
     info: 'A group project for the Economics & Finance for Systems Design module, evaluating the economic viability of an autonomous drone delivery network for on-demand food delivery in London.',
     problem: 'London’s food-delivery boom is straining an already congested city — delivery vehicles account for 17% of road traffic, and last-mile emissions are projected to rise sharply as personal deliveries double by 2030. Autonomous drone delivery offers an alternative, but existing feasibility studies rely on deterministic cost models that ignore real-world uncertainty in demand, battery costs and weather disruption, making it hard to know which fleet configuration is actually worth building.',
-    solution: 'We built a Discounted Cash Flow model comparing three drone-hub configurations — small, medium and large fleets — then stress-tested each with a 2,000-trial Monte Carlo simulation across demand and lithium-price uncertainty, layering in real-options decision rules for expanding the fleet over time. The small-drone fleet emerged as the most robust and cost-effective configuration, and a “pragmatic” flexible expansion rule — adding drones only once demand outstrips capacity — delivered the highest expected NPV of the three flexibility strategies tested.',
+    solution: 'We built a Discounted Cash Flow model comparing three drone-hub configurations — small, medium and large fleets — then stress-tested each with Monte Carlo simulations across demand and lithium-price uncertainty, layering in real-options decision rules for expanding the fleet over time. The small-drone fleet emerged as the most robust and cost-effective configuration, and a “pragmatic” flexible expansion rule — adding drones only once demand outstrips capacity — delivered the highest expected NPV of the three flexibility strategies tested.',
     pdf_url: '/reports/Assessing the Feasibility of Autonomous Drone Delivery Systems - A Strategic Flexibility Approach.pdf',
   },
   {

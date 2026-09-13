@@ -47,6 +47,11 @@ const base = import.meta.env.BASE_URL;
   <div class="meta-strip page-px">
     <div class="meta-inner max-w-page">
       <span class="meta-item micro">
+        <span class="meta-label">Type</span>
+        {project.type}
+      </span>
+      <span class="meta-divider" aria-hidden="true" />
+      <span class="meta-item micro">
         <span class="meta-label">Course</span>
         {project.course}
       </span>
@@ -54,6 +59,11 @@ const base = import.meta.env.BASE_URL;
       <span class="meta-item micro">
         <span class="meta-label">Year</span>
         {project.year}
+      </span>
+      <span class="meta-divider" aria-hidden="true" />
+      <span class="meta-item micro">
+        <span class="meta-label">Role</span>
+        {project.role}
       </span>
     </div>
   </div>
