@@ -113,12 +113,13 @@ const { projects } = Astro.props;
     // One-off manual nudges for specific projects, keyed by slug so they
     // stick to the right image even if the underlying project order changes.
     const slugOverrides: Record<string, { left?: number; top?: number; width?: number; zIndex?: number }> = {
-      foodji:      { top: 76 },              // moved further down
-      desalination: { left: 70, width: 280 }, // shifted left, made bigger
-      'all-ink':   { left: 9, zIndex: -1 },  // shifted right, sent behind other tiles
-      housescout:  { left: 14, width: 290, zIndex: 3 }, // shifted right, made larger, brought to front
-      'two-step':  { left: 1, top: 90, width: 170, zIndex: 2 }, // shifted further left and down, made smaller, brought in front of hive-fu
-      'nest-assured': { left: 68, top: 38, width: 300, zIndex: 4 }, // moved to the right side, left of and below marios-garden, made bigger, brought to front
+      foodji:      { top: 86 },
+      desalination: { left: 70, width: 280 },
+      'all-ink':   { left: 9, zIndex: -1 },
+      housescout:  { left: 12, top: 90, width: 290, zIndex: 3 },
+      'two-step':  { left: 1, top: 90, width: 190, zIndex: 2 },
+      'nest-assured': { left: 68, top: 38, width: 300, zIndex: 4 },
+      'marios-garden': { top: 82 },
     };
 
     tiles.forEach((tile, i) => {
