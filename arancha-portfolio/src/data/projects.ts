@@ -444,11 +444,73 @@ export const projects: Project[] = [
     pdf_url: '/reports/The Impact of Waste as a Currency Report.pdf',
   },
 
-  // ─── 07 ACTIB ──────────────────────────────────────────────────────────
+  // ─── 07 TWO STEP ───────────────────────────────────────────────────────
+  {
+    slug: 'two-step',
+    title: 'Two Step',
+    index: '07 / 12',
+    category: 'design',
+    tags: ['UI/UX', 'Market Research', 'Business Strategy', 'Prototyping', 'User Testing', 'Behavioural Design'],
+    year: '2024',
+    course: 'Innovation & Entrepreneurship',
+    type: 'Group project',
+    role: 'UX research & concept design',
+    accent_color: '#C7D2F0',
+    tagline: 'Your journey, two steps at a time.',
+    one_line: 'A navigation app that plots scenic, exploration-first walking routes instead of the fastest ones.',
+    features: ['Scenic Route Generation', 'Local POI Discovery', 'Gamified Exploration', 'Partner Business Promotion', 'Save & Share Routes'],
+    hero_image: '/images/projects/two-step/ui3.png',
+    images: [
+      '/images/projects/two-step/green bb.png',
+      '/images/projects/two-step/city2.png',
+      '/images/projects/two-step/ui mix.png',
+    ],
+    info: 'Developed for a university venture-creation module in 2025, in a five-person team ("Wayfinding in the City"). The brief was to identify a commercially viable digital product opportunity and take it from problem framing through to a fully costed business case and go-to-market plan.',
+    problem: "Digital life has flattened the experience of getting from A to B. Mapping apps optimise purely for speed or cost, and constant information overload has left people too overwhelmed to seek out anywhere unfamiliar — a trend the pandemic accelerated. The result is a generation that walks past hidden cafes, parks and independent shops every day without ever noticing them.",
+    solution: "Two Step is an alternative navigation app that plots routes prioritising discovery over efficiency, surfacing cafes, parks, pubs and hidden gems along the way. A mascot-led gamification layer of weekly challenges rewards exploration, while local businesses pay to be featured as waypoints — turning a walk into a source of serendipity rather than just a route to a destination.",
+    feature_caption: 'Your journey, two steps at a time.',
+    feature_bold: "AN ALTERNATIVE **NAVIGATION** APP THAT TRADES SPEED FOR **DISCOVERY**, TURNING EVERY WALK INTO A CHANCE TO EXPLORE.",
+    feature_tags: ['Scenic Routing', 'Local Discovery', 'Gamified Walks', 'Partner Promotions', 'Save & Share'],
+    role_sections: [
+      {
+        title: 'User research & personas',
+        body: "I contributed to the initial survey and interview research that shaped our design specification, and to developing our two core personas — Enthusiastic Erica, a spontaneous walker who wants scenic routes without the planning effort, and Curious Carlos, a tourist who wants local recommendations without researching a new city. These personas kept the concept anchored in real user needs through three rounds of concept evaluation.",
+        images: [
+          { src: '/images/projects/two-step/interviews.png', caption: 'Street Interviews' },
+          { src: '/images/projects/two-step/business.png', caption: 'Small Business Partnerships' },
+        ],
+      },
+      {
+        title: 'Concept design & prototyping',
+        body: "Of three concepts we evaluated against our design specification — a safety-first router, a customised discovery router, and a screen-free vibration-guided router — I helped build and test the customised navigation prototype that scored highest, iterating the UI through park interviews with 12 potential users before arriving at the final route-generation and gamification flow.",
+        images: [
+          { src: '/images/projects/two-step/ui2.png', caption: 'UI flow' },
+          { src: '/images/projects/two-step/ui4.png', caption: 'App Gamification' },
+          { src: '/images/projects/two-step/two step.png', caption: 'User Testing' },
+        ],
+      },
+      {
+        title: 'Market sizing & business model',
+        body: "I worked on sizing the opportunity through top-down, bottom-up and value-theory approaches, arriving at a 5-year serviceable obtainable market of £9.13M, and on structuring the four-stream revenue model — business partnerships, PPC ads, subscriptions and business exposure — that underpins the £582K funding case and 54-month break-even projection.",
+        images: [
+          { src: '/images/projects/two-step/city.png', caption: 'Street Advertising' },
+          { src: '/images/projects/two-step/street bb.png', caption: 'Street Banners' },
+          { src: '/images/projects/two-step/card.png', caption: 'Marketing Campaign' },
+        ],
+      },
+    ],
+    soft_skills: ['User Research & Persona Development', 'Concept Ideation & Evaluation', 'Market Sizing & Business Modelling', 'Stakeholder Interviews', 'Presenting'],
+    hard_skills: ['UI/UX Prototyping', 'Google Maps & Navigation APIs', 'Financial Modelling (P&L, SOM)', 'Marketing Channel Strategy'],
+    tile_ratio: 'landscape',
+    has_video: false,
+    pdf_url: '/reports/Two Step Report.pdf',
+  },
+
+    // ─── 08 ACTIB ──────────────────────────────────────────────────────────
   {
     slug: 'actib',
     title: 'ACTIB',
-    index: '07 / 12',
+    index: '08 / 12',
     category: 'design',
     tags: ['Industrial Design', 'UI/UX', 'Prototyping', 'Behavioural Design', 'CAD', 'User Testing'],
     year: '2025',
@@ -504,68 +566,6 @@ export const projects: Project[] = [
     tile_ratio: 'portrait',
     has_video: false,
     pdf_url: '/reports/actib Report.pdf',
-  },
-
-  // ─── 08 TWO STEP ───────────────────────────────────────────────────────
-  {
-    slug: 'two-step',
-    title: 'Two Step',
-    index: '08 / 12',
-    category: 'design',
-    tags: ['UI/UX', 'Market Research', 'Business Strategy', 'Prototyping', 'User Testing', 'Behavioural Design'],
-    year: '2024',
-    course: 'Venture Creation',
-    type: 'Group project',
-    role: 'UX research & concept design',
-    accent_color: '#C7D2F0',
-    tagline: 'Your journey, two steps at a time.',
-    one_line: 'A navigation app that plots scenic, exploration-first walking routes instead of the fastest ones.',
-    features: ['Scenic Route Generation', 'Local POI Discovery', 'Gamified Exploration', 'Partner Business Promotion', 'Save & Share Routes'],
-    hero_image: '/images/projects/two-step/ui3.png',
-    images: [
-      '/images/projects/two-step/green bb.png',
-      '/images/projects/two-step/city2.png',
-      '/images/projects/two-step/ui mix.png',
-    ],
-    info: 'Developed for a university venture-creation module in 2025, in a five-person team ("Wayfinding in the City"). The brief was to identify a commercially viable digital product opportunity and take it from problem framing through to a fully costed business case and go-to-market plan.',
-    problem: "Digital life has flattened the experience of getting from A to B. Mapping apps optimise purely for speed or cost, and constant information overload has left people too overwhelmed to seek out anywhere unfamiliar — a trend the pandemic accelerated. The result is a generation that walks past hidden cafes, parks and independent shops every day without ever noticing them.",
-    solution: "Two Step is an alternative navigation app that plots routes prioritising discovery over efficiency, surfacing cafes, parks, pubs and hidden gems along the way. A mascot-led gamification layer of weekly challenges rewards exploration, while local businesses pay to be featured as waypoints — turning a walk into a source of serendipity rather than just a route to a destination.",
-    feature_caption: 'Your journey, two steps at a time.',
-    feature_bold: "AN ALTERNATIVE **NAVIGATION** APP THAT TRADES SPEED FOR **DISCOVERY**, TURNING EVERY WALK INTO A CHANCE TO EXPLORE.",
-    feature_tags: ['Scenic Routing', 'Local Discovery', 'Gamified Walks', 'Partner Promotions', 'Save & Share'],
-    role_sections: [
-      {
-        title: 'User research & personas',
-        body: "I contributed to the initial survey and interview research that shaped our design specification, and to developing our two core personas — Enthusiastic Erica, a spontaneous walker who wants scenic routes without the planning effort, and Curious Carlos, a tourist who wants local recommendations without researching a new city. These personas kept the concept anchored in real user needs through three rounds of concept evaluation.",
-        images: [
-          { src: '/images/projects/two-step/interviews.png', caption: 'Street Interviews' },
-          { src: '/images/projects/two-step/business.png', caption: 'Small Business Partnerships' },
-        ],
-      },
-      {
-        title: 'Concept design & prototyping',
-        body: "Of three concepts we evaluated against our design specification — a safety-first router, a customised discovery router, and a screen-free vibration-guided router — I helped build and test the customised navigation prototype that scored highest, iterating the UI through park interviews with 12 potential users before arriving at the final route-generation and gamification flow.",
-        images: [
-          { src: '/images/projects/two-step/ui2.png', caption: 'UI flow' },
-          { src: '/images/projects/two-step/ui4.png', caption: 'App Gamification' },
-          { src: '/images/projects/two-step/two step.png', caption: 'User Testing' },
-        ],
-      },
-      {
-        title: 'Market sizing & business model',
-        body: "I worked on sizing the opportunity through top-down, bottom-up and value-theory approaches, arriving at a 5-year serviceable obtainable market of £9.13M, and on structuring the four-stream revenue model — business partnerships, PPC ads, subscriptions and business exposure — that underpins the £582K funding case and 54-month break-even projection.",
-        images: [
-          { src: '/images/projects/two-step/city.png', caption: 'Street Advertising' },
-          { src: '/images/projects/two-step/street bb.png', caption: 'Street Banners' },
-          { src: '/images/projects/two-step/card.png', caption: 'Marketing Campaign' },
-        ],
-      },
-    ],
-    soft_skills: ['User Research & Persona Development', 'Concept Ideation & Evaluation', 'Market Sizing & Business Modelling', 'Stakeholder Interviews', 'Presenting'],
-    hard_skills: ['UI/UX Prototyping', 'Google Maps & Navigation APIs', 'Financial Modelling (P&L, SOM)', 'Marketing Channel Strategy'],
-    tile_ratio: 'landscape',
-    has_video: false,
-    pdf_url: '/reports/Two Step Report.pdf',
   },
 
   // ─── 09 HIVE-FU ────────────────────────────────────────────────────────
