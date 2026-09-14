@@ -205,7 +205,7 @@ export const projects: Project[] = [
     role: 'Independent research, modelling & software development',
     accent_color: '#CFD9DC',
     tagline: 'Design for the demand you don’t know yet.',
-    one_line: 'An interactive decision-support tool that values the flexibility to expand desalination capacity in stages — quantifying an expected €118M advantage over committing to a fixed design upfront.',
+    one_line: 'An interactive decision-support tool that values the flexibility to expand desalination capacity in stages versus a fixed design upfront.',
     features: ['Real Options Analysis', 'Monte Carlo Simulation', 'Multi-Criteria Decision Analysis', 'Interactive Decision Support Tool', 'Usability-Tested'],
     hero_image: '/images/projects/desalination/hero slim.png',
     images: [
@@ -341,7 +341,7 @@ export const projects: Project[] = [
     role: 'Strategy, stakeholder analysis & financial modelling',
     accent_color: '#D9E2C9',
     tagline: 'See the . Choose better.',
-    one_line: 'A CO₂e transparency and rewards strategy for Foodji’s smart vending network, nudging 100,000 monthly consumers toward lower-carbon meals without restricting choice.',
+    one_line: 'A CO₂e transparency and rewards strategy for Foodji’s smart vending network, nudging consumers toward lower-carbon meals without restricting choice.',
     features: ['CO₂e Meal Labelling', 'Digital Loyalty Rewards', 'Nudge-Based Behaviour Change', 'Stakeholder & SDG Mapping', 'Financial Impact Modelling', 'Systems-Level Strategy'],
     hero_image: '/images/projects/foodji/machine.png',
     images: [

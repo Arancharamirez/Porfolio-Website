@@ -292,7 +292,7 @@ mark {
   transition: background 220ms ease-out;
 }
 .project-card:hover .card-overlay {
-  background: rgba(26, 26, 26, 0.4);
+  background: rgba(26, 26, 26, 0.7);
 }
 
 .card-title,
