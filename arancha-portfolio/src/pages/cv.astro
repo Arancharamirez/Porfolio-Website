@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
+import { assetUrl } from '../utils/url';
 ---
 
 <Base
@@ -42,8 +43,13 @@ import Reveal from '../components/Reveal.astro';
             </li>
           </ul>
 
-          <a href="/CV__Arancha_Ramirez.pdf" download="Arancha_Ramirez_CV.pdf" class="download-btn">
-            Download CV PDF
+          <a
+            href={assetUrl('/CV__Arancha_Ramirez.pdf')}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="download-btn"
+          >
+            View CV PDF
           </a>
         </div>
       </aside>
