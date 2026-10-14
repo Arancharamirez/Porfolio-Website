@@ -180,6 +180,12 @@ const isDark = project.accent_color === '#1C2230';
               <span class="showcase-arrow" aria-hidden="true">↗</span>
             </a>
           )}
+          {project.showcase_url?.note && (
+            <p
+              class="showcase-note caption"
+              set:html={project.showcase_url.note.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}
+            />
+          )}
         </div>
       </Reveal>
     </div>
@@ -482,6 +488,19 @@ const isDark = project.accent_color === '#1C2230';
   }
   .showcase-cta:hover .showcase-arrow {
     transform: rotate(45deg) scale(1.05);
+  }
+  .showcase-note {
+    margin: 0.75rem 0 0;
+    padding-left: 0.25rem;
+    color: var(--ink-muted);
+  }
+  .showcase-note :global(strong) {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: #011A7C;
+    background: rgba(1, 26, 124, 0.08);
+    padding: 0.1em 0.45em;
+    border-radius: 0.35em;
   }
 
   @media (max-width: 700px) {
