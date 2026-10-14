@@ -34,6 +34,8 @@ export type Project = {
   pdf_url?: string | string[];
   /** Optional external link (e.g. a deployed tool/demo) shown as its own button next to the report link. */
   demo_url?: { label: string; url: string };
+  /** Optional external case-study site, shown as a prominent CTA under Key features. */
+  showcase_url?: { label: string; url: string };
 };
 
 export type OtherProject = {
@@ -85,6 +87,7 @@ export const projects: Project[] = [
     feature_caption: 'Never rent blind again.',
     feature_bold: "THE FIRST **INDEPENDENT** SCOUTING SERVICE THAT GIVES RENTERS **UNBIASED**, UNFILTERED EYES ON A PROPERTY BEFORE THEY SIGN.",
     feature_tags: ['Unfiltered Media', 'In-Person Advocacy', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
+    showcase_url: { label: 'Explore the full HouseScout project', url: 'https://housescout.framer.website/' },
     role_sections: [
       {
         title: 'Product & UI/UX Design',

@@ -165,6 +165,21 @@ const isDark = project.accent_color === '#1C2230';
           <div class="features-tags">
             {project.feature_tags.map((f) => <PillTag label={f} variant="filled" />)}
           </div>
+          {project.showcase_url && (
+            <a
+              href={project.showcase_url.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="showcase-cta"
+            >
+              <span class="showcase-text">
+                <span class="showcase-eyebrow micro">See the whole project</span>
+                <span class="showcase-label">{project.showcase_url.label}</span>
+                <span class="showcase-host serif-italic">{new URL(project.showcase_url.url).host}</span>
+              </span>
+              <span class="showcase-arrow" aria-hidden="true">↗</span>
+            </a>
+          )}
         </div>
       </Reveal>
     </div>
@@ -406,6 +421,67 @@ const isDark = project.accent_color === '#1C2230';
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+  }
+
+  .showcase-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    padding: 1.25rem 1.25rem 1.25rem 1.75rem;
+    border-radius: var(--radius-card);
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    box-shadow: 0 10px 30px -12px rgba(26, 26, 26, 0.45);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+  .showcase-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -14px rgba(26, 26, 26, 0.55);
+  }
+  .showcase-cta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .showcase-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+  .showcase-eyebrow {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+  .showcase-label {
+    font-family: var(--font-sans);
+    font-size: var(--title);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .showcase-host {
+    font-size: var(--caption);
+    opacity: 0.7;
+  }
+  .showcase-arrow {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 1.35rem;
+    transition: transform 250ms ease;
+  }
+  .showcase-cta:hover .showcase-arrow {
+    transform: rotate(45deg) scale(1.05);
   }
 
   @media (max-width: 700px) {
