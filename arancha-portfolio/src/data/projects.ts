@@ -87,7 +87,7 @@ export const projects: Project[] = [
     feature_caption: 'Never rent blind again.',
     feature_bold: "THE FIRST **INDEPENDENT** SCOUTING SERVICE THAT GIVES RENTERS **UNBIASED**, UNFILTERED EYES ON A PROPERTY BEFORE THEY SIGN.",
     feature_tags: ['Unfiltered Media', 'In-Person Advocacy', 'AI-Flagged Warnings', 'Live Job Tracking', 'Independent & Unbiased', 'Database & API Licensing'],
-    showcase_url: { label: 'Explore HouseScout website', url: 'https://housescout.framer.website/', note: 'Use the password **scouts** on the For Investors page to see the whole design process.' },
+    showcase_url: { label: 'Explore the HouseScout website', url: 'https://housescout.framer.website/', note: 'Use the password **scouts** on the For Investors page to see the whole design process.' },
     role_sections: [
       {
         title: 'Product & UI/UX Design',
