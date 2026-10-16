@@ -36,7 +36,10 @@ function isActive(href: string) {
 </nav>
 
 <style>
+  /* Header palette — fixed on every page, independent of page-level --ink overrides */
   #site-nav {
+    --nav-ink: #660033;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -68,7 +71,7 @@ function isActive(href: string) {
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--nav-ink);
     text-decoration: none;
   }
 
@@ -84,7 +87,7 @@ function isActive(href: string) {
     font-family: var(--font-sans);
     font-size: var(--body);
     font-weight: 500;
-    color: var(--ink-soft);
+    color: var(--nav-ink);
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
@@ -97,11 +100,11 @@ function isActive(href: string) {
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--ink);
+    background: var(--nav-ink);
     transition: width 300ms var(--ease-out-expo);
   }
   .nav-link.active {
-    color: var(--ink);
+    color: var(--nav-ink);
   }
   .nav-link.active::after,
   .nav-link:hover::after {

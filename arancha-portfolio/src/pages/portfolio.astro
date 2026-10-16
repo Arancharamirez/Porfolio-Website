@@ -76,7 +76,7 @@ const base = import.meta.env.BASE_URL;
   /* ─── Page-scoped palette override (matches home page aesthetic) ───
      Redefines the shared --ink / --ink-soft / --ink-muted / --accent
      tokens just for this route (this stylesheet only loads here), then
-     forces header & footer text to the primary color since they're
+     forces footer text to the primary color since they're
      excluded from the soft/dim mapping below. Individual project
      pages are untouched. */
   :global(:root) {
@@ -86,8 +86,6 @@ const base = import.meta.env.BASE_URL;
     --accent: #955070 !important;
     --accent-soft: #EFE5EA !important;
   }
-  :global(.nav-logo),
-  :global(.nav-link),
   :global(.footer-name),
   :global(.footer-tagline),
   :global(.footer-heading),
@@ -95,9 +93,6 @@ const base = import.meta.env.BASE_URL;
   :global(.footer-copy),
   :global(.footer-top) {
     color: #660033 !important;
-  }
-  :global(.nav-link::after) {
-    background: #660033 !important;
   }
   :global(.footer-link:hover) {
     color: #955070 !important;
