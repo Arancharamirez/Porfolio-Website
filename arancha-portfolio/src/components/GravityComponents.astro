@@ -1,0 +1,295 @@
+---
+import { assetUrl } from '../utils/url';
+
+export interface Item {
+  src: string;
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<!-- Physics playground: PNG components fall from the top, stack on the floor,
+     and can be dragged / thrown. A quick tap opens the item's link (if any)
+     or makes it hop. -->
+<div class="gravity-wrap" data-gravity>
+  {items.map((item) => (
+    <div
+      class="gravity-item"
+      data-href={item.href}
+      role={item.href ? 'link' : undefined}
+      tabindex={item.href ? 0 : undefined}
+      aria-label={item.label}
+    >
+      <img src={assetUrl(item.src)} alt="" draggable="false" decoding="async" />
+    </div>
+  ))}
+</div>
+
+<style>
+  .gravity-wrap {
+    position: absolute;
+    /* Clear of the fixed nav so pieces never land behind the header. */
+    top: 6rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .gravity-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Parked off-screen until the simulation places it. */
+    transform: translate(-9999px, -9999px);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    will-change: transform;
+  }
+  .gravity-item.is-dragging {
+    cursor: grabbing;
+    z-index: 2;
+  }
+  .gravity-item:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  .gravity-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(0 6px 14px rgba(26, 26, 26, 0.12));
+  }
+
+  @media (max-width: 767px) {
+    /* On mobile the playground becomes a block under the hero text. */
+    .gravity-wrap {
+      position: relative;
+      top: auto;
+      width: 100%;
+      height: 60vh;
+      min-height: 360px;
+      margin-top: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  import Matter from 'matter-js';
+
+  const { Engine, Bodies, Body, Composite, Constraint, Sleeping } = Matter;
+
+  const WALL = 200;          // wall thickness (px) — thick so fast throws can't tunnel
+  const DROP_INTERVAL = 140; // ms between each piece being released
+  const CLICK_MOVE = 6;      // px of pointer travel still counted as a click
+  const CLICK_TIME = 300;    // ms
+
+  type Piece = { el: HTMLElement; body: Matter.Body; w: number; h: number };
+
+  function loaded(img: HTMLImageElement) {
+    if (img.complete && img.naturalWidth) return Promise.resolve();
+    return new Promise<void>((res) => {
+      img.addEventListener('load', () => res(), { once: true });
+      img.addEventListener('error', () => res(), { once: true });
+    });
+  }
+
+  async function init(wrap: HTMLElement) {
+    const els = Array.from(wrap.querySelectorAll<HTMLElement>('.gravity-item'));
+    if (!els.length) return;
+
+    await Promise.all(els.map((el) => loaded(el.querySelector('img')!)));
+
+    const engine = Engine.create({ enableSleeping: true });
+    engine.gravity.y = 1;
+
+    let W = wrap.clientWidth;
+    let H = wrap.clientHeight;
+
+    // ── Walls: floor + sides, open at the top so pieces can enter ──
+    const wallOpts = { isStatic: true, friction: 0.3 };
+    const floor = Bodies.rectangle(0, 0, 1, 1, wallOpts);
+    const left = Bodies.rectangle(0, 0, 1, 1, wallOpts);
+    const right = Bodies.rectangle(0, 0, 1, 1, wallOpts);
+    function layoutWalls() {
+      const tall = H * 4;
+      Body.setPosition(floor, { x: W / 2, y: H + WALL / 2 });
+      Body.setVertices(floor, Bodies.rectangle(W / 2, H + WALL / 2, W + WALL * 2, WALL).vertices);
+      Body.setPosition(left, { x: -WALL / 2, y: H - tall / 2 });
+      Body.setVertices(left, Bodies.rectangle(-WALL / 2, H - tall / 2, WALL, tall).vertices);
+      Body.setPosition(right, { x: W + WALL / 2, y: H - tall / 2 });
+      Body.setVertices(right, Bodies.rectangle(W + WALL / 2, H - tall / 2, WALL, tall).vertices);
+    }
+    layoutWalls();
+    Composite.add(engine.world, [floor, left, right]);
+
+    // ── Pieces: sized by their longest side, aspect ratio preserved ──
+    const maxSide = Math.max(90, Math.min(220, W * 0.14));
+    const pieces: Piece[] = els.map((el) => {
+      const img = el.querySelector('img')!;
+      const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
+      const w = ratio >= 1 ? maxSide : maxSide * ratio;
+      const h = ratio >= 1 ? maxSide / ratio : maxSide;
+      el.style.width = `${w}px`;
+      el.style.height = `${h}px`;
+      const body = Bodies.rectangle(0, 0, w, h, {
+        chamfer: { radius: Math.min(w, h) * 0.12 },
+        friction: 0.2,
+        frictionAir: 0.01,
+        restitution: 0.25,
+        density: 0.001,
+      });
+      return { el, body, w, h };
+    });
+
+    function release(p: Piece) {
+      Body.setPosition(p.body, {
+        x: p.w / 2 + Math.random() * Math.max(1, W - p.w),
+        y: -p.h - Math.random() * 120,
+      });
+      Body.setAngle(p.body, (Math.random() - 0.5) * 0.8);
+      Body.setAngularVelocity(p.body, (Math.random() - 0.5) * 0.05);
+      Composite.add(engine.world, p.body);
+    }
+
+    function render() {
+      for (const p of pieces) {
+        const { x, y } = p.body.position;
+        p.el.style.transform = `translate(${x - p.w / 2}px, ${y - p.h / 2}px) rotate(${p.body.angle}rad)`;
+      }
+    }
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      // Skip the falling animation: drop everything and pre-settle the pile.
+      pieces.forEach(release);
+      for (let i = 0; i < 600; i++) Engine.update(engine, 1000 / 60);
+      render();
+    } else {
+      pieces.forEach((p, i) => setTimeout(() => release(p), i * DROP_INTERVAL));
+    }
+
+    // ── Dragging: a spring between the pointer and the grabbed point ──
+    let drag: {
+      piece: Piece;
+      constraint: Matter.Constraint;
+      startX: number;
+      startY: number;
+      startT: number;
+      moved: boolean;
+    } | null = null;
+
+    function local(e: PointerEvent) {
+      const r = wrap.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+
+    for (const piece of pieces) {
+      piece.el.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0 || drag) return;
+        e.preventDefault();
+        piece.el.setPointerCapture(e.pointerId);
+        const pt = local(e);
+        const { body } = piece;
+        // Grab offset from the body centre; matter-js rotates it with the body
+        const constraint = Constraint.create({
+          pointA: pt,
+          bodyB: body,
+          pointB: { x: pt.x - body.position.x, y: pt.y - body.position.y },
+          stiffness: 0.2,
+          damping: 0.1,
+          length: 0,
+        });
+        Sleeping.set(body, false);
+        Composite.add(engine.world, constraint);
+        drag = { piece, constraint, startX: e.clientX, startY: e.clientY, startT: performance.now(), moved: false };
+        piece.el.classList.add('is-dragging');
+      });
+
+      piece.el.addEventListener('pointermove', (e) => {
+        if (!drag || drag.piece !== piece) return;
+        drag.constraint.pointA = local(e);
+        Sleeping.set(piece.body, false);
+        if (Math.hypot(e.clientX - drag.startX, e.clientY - drag.startY) > CLICK_MOVE) drag.moved = true;
+      });
+
+      const end = (e: PointerEvent) => {
+        if (!drag || drag.piece !== piece) return;
+        Composite.remove(engine.world, drag.constraint);
+        piece.el.classList.remove('is-dragging');
+        const isClick = !drag.moved && performance.now() - drag.startT < CLICK_TIME;
+        drag = null;
+        if (isClick && e.type === 'pointerup') activate(piece);
+      };
+      piece.el.addEventListener('pointerup', end);
+      piece.el.addEventListener('pointercancel', end);
+
+      piece.el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') activate(piece);
+      });
+    }
+
+    function activate(piece: Piece) {
+      const href = piece.el.dataset.href;
+      if (href) {
+        window.location.href = href;
+        return;
+      }
+      // No link: give it a playful hop
+      Sleeping.set(piece.body, false);
+      Body.setVelocity(piece.body, { x: (Math.random() - 0.5) * 6, y: -12 });
+      Body.setAngularVelocity(piece.body, (Math.random() - 0.5) * 0.3);
+    }
+
+    // ── Loop: fixed timestep, paused while the hero is off-screen ──
+    let running = false;
+    let raf = 0;
+    function tick() {
+      Engine.update(engine, 1000 / 60);
+      render();
+      raf = requestAnimationFrame(tick);
+    }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        raf = requestAnimationFrame(tick);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
+    });
+    io.observe(wrap);
+
+    // ── Resize: move walls, keep every piece inside the new bounds ──
+    new ResizeObserver(() => {
+      const nw = wrap.clientWidth;
+      const nh = wrap.clientHeight;
+      if (nw === W && nh === H) return;
+      W = nw;
+      H = nh;
+      layoutWalls();
+      for (const p of pieces) {
+        const { x, y } = p.body.position;
+        Body.setPosition(p.body, {
+          x: Math.min(Math.max(x, p.w / 2), W - p.w / 2),
+          y: Math.min(y, H - p.h / 2),
+        });
+        Sleeping.set(p.body, false);
+      }
+    }).observe(wrap);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-gravity]').forEach(init);
+</script>

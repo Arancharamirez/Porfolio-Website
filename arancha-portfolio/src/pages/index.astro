@@ -1,10 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import FloatingConstellation from '../components/FloatingConstellation.astro';
+import GravityComponents from '../components/GravityComponents.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Reveal from '../components/Reveal.astro';
 import { projects } from '../data/projects';
 import { assetUrl } from '../utils/url';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const base = import.meta.env.BASE_URL;
 const carouselProjects = [...projects, ...projects]; // doubled for seamless looping
@@ -22,15 +25,35 @@ const constellationProjects = swapBySlug(
   swapBySlug(projects, 'nest-assured', 'actib'),
   'housescout', 'ursa'
 );
+
+// Gravity pieces: every PNG in public/images/gravity/, in filename order.
+// Name a file after a project slug (optionally with a numeric prefix for
+// ordering, e.g. "03-ursa.png") and clicking it opens that project.
+const gravityDir = path.join(process.cwd(), 'public/images/gravity');
+const gravityItems = (fs.existsSync(gravityDir) ? fs.readdirSync(gravityDir) : [])
+  .filter((f) => /\.png$/i.test(f))
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .map((f) => {
+    const stem = f.replace(/\.png$/i, '').replace(/^\d+[-_ ]*/, '');
+    const project = projects.find((p) => p.slug === stem);
+    return {
+      src: `/images/gravity/${f}`,
+      label: project ? project.title : stem.replace(/[-_]+/g, ' '),
+      href: project ? `${base}/work/${project.slug}` : undefined,
+    };
+  });
+const useGravity = gravityItems.length > 0;
 ---
 
 <Base>
   <!-- ─── Hero ─────────────────────────────────────────────────── -->
   <section class="hero page-px" aria-label="Introduction">
-    <!-- Floating constellation sits behind the text -->
-    <FloatingConstellation projects={constellationProjects} />
+    <!-- Gravity pieces (or, until PNGs are added, the floating constellation) sit behind the text -->
+    {useGravity
+      ? <GravityComponents items={gravityItems} />
+      : <FloatingConstellation projects={constellationProjects} />}
 
-    <div class="hero-text">
+    <div class:list={['hero-text', { 'hero-text--gravity': useGravity }]}>
       <h1 class="display-xl hero-name" data-reveal-hero>ARANCHA RAMÍREZ</h1>
       <p class="serif-italic display-m hero-sub" data-reveal-hero style="transition-delay:80ms">
         Design Engineering · Imperial College London
@@ -46,7 +69,7 @@ const constellationProjects = swapBySlug(
     </div>
 
     <!-- Mobile grid fallback (hidden on desktop, shown on mobile via CSS) -->
-    <div class="hero-mobile-grid" aria-label="Project thumbnails">
+    {!useGravity && <div class="hero-mobile-grid" aria-label="Project thumbnails">
       {projects.slice(0, 8).map((p) => (
         <a href={`${base}/work/${p.slug}`} class="mobile-tile">
           <img
@@ -58,7 +81,7 @@ const constellationProjects = swapBySlug(
           <span class="mobile-tile-title caption">{p.title}</span>
         </a>
       ))}
-    </div>
+    </div>}
   </section>
 
   <!-- ─── About note ────────────────────────────────────────────── -->
@@ -155,6 +178,14 @@ const constellationProjects = swapBySlug(
     background: radial-gradient(ellipse 680px 420px at 50% 50%, rgba(244,241,234,0.72) 40%, transparent 100%);
     padding: 3rem 2rem;
     border-radius: 24px;
+  }
+
+  /* Let drags reach the gravity pieces behind the text; only the buttons stay clickable. */
+  .hero-text--gravity {
+    pointer-events: none;
+  }
+  .hero-text--gravity .hero-ctas {
+    pointer-events: auto;
   }
 
   .hero-name {
