@@ -167,18 +167,24 @@ const { items } = Astro.props;
       return { el, body, w, h };
     });
 
+    const released = new Set<Piece>();
+
     function release(p: Piece) {
+      // Start fully above the frame: half the diagonal clears the top edge at any rotation
+      const radius = Math.hypot(p.w, p.h) / 2;
       Body.setPosition(p.body, {
         x: p.w / 2 + Math.random() * Math.max(1, W - p.w),
-        y: -p.h - Math.random() * 120,
+        y: -radius - 10 - Math.random() * 120,
       });
       Body.setAngle(p.body, (Math.random() - 0.5) * 0.8);
       Body.setAngularVelocity(p.body, (Math.random() - 0.5) * 0.05);
       Composite.add(engine.world, p.body);
+      released.add(p);
     }
 
     function render() {
       for (const p of pieces) {
+        if (!released.has(p)) continue; // stays parked off-screen until its turn
         const { x, y } = p.body.position;
         p.el.style.transform = `translate(${x - p.w / 2}px, ${y - p.h / 2}px) rotate(${p.body.angle}rad)`;
       }
