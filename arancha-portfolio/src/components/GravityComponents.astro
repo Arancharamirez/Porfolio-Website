@@ -95,7 +95,14 @@ const { items } = Astro.props;
   const DROP_INTERVAL = 140; // ms between each piece being released
   const CLICK_MOVE = 6;      // px of pointer travel still counted as a click
   const CLICK_TIME = 300;    // ms
-  const HALF_SIZE = ['allink.png']; // non-square PNGs that should match the small squares
+  // Per-file size overrides (multiplier on the default size). Square PNGs default to 0.5.
+  const SCALE: Record<string, number> = {
+    'allink.png': 0.5,
+    'ursa.png': 1.5,
+    'nest_base.png': 1.5,
+    'mario.png': 1.5,
+    'actib.png': 1.5,
+  };
 
   type Piece = { el: HTMLElement; body: Matter.Body; w: number; h: number };
 
@@ -141,10 +148,10 @@ const { items } = Astro.props;
     const pieces: Piece[] = els.map((el) => {
       const img = el.querySelector('img')!;
       const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
-      // Square PNGs (the app/icon pieces), plus a few named extras, render at half size
+      // Square PNGs (the app/icon pieces) render at half size unless overridden in SCALE
       const file = decodeURIComponent(img.src.split('/').pop() || '');
       const isSquare = img.naturalWidth && img.naturalWidth === img.naturalHeight;
-      const side = isSquare || HALF_SIZE.includes(file) ? maxSide / 2 : maxSide;
+      const side = maxSide * (SCALE[file] ?? (isSquare ? 0.5 : 1));
       const w = ratio >= 1 ? side : side * ratio;
       const h = ratio >= 1 ? side / ratio : side;
       el.style.width = `${w}px`;
