@@ -5,7 +5,7 @@ import { assetUrl } from '../utils/url';
 ---
 
 <Base
-  title="CV — Arancha Ramírez"
+  title="CV — Arancha Ramírez Gorostiza"
   description="CV of Arancha Ramírez — MEng Design Engineering, Imperial College London."
 >
   <div class="cv-page page-px max-w-page">
@@ -14,7 +14,7 @@ import { assetUrl } from '../utils/url';
       <!-- ─── Sidebar ──────────────────────────────────────── -->
       <aside class="cv-sidebar">
         <div class="sidebar-inner">
-          <h1 class="sidebar-name">Arancha<br />Ramírez</h1>
+          <h1 class="sidebar-name">Arancha<br />Ramírez Gorostiza</h1>
           <p class="sidebar-role caption">MEng Design Engineering</p>
 
           <hr class="rule" style="margin: 1.5rem 0" />
@@ -183,6 +183,36 @@ import { assetUrl } from '../utils/url';
 </Base>
 
 <style>
+  /* ─── Page-scoped palette override (matches home page aesthetic) ───
+     Redefines the shared --ink / --ink-soft / --ink-muted / --accent
+     tokens just for this route (this stylesheet only loads here), then
+     forces header & footer text to the primary color since they're
+     excluded from the soft/dim mapping below. Individual project
+     pages are untouched. */
+  :global(:root) {
+    --ink: #660033 !important;
+    --ink-soft: #955070 !important;
+    --ink-muted: #955070 !important;
+    --accent: #955070 !important;
+    --accent-soft: #EFE5EA !important;
+  }
+  :global(.nav-logo),
+  :global(.nav-link),
+  :global(.footer-name),
+  :global(.footer-tagline),
+  :global(.footer-heading),
+  :global(.footer-link),
+  :global(.footer-copy),
+  :global(.footer-top) {
+    color: #660033 !important;
+  }
+  :global(.nav-link::after) {
+    background: #660033 !important;
+  }
+  :global(.footer-link:hover) {
+    color: #955070 !important;
+  }
+
   .cv-page {
     padding-top: calc(4rem + 3rem);
     padding-bottom: 4rem;

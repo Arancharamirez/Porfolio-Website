@@ -103,6 +103,36 @@ const constellationProjects = swapBySlug(
 </Base>
 
 <style>
+  /* ─── Page-scoped palette override (home page only) ───────
+     Redefines the shared --ink / --ink-soft / --ink-muted /
+     --accent tokens just for this route (this stylesheet is
+     only loaded on "/"), then forces header & footer text to
+     the primary color since they're excluded from the
+     soft/dim mapping below. Every other page keeps the
+     default palette from global.css untouched. */
+  :global(:root) {
+    --ink: #660033 !important;
+    --ink-soft: #955070 !important;
+    --ink-muted: #955070 !important;
+    --accent: #955070 !important;
+  }
+  :global(.nav-logo),
+  :global(.nav-link),
+  :global(.footer-name),
+  :global(.footer-tagline),
+  :global(.footer-heading),
+  :global(.footer-link),
+  :global(.footer-copy),
+  :global(.footer-top) {
+    color: #660033 !important;
+  }
+  :global(.nav-link::after) {
+    background: #660033 !important;
+  }
+  :global(.footer-link:hover) {
+    color: #955070 !important;
+  }
+
   /* ─── Hero ──────────────────────────────────────────────── */
   .hero {
     position: relative;
@@ -129,20 +159,20 @@ const constellationProjects = swapBySlug(
 
   .hero-name {
     margin: 0;
-    color: var(--ink);
+    color: #660033;
     opacity: 0;
     transform: translateY(24px);
     animation: heroReveal 700ms var(--ease-out-expo) 100ms both;
   }
   .hero-sub {
     margin: 0;
-    color: var(--ink-soft);
+    color: #955070;
     opacity: 0;
     animation: heroReveal 700ms var(--ease-out-expo) 180ms both;
   }
   .hero-bio {
     margin: 0;
-    color: var(--ink-soft);
+    color: #660033;
     max-width: 52ch;
     text-align: center;
     opacity: 0;
@@ -241,7 +271,7 @@ const constellationProjects = swapBySlug(
     background: transparent;
   }
   .btn-outline:hover {
-    background: var(--ink);
+    background: #955070;
     color: var(--paper);
   }
 
