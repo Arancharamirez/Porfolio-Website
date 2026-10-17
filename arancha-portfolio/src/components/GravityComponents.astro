@@ -9,15 +9,17 @@ export interface Item {
 
 export interface Props {
   items: Item[];
+  /** CSS selector of elements pieces should collide with instead of covering (e.g. the hero text). */
+  avoid?: string;
 }
 
-const { items } = Astro.props;
+const { items, avoid } = Astro.props;
 ---
 
 <!-- Physics playground: PNG components fall from the top, stack on the floor,
      and can be dragged / thrown. A quick tap opens the item's link (if any)
      or makes it hop. -->
-<div class="gravity-wrap" data-gravity>
+<div class="gravity-wrap" data-gravity data-avoid={avoid}>
   {items.map((item) => (
     <div
       class="gravity-item"
@@ -77,6 +79,7 @@ const { items } = Astro.props;
     /* On mobile the playground becomes a block under the hero text. */
     .gravity-wrap {
       position: relative;
+      order: 1; /* after the hero text in the stacked mobile layout */
       top: auto;
       width: 100%;
       height: 60vh;
@@ -89,12 +92,14 @@ const { items } = Astro.props;
 <script>
   import Matter from 'matter-js';
 
-  const { Engine, Bodies, Body, Composite, Constraint, Sleeping } = Matter;
+  const { Engine, Bodies, Body, Composite, Constraint, Query, Sleeping, Vertices } = Matter;
 
   const WALL = 200;          // wall thickness (px) — thick so fast throws can't tunnel
   const DROP_INTERVAL = 140; // ms between each piece being released
   const CLICK_MOVE = 6;      // px of pointer travel still counted as a click
   const CLICK_TIME = 300;    // ms
+  const REST_SPEED = 4;      // below this a piece over the text counts as resting there
+  const PUSH = 0.003;        // sideways shove (× mass) for pieces resting over the text
   // Per-file size overrides (multiplier on the default size). Square PNGs default to 0.5.
   const SCALE: Record<string, number> = {
     'allink.png': 0.5,
@@ -105,7 +110,8 @@ const { items } = Astro.props;
     'nest_dial.png': 0.67,
   };
 
-  type Piece = { el: HTMLElement; body: Matter.Body; w: number; h: number };
+  // ox/oy: offset from the body's centre of mass to the image centre (unrotated)
+  type Piece = { el: HTMLElement; body: Matter.Body; w: number; h: number; ox: number; oy: number };
 
   function loaded(img: HTMLImageElement) {
     if (img.complete && img.naturalWidth) return Promise.resolve();
@@ -115,12 +121,57 @@ const { items } = Astro.props;
     });
   }
 
+  // Convex outline of the PNG's opaque pixels, in display px (0..w, 0..h), so pieces
+  // collide on what's visible rather than on their transparent bounding box.
+  function opaqueHull(img: HTMLImageElement, w: number, h: number) {
+    const rect = [{ x: 0, y: 0 }, { x: w, y: 0 }, { x: w, y: h }, { x: 0, y: h }];
+    try {
+      const s = 64 / Math.max(img.naturalWidth, img.naturalHeight);
+      const cw = Math.max(1, Math.round(img.naturalWidth * s));
+      const ch = Math.max(1, Math.round(img.naturalHeight * s));
+      const ctx = Object.assign(document.createElement('canvas'), { width: cw, height: ch }).getContext('2d')!;
+      ctx.drawImage(img, 0, 0, cw, ch);
+      const data = ctx.getImageData(0, 0, cw, ch).data;
+      type Pt = { x: number; y: number };
+      const pts: Pt[] = [];
+      for (let y = 0; y < ch; y++) {
+        let first = -1;
+        let last = -1;
+        for (let x = 0; x < cw; x++) {
+          if (data[(y * cw + x) * 4 + 3] > 40) {
+            if (first < 0) first = x;
+            last = x;
+          }
+        }
+        if (first >= 0) pts.push({ x: first, y }, { x: first, y: y + 1 }, { x: last + 1, y }, { x: last + 1, y: y + 1 });
+      }
+      if (pts.length < 3) return rect;
+      // Andrew's monotone chain
+      pts.sort((a, b) => a.x - b.x || a.y - b.y);
+      const cross = (o: Pt, a: Pt, b: Pt) => (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+      const half = (list: Pt[]) => {
+        const out: Pt[] = [];
+        for (const pt of list) {
+          while (out.length >= 2 && cross(out[out.length - 2], out[out.length - 1], pt) <= 0) out.pop();
+          out.push(pt);
+        }
+        out.pop();
+        return out;
+      };
+      const hull = [...half(pts), ...half([...pts].reverse())];
+      return hull.length < 3 ? rect : hull.map((pt) => ({ x: (pt.x * w) / cw, y: (pt.y * h) / ch }));
+    } catch {
+      return rect; // e.g. canvas unavailable
+    }
+  }
+
   async function init(wrap: HTMLElement) {
     const els = Array.from(wrap.querySelectorAll<HTMLElement>('.gravity-item'));
     if (!els.length) return;
 
     await Promise.all(els.map((el) => loaded(el.querySelector('img')!)));
 
+    // Sleeping stops resting piles from slowly creeping; clearText wakes any piece asleep over the text
     const engine = Engine.create({ enableSleeping: true });
     engine.gravity.y = 1;
 
@@ -144,6 +195,49 @@ const { items } = Astro.props;
     layoutWalls();
     Composite.add(engine.world, [floor, left, right]);
 
+    // ── Text zones: pieces may fall *through* the hero text, but not rest on top of it.
+    // Zones hug the actual text lines and buttons (no margin); any piece that slows down
+    // while overlapping one gets shoved sideways out of the way.
+    const avoidEls = wrap.dataset.avoid
+      ? Array.from(document.querySelectorAll<HTMLElement>(wrap.dataset.avoid))
+      : [];
+    let zones: Matter.Body[] = [];
+    let zoneMidX = W / 2;
+    function layoutZones() {
+      const wr = wrap.getBoundingClientRect();
+      const rects: DOMRect[] = [];
+      for (const el of avoidEls) {
+        for (const child of Array.from(el.children)) {
+          // A range's client rects are the individual text line boxes and inline elements
+          const range = document.createRange();
+          range.selectNodeContents(child);
+          rects.push(...Array.from(range.getClientRects()).filter((r) => r.width && r.height));
+        }
+      }
+      // Zones aren't added to the world; they're only used for overlap queries
+      zones = rects
+        .map((r) => ({ l: r.left - wr.left, t: r.top - wr.top, w: r.width, h: r.height }))
+        .filter((r) => r.t + r.h > 0 && r.t < H && r.l + r.w > 0 && r.l < W)
+        .map((r) => Bodies.rectangle(r.l + r.w / 2, r.t + r.h / 2, r.w, r.h, { isStatic: true }));
+      if (zones.length) {
+        const minX = Math.min(...zones.map((z) => z.bounds.min.x));
+        const maxX = Math.max(...zones.map((z) => z.bounds.max.x));
+        zoneMidX = (minX + maxX) / 2;
+      }
+    }
+
+    function clearText() {
+      if (!zones.length) return;
+      for (const p of pieces) {
+        if (!released.has(p) || p.el.classList.contains('is-dragging') || p.body.speed > REST_SPEED) continue;
+        if (Query.collides(p.body, zones).length) {
+          Sleeping.set(p.body, false);
+          const dir = p.body.position.x < zoneMidX ? -1 : 1;
+          Body.applyForce(p.body, p.body.position, { x: dir * p.body.mass * PUSH, y: 0 });
+        }
+      }
+    }
+
     // ── Pieces: sized by their longest side, aspect ratio preserved ──
     const maxSide = Math.max(90, Math.min(220, W * 0.14));
     const pieces: Piece[] = els.map((el) => {
@@ -157,21 +251,26 @@ const { items } = Astro.props;
       const h = ratio >= 1 ? side / ratio : side;
       el.style.width = `${w}px`;
       el.style.height = `${h}px`;
-      const body = Bodies.rectangle(0, 0, w, h, {
-        chamfer: { radius: Math.min(w, h) * 0.12 },
+      const hull = opaqueHull(img, w, h);
+      const c = Vertices.centre(hull);
+      const body = Bodies.fromVertices(0, 0, [hull], {
         friction: 0.2,
         frictionAir: 0.01,
         restitution: 0.25,
         density: 0.001,
       });
-      return { el, body, w, h };
+      return { el, body, w, h, ox: w / 2 - c.x, oy: h / 2 - c.y };
     });
+
+    layoutZones();
+    // Re-measure once the text's entrance animation has finished moving it
+    setTimeout(layoutZones, 1200);
 
     const released = new Set<Piece>();
 
     function release(p: Piece) {
       // Start fully above the frame: half the diagonal clears the top edge at any rotation
-      const radius = Math.hypot(p.w, p.h) / 2;
+      const radius = Math.hypot(p.w, p.h) / 2 + Math.hypot(p.ox, p.oy);
       Body.setPosition(p.body, {
         x: p.w / 2 + Math.random() * Math.max(1, W - p.w),
         y: -radius - 10 - Math.random() * 120,
@@ -185,8 +284,13 @@ const { items } = Astro.props;
     function render() {
       for (const p of pieces) {
         if (!released.has(p)) continue; // stays parked off-screen until its turn
-        const { x, y } = p.body.position;
-        p.el.style.transform = `translate(${x - p.w / 2}px, ${y - p.h / 2}px) rotate(${p.body.angle}rad)`;
+        const { position, angle } = p.body;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        // Image centre sits at the (rotated) offset from the centre of mass
+        const cx = position.x + p.ox * cos - p.oy * sin;
+        const cy = position.y + p.ox * sin + p.oy * cos;
+        p.el.style.transform = `translate(${cx - p.w / 2}px, ${cy - p.h / 2}px) rotate(${angle}rad)`;
       }
     }
 
@@ -194,7 +298,10 @@ const { items } = Astro.props;
     if (reduced) {
       // Skip the falling animation: drop everything and pre-settle the pile.
       pieces.forEach(release);
-      for (let i = 0; i < 600; i++) Engine.update(engine, 1000 / 60);
+      for (let i = 0; i < 600; i++) {
+        clearText();
+        Engine.update(engine, 1000 / 60);
+      }
       render();
     } else {
       pieces.forEach((p, i) => setTimeout(() => release(p), i * DROP_INTERVAL));
@@ -276,6 +383,7 @@ const { items } = Astro.props;
     let running = false;
     let raf = 0;
     function tick() {
+      clearText();
       Engine.update(engine, 1000 / 60);
       render();
       raf = requestAnimationFrame(tick);
@@ -299,6 +407,7 @@ const { items } = Astro.props;
       W = nw;
       H = nh;
       layoutWalls();
+      layoutZones();
       for (const p of pieces) {
         const { x, y } = p.body.position;
         Body.setPosition(p.body, {
@@ -308,6 +417,12 @@ const { items } = Astro.props;
         Sleeping.set(p.body, false);
       }
     }).observe(wrap);
+
+    // Text can reflow (fonts loading, wrapping) without the play area resizing
+    if (avoidEls.length) {
+      const ro = new ResizeObserver(() => layoutZones());
+      avoidEls.forEach((el) => ro.observe(el));
+    }
   }
 
   document.querySelectorAll<HTMLElement>('[data-gravity]').forEach(init);

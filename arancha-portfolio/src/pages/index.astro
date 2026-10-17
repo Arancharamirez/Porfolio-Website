@@ -27,21 +27,15 @@ const constellationProjects = swapBySlug(
 );
 
 // Gravity pieces: every PNG in public/images/gravity/, in filename order.
-// Name a file after a project slug (optionally with a numeric prefix for
-// ordering, e.g. "03-ursa.png") and clicking it opens that project.
+// Purely playful — pieces are draggable but don't link anywhere.
 const gravityDir = path.join(process.cwd(), 'public/images/gravity');
 const gravityItems = (fs.existsSync(gravityDir) ? fs.readdirSync(gravityDir) : [])
   .filter((f) => /\.png$/i.test(f))
   .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-  .map((f) => {
-    const stem = f.replace(/\.png$/i, '').replace(/^\d+[-_ ]*/, '');
-    const project = projects.find((p) => p.slug === stem);
-    return {
-      src: `/images/gravity/${f}`,
-      label: project ? project.title : stem.replace(/[-_]+/g, ' '),
-      href: project ? `${base}/work/${project.slug}` : undefined,
-    };
-  });
+  .map((f) => ({
+    src: `/images/gravity/${f}`,
+    label: f.replace(/\.png$/i, '').replace(/^\d+[-_ ]*/, '').replace(/[-_]+/g, ' '),
+  }));
 const useGravity = gravityItems.length > 0;
 ---
 
@@ -50,7 +44,7 @@ const useGravity = gravityItems.length > 0;
   <section class="hero page-px" aria-label="Introduction">
     <!-- Gravity pieces (or, until PNGs are added, the floating constellation) sit behind the text -->
     {useGravity
-      ? <GravityComponents items={gravityItems} />
+      ? <GravityComponents items={gravityItems} avoid=".hero-text" />
       : <FloatingConstellation projects={constellationProjects} />}
 
     <div class:list={['hero-text', { 'hero-text--gravity': useGravity }]}>
@@ -87,7 +81,6 @@ const useGravity = gravityItems.length > 0;
   <!-- ─── About note ────────────────────────────────────────────── -->
   <section class="about-note page-px max-w-page section-gap">
     <Reveal>
-      <p class="serif-italic caption about-eyebrow">A note on practice</p>
       <p class="body-l about-body">
         I'm interested in the gap between analytical rigour and the people who must act on its outputs
         — making complex systems legible to the humans inside them. My work spans wearables, sustainable
