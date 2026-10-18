@@ -76,15 +76,9 @@ const { items, avoid } = Astro.props;
   }
 
   @media (max-width: 767px) {
-    /* On mobile the playground becomes a block under the hero text. */
+    /* On mobile the pieces fall behind the hero text and pile up under it. */
     .gravity-wrap {
-      position: relative;
-      order: 1; /* after the hero text in the stacked mobile layout */
-      top: auto;
-      width: 100%;
-      height: 60vh;
-      min-height: 360px;
-      margin-top: 1.5rem;
+      top: 4rem;
     }
   }
 </style>
@@ -100,6 +94,10 @@ const { items, avoid } = Astro.props;
   const CLICK_TIME = 300;    // ms
   const REST_SPEED = 4;      // below this a piece over the text counts as resting there
   const PUSH = 0.003;        // sideways shove (× mass) for pieces resting over the text
+  const SETTLE_FALLBACK = 8000; // ms after the last drop to treat the pile as settled anyway
+  // On phones pieces may pile up behind the text; once they settle, the avoided
+  // elements get `gravity-settled` so the page can add a backdrop for legibility.
+  const mobile = window.matchMedia('(max-width: 767px)');
   // Per-file size overrides (multiplier on the default size). Square PNGs default to 0.5.
   const SCALE: Record<string, number> = {
     'allink.png': 0.5,
@@ -227,7 +225,7 @@ const { items, avoid } = Astro.props;
     }
 
     function clearText() {
-      if (!zones.length) return;
+      if (!zones.length || mobile.matches) return;
       for (const p of pieces) {
         if (!released.has(p) || p.el.classList.contains('is-dragging') || p.body.speed > REST_SPEED) continue;
         if (Query.collides(p.body, zones).length) {
@@ -293,6 +291,19 @@ const { items, avoid } = Astro.props;
         p.el.style.transform = `translate(${cx - p.w / 2}px, ${cy - p.h / 2}px) rotate(${angle}rad)`;
       }
     }
+
+    let settled = false;
+    function settle() {
+      if (settled || !mobile.matches) return;
+      settled = true;
+      avoidEls.forEach((el) => el.classList.add('gravity-settled'));
+    }
+    function checkSettled() {
+      if (settled || released.size < pieces.length) return;
+      if (pieces.every((p) => p.body.isSleeping)) settle();
+    }
+    // A piece can jitter against a wall and never sleep, so settle anyway after a while
+    setTimeout(settle, pieces.length * DROP_INTERVAL + SETTLE_FALLBACK);
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
@@ -386,6 +397,7 @@ const { items, avoid } = Astro.props;
       clearText();
       Engine.update(engine, 1000 / 60);
       render();
+      checkSettled();
       raf = requestAnimationFrame(tick);
     }
     const io = new IntersectionObserver(([entry]) => {

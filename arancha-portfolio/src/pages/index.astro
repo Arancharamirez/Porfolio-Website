@@ -41,7 +41,7 @@ const useGravity = gravityItems.length > 0;
 
 <Base>
   <!-- ─── Hero ─────────────────────────────────────────────────── -->
-  <section class="hero page-px" aria-label="Introduction">
+  <section class:list={['hero page-px', { 'hero--gravity': useGravity }]} aria-label="Introduction">
     <!-- Gravity pieces (or, until PNGs are added, the floating constellation) sit behind the text -->
     {useGravity
       ? <GravityComponents items={gravityItems} avoid=".hero-text" />
@@ -249,8 +249,47 @@ const useGravity = gravityItems.length > 0;
       align-items: flex-start;
     }
     .hero-bio { text-align: left; }
-    .hero-ctas { justify-content: flex-start; }
+    .hero-ctas {
+      justify-content: flex-start;
+      flex-wrap: nowrap; /* keep both buttons side by side */
+      gap: 0.75rem;
+    }
+    .hero-ctas .btn-primary,
+    .hero-ctas .btn-outline {
+      padding: 0.7em 1.25em;
+      white-space: nowrap;
+    }
     .hero-mobile-grid { display: grid; }
+
+    /* Gravity on phones: full-screen hero with the text at the bottom so the
+       pieces pile up behind it. */
+    .hero--gravity {
+      min-height: 100svh;
+      justify-content: flex-end;
+      padding-bottom: 2rem;
+    }
+    /* Tighter padding so the blurred panel hugs the text */
+    .hero-text--gravity {
+      padding: 1.25rem 1rem;
+      border-radius: 16px;
+    }
+    /* Blurred panel behind the text, faded in once the pile has stopped moving
+       (GravityComponents adds .gravity-settled). */
+    .hero-text--gravity::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: rgba(244, 241, 234, 0.55); /* --paper */
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+    .hero-text--gravity:global(.gravity-settled)::before {
+      opacity: 1;
+    }
   }
 
   /* ─── Buttons ────────────────────────────────────────────── */
