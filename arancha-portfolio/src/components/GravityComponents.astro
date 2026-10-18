@@ -237,7 +237,7 @@ const { items, avoid } = Astro.props;
     }
 
     // ── Pieces: sized by their longest side, aspect ratio preserved ──
-    const maxSide = Math.max(90, Math.min(220, W * 0.14));
+    const maxSide = Math.max(90, Math.min(220, W * 0.14)) * (mobile.matches ? 4 / 3 : 1);
     const pieces: Piece[] = els.map((el) => {
       const img = el.querySelector('img')!;
       const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
