@@ -380,7 +380,7 @@ const isDark = project.accent_color === '#1C2230';
 
   @media (max-width: 800px) {
     .ips-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 2.5rem;
     }
   }
@@ -503,9 +503,9 @@ const isDark = project.accent_color === '#1C2230';
     border-radius: 0.35em;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 767px) {
     .features-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
@@ -612,10 +612,10 @@ const isDark = project.accent_color === '#1C2230';
     margin-bottom: 0;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 767px) {
     .role-area,
     .role-area--flip {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       direction: ltr;
     }
   }
@@ -730,6 +730,50 @@ const isDark = project.accent_color === '#1C2230';
     transition: color 200ms ease;
   }
   .back-link:hover { color: var(--ink); }
+
+  /* ─── Phones: everything fits the screen width, equal side margins ─── */
+  @media (max-width: 767px) {
+    /* Long skill / feature names wrap inside their pill instead of running off-screen */
+    .features-tags :global(.pill),
+    .skills-pills :global(.pill) {
+      white-space: normal;
+      max-width: 100%;
+      line-height: 1.3;
+    }
+
+    /* Label above the pills rather than beside them */
+    .skills-wrap {
+      padding: 1.25rem;
+    }
+    .skills-row {
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .skills-label {
+      width: auto;
+      padding-top: 0;
+    }
+
+    /* Every image spans the full content width */
+    .features-img-wrap,
+    .role-img-wrap {
+      width: 100%;
+    }
+
+    .features-bold,
+    .role-area-text,
+    .next-title,
+    .showcase-label {
+      overflow-wrap: anywhere;
+    }
+    .showcase-cta {
+      padding: 1rem 1rem 1rem 1.25rem;
+    }
+    .showcase-arrow {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
 </style>
 
 <script>
