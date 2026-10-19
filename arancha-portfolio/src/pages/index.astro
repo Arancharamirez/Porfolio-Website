@@ -123,7 +123,7 @@ const useGravity = gravityItems.length > 0;
      Redefines the shared --ink / --ink-soft / --ink-muted /
      --accent tokens just for this route (this stylesheet is
      only loaded on "/"), then forces footer text to
-     the primary color since they're excluded from the
+     white since they're excluded from the
      soft/dim mapping below. Every other page keeps the
      default palette from global.css untouched. */
   :global(:root) {
@@ -138,10 +138,10 @@ const useGravity = gravityItems.length > 0;
   :global(.footer-link),
   :global(.footer-copy),
   :global(.footer-top) {
-    color: #660033 !important;
+    color: #FFFFFF !important;
   }
   :global(.footer-link:hover) {
-    color: #955070 !important;
+    color: #EFE5EA !important;
   }
 
   /* ─── Hero ──────────────────────────────────────────────── */

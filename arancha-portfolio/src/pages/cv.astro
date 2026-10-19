@@ -186,7 +186,7 @@ import { assetUrl } from '../utils/url';
   /* ─── Page-scoped palette override (matches home page aesthetic) ───
      Redefines the shared --ink / --ink-soft / --ink-muted / --accent
      tokens just for this route (this stylesheet only loads here), then
-     forces footer text to the primary color since they're
+     forces footer text to white since they're
      excluded from the soft/dim mapping below. Individual project
      pages are untouched. */
   :global(:root) {
@@ -202,10 +202,10 @@ import { assetUrl } from '../utils/url';
   :global(.footer-link),
   :global(.footer-copy),
   :global(.footer-top) {
-    color: #660033 !important;
+    color: #FFFFFF !important;
   }
   :global(.footer-link:hover) {
-    color: #955070 !important;
+    color: #EFE5EA !important;
   }
 
   .cv-page {
